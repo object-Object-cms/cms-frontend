@@ -1,3 +1,63 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .button {
+        @apply cursor-pointer;
+        @apply select-none;
+        @apply rounded-md;
+        @apply border-none;
+        @apply bg-none;
+        @apply px-2;
+        @apply py-1;
+        @apply outline-none;
+        @apply transition-colors;
+    }
+
+    .button-green-outline {
+        @apply border;
+        @apply border-solid;
+        @apply border-green-600;
+        @apply text-green-600;
+        @apply hover:bg-green-600;
+        @apply hover:text-white;
+    }
+
+    .button-blue-outline {
+        @apply border;
+        @apply border-solid;
+        @apply border-blue-600;
+        @apply text-blue-600;
+        @apply hover:bg-blue-600;
+        @apply hover:text-white;
+    }
+
+    .icon {
+        @apply h-8;
+        @apply w-8;
+        @apply cursor-pointer;
+        @apply select-none;
+        @apply rounded-full;
+        @apply p-1;
+        @apply transition-colors;
+        @apply hover:bg-black;
+        @apply hover:bg-opacity-20;
+    }
+}
+
+@layer utilities {
+    .details-reset > summary {
+        list-style: none;
+    }
+
+    .details-reset > summary::before {
+        display: none;
+    }
+
+    .details-reset > summary::-webkit-details-marker {
+        display: none;
+    }
+}
