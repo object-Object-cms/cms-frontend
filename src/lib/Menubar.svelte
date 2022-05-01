@@ -1,6 +1,7 @@
 <script lang="ts">
     import { link } from "svelte-spa-router";
     import Icon from "./Icon.svelte";
+    import { prefMenubarViewMode } from "./PreferencesController";
 
     interface Link {
         text: string;
@@ -13,6 +14,10 @@
 
     function collapse() {
         expanded = false;
+    }
+
+    function toggleViewMode() {
+        $prefMenubarViewMode = !$prefMenubarViewMode;
     }
 </script>
 
@@ -82,7 +87,9 @@
         </div>
 
         <span class="ml-auto sm:ml-4">
-            <Icon tooltip="Change view mode">brightness_6</Icon>
+            <Icon tooltip="Change view mode" on:click={toggleViewMode}
+                >brightness_6</Icon
+            >
         </span>
     </div>
 </header>
