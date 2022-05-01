@@ -48,8 +48,8 @@
         </details>
         <a class="text-2xl sm:mr-4" href="/" use:link>CMS</a>
         <div
-            class="fixed left-0 top-16 right-0 bottom-0 z-30 hidden min-w-0 flex-grow flex-col
-                items-center bg-slate-200 peer-open:flex sm:static sm:flex sm:flex-row"
+            class="invisible fixed left-0 top-16 right-0 bottom-0 z-30 flex min-w-0 flex-grow flex-col
+                items-center bg-slate-200 peer-open:visible sm:visible sm:static sm:flex-row"
         >
             {#if $prefMenubarViewMode}
                 <div
