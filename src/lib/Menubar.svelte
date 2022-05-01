@@ -82,7 +82,7 @@
         </div>
 
         <span class="ml-auto sm:ml-4">
-            <Icon>brightness_6</Icon>
+            <Icon tooltip="Change view mode">brightness_6</Icon>
         </span>
     </div>
 </header>
