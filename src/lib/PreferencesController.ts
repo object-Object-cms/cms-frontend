@@ -77,3 +77,5 @@ export function createPreference<T>(
             ) as unknown as Writable<T>;
     }
 }
+
+export const prefMenubarViewMode = createPreference("menubar_view_mode", false);
