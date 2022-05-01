@@ -10,6 +10,10 @@
     export let links: Link[];
 
     let expanded = false;
+
+    function collapse() {
+        expanded = false;
+    }
 </script>
 
 <header class="z-50 flex h-16 items-center bg-slate-200 p-2">
@@ -38,7 +42,7 @@
                                 class="hover:underline"
                                 href={linkObj.url}
                                 use:link
-                                on:click={() => (expanded = false)}
+                                on:click={collapse}
                             >
                                 {linkObj.text}
                             </a>
@@ -46,7 +50,7 @@
                             <a
                                 class="hover:underline"
                                 href={linkObj.url}
-                                on:click={() => (expanded = false)}
+                                on:click={collapse}
                             >
                                 {linkObj.text}
                             </a>
@@ -62,7 +66,7 @@
                     class="button button-green-outline"
                     href="/login"
                     use:link
-                    on:click={() => (expanded = false)}
+                    on:click={collapse}
                 >
                     Login
                 </a>
@@ -70,7 +74,7 @@
                     class="button button-blue-outline"
                     href="/register"
                     use:link
-                    on:click={() => (expanded = false)}
+                    on:click={collapse}
                 >
                     Register
                 </a>
