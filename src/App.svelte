@@ -2,6 +2,8 @@
     import Router from "svelte-spa-router";
     import Menubar from "./lib/Menubar.svelte";
 
+    import Home from "./routes/Home.svelte";
+
     import "./App.css";
 </script>
 
@@ -36,5 +38,9 @@
 />
 
 <main>
-    <Router routes={{}} />
+    <Router
+        routes={{
+            "/": Home
+        }}
+    />
 </main>
