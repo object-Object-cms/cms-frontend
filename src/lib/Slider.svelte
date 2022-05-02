@@ -1,4 +1,6 @@
 <script lang="ts">
+    import SliderArrow from "./SliderArrow.svelte";
+
     interface Slide {
         title: string;
         description: string;
@@ -71,6 +73,7 @@
             </div>
         {/each}
     </div>
+
     <div class="absolute left-1/2 bottom-4 flex -translate-x-1/2 space-x-4">
         {#each slides as _slide, i}
             <div
@@ -80,4 +83,7 @@
             />
         {/each}
     </div>
+
+    <SliderArrow direction="left" on:click={prevSlide} />
+    <SliderArrow direction="right" on:click={nextSlide} />
 </div>
