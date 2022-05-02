@@ -63,9 +63,9 @@
                 />
                 <div
                     class="absolute left-1/2 bottom-8 max-w-sm -translate-x-1/2 text-center
-                        {slide.textColor === 'black'
-                        ? 'text-black'
-                        : 'text-white'}"
+                        {slide.textColor === 'white'
+                        ? 'text-white'
+                        : 'text-black'}"
                 >
                     <p class="text-xl">{slide.title}</p>
                     <p>{slide.description}</p>
@@ -77,13 +77,24 @@
     <div class="absolute left-1/2 bottom-4 flex -translate-x-1/2 space-x-4">
         {#each slides as _slide, i}
             <div
-                class="h-2 w-8 cursor-pointer rounded-sm border-2 border-white bg-black transition-opacity
-                    {slideIndex === i ? 'opacity-75' : 'opacity-20'}"
+                class="h-2 w-8 cursor-pointer rounded-sm transition-colors
+                    {slideIndex === i ? 'bg-opacity-75' : 'bg-opacity-20'}
+                    {slides[slideIndex].textColor === 'white'
+                    ? 'bg-white'
+                    : 'bg-black'}"
                 on:click={() => showSlide(i)}
             />
         {/each}
     </div>
 
-    <SliderArrow direction="left" on:click={prevSlide} />
-    <SliderArrow direction="right" on:click={nextSlide} />
+    <SliderArrow
+        color={slides[slideIndex].textColor}
+        direction="left"
+        on:click={prevSlide}
+    />
+    <SliderArrow
+        color={slides[slideIndex].textColor}
+        direction="right"
+        on:click={nextSlide}
+    />
 </div>
