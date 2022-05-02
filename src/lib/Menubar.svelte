@@ -21,18 +21,16 @@
         $prefMenubarViewMode = !$prefMenubarViewMode;
     }
 
+    function clampWithRollover(min, max, value) {
+        return value > max ? min : value < min ? max : value;
+    }
+
     function prevLink() {
-        linkIndex--;
-        if (linkIndex === -1) {
-            linkIndex = links.length - 1;
-        }
+        linkIndex = clampWithRollover(0, links.length - 1, linkIndex - 1);
     }
 
     function nextLink() {
-        linkIndex++;
-        if (linkIndex >= links.length) {
-            linkIndex = 0;
-        }
+        linkIndex = clampWithRollover(0, links.length - 1, linkIndex + 1);
     }
 </script>
 
