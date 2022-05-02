@@ -51,11 +51,14 @@
     on:mouseleave={startCycleTimer}
 >
     <div
-        class="flex w-full items-start transition-transform duration-300"
+        class="flex w-full transition-transform duration-300"
         style="transform: translate({-100 * slideIndex}%);"
     >
         {#each slides as slide}
-            <div class="relative min-w-full">
+            <div
+                class="relative min-w-full
+                    {slide.textColor === 'white' ? 'bg-black' : 'bg-white'}"
+            >
                 <img
                     class="w-full"
                     src={slide.imageUrl}
