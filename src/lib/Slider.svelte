@@ -62,7 +62,7 @@
                     alt="{slide.title} slide image"
                 />
                 <div
-                    class="absolute left-1/2 bottom-8 -translate-x-1/2 text-center
+                    class="absolute left-1/2 bottom-8 max-w-sm -translate-x-1/2 text-center
                         {slide.textColor === 'black'
                         ? 'text-black'
                         : 'text-white'}"
