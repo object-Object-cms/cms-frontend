@@ -1,22 +1,17 @@
 <script lang="ts">
+    import NamedComponents from "./components";
+
     import DynamicComponents from "./DynamicComponents.svelte";
-    import Icon from "./Icon.svelte";
-    import Slider from "./Slider.svelte";
 
     interface ComponentDescriptor {
         name: string;
-        props: any;
+        props: { [key: string]: any };
         children: ComponentDescriptor[];
     }
 
     export let descriptor: ComponentDescriptor;
-
-    const namedComponents = {
-        Icon,
-        Slider
-    };
 </script>
 
-<svelte:component this={namedComponents[descriptor.name]} {...descriptor.props}>
+<svelte:component this={NamedComponents[descriptor.name]} {...descriptor.props}>
     <DynamicComponents components={descriptor.children} />
 </svelte:component>

@@ -46,22 +46,24 @@
 </script>
 
 <div
-    class="relative w-full overflow-hidden"
+    class="relative h-full w-full overflow-hidden"
+    style="user-select: none;"
     on:mouseenter={stopCycleTimer}
     on:mouseleave={startCycleTimer}
 >
     <div
-        class="flex w-full transition-transform duration-300"
+        class="flex h-full w-full transition-transform duration-300"
         style="transform: translate({-100 * slideIndex}%);"
     >
         {#each slides as slide}
             <div
-                class="relative min-w-full
+                class="relative h-full min-w-full
                     {slide.textColor === 'white' ? 'bg-black' : 'bg-white'}"
             >
                 <img
                     class="w-full"
                     src={slide.imageUrl}
+                    draggable="false"
                     alt="{slide.title} slide image"
                 />
                 <div
