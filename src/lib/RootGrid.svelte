@@ -60,6 +60,8 @@
             component: elem.component,
             id: elem.id
         });
+        subComponents = subComponents;
+        mappedComponents = mappedComponents;
     }
 </script>
 
