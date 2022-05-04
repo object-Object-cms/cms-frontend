@@ -4,12 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    body {
-        @apply overflow-hidden;
-    }
-}
-
 @layer components {
     .button {
         @apply cursor-pointer;

@@ -4,7 +4,7 @@
     interface Slide {
         title: string;
         description: string;
-        imageUrl: string;
+        image: string;
         textColor: "white" | "black";
     }
 
@@ -62,7 +62,7 @@
             >
                 <img
                     class="w-full"
-                    src={slide.imageUrl}
+                    src={slide.image}
                     draggable="false"
                     alt="{slide.title} slide image"
                 />
