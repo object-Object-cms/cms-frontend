@@ -4,6 +4,7 @@
     import gridHelp from "svelte-grid/build/helper";
     import NamedComponents, { ComponentsProps } from "./components";
     import ComplexValueEdit from "./ComplexValueEdit.svelte";
+    import Icon from "./Icon.svelte";
 
     type InGridComponent = {
         x: number;
@@ -45,13 +46,18 @@
                         : "border-slate-500"
                 } relative h-full w-full rounded-sm border-2 border-solid`}
             >
-                <button
-                    class="absolute top-2 right-2 z-50 h-8 w-8 rounded-full bg-slate-500 text-red-500"
-                    on:click={() =>
-                        (subComponents = subComponents.filter(
-                            (n) => n.component !== dataItem.component
-                        ))}>X</button
+                <div
+                    class="absolute top-2 right-2 z-50 rounded-full bg-slate-400 text-red-500"
                 >
+                    <Icon
+                        on:click={() =>
+                            (subComponents = subComponents.filter(
+                                (n) => n.component !== dataItem.component
+                            ))}
+                    >
+                        clear
+                    </Icon>
+                </div>
                 <DynamicComponent descriptor={dataItem.component} />
             </div>
         {:else}
