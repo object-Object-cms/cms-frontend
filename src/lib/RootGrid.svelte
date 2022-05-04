@@ -6,7 +6,6 @@
     import ComplexValueEdit from "./ComplexValueEdit.svelte";
     import Icon from "./Icon.svelte";
     import ComponentButton from "./ComponentButton.svelte";
-    import DynamicComponents from "./DynamicComponents.svelte";
 
     type InGridComponent = {
         x: number;
@@ -41,6 +40,26 @@
 
     function toggleRightSidebar() {
         rightSidebarExpanded = !rightSidebarExpanded;
+    }
+
+    function addComponent(name, proto) {
+        let elem = {
+            x: 0,
+            y: 0,
+            w: 1,
+            h: 1,
+            component: {
+                name,
+                props: JSON.parse(JSON.stringify(proto))
+            },
+            id: crypto.randomUUID()
+        };
+        subComponents.push(elem);
+        mappedComponents.push({
+            [COLS]: gridHelp.item(elem),
+            component: elem.component,
+            id: elem.id
+        });
     }
 </script>
 
@@ -111,25 +130,7 @@
                 <!-- TODO: Get the component icon from somewhere -->
                 <ComponentButton
                     {name}
-                    on:click={() => {
-                        let elem = {
-                            x: 0,
-                            y: 0,
-                            w: 1,
-                            h: 1,
-                            component: {
-                                name,
-                                props: JSON.parse(JSON.stringify(proto))
-                            },
-                            id: crypto.randomUUID()
-                        };
-                        subComponents.push(elem);
-                        mappedComponents.push({
-                            [COLS]: gridHelp.item(elem),
-                            component: elem.component,
-                            id: elem.id
-                        });
-                    }}
+                    on:click={() => addComponent(name, proto)}
                 />
             {/each}
         </div>
