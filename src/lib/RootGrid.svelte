@@ -22,11 +22,13 @@
 
     const COLS = 6;
     const cols = [[1100, COLS]];
-    let mappedComponents;
-    $: mappedComponents = subComponents.map((n) => ({
-        [COLS]: gridHelp.item({ ...n, fixed: !editingMode }),
-        component: n.component
-    }));
+    let mappedComponents = subComponents.map((n) => {
+        return {
+            [COLS]: gridHelp.item(n),
+            component: n.component
+        };
+    });
+    $: subComponents.forEach((n) => ((n as any).fixed = !editingMode));
 
     let leftSidebarExpanded = true;
 
@@ -57,10 +59,14 @@
                     class="absolute top-2 right-2 z-50 rounded-full bg-slate-400 text-red-500"
                 >
                     <Icon
-                        on:click={() =>
-                            (subComponents = subComponents.filter(
+                        on:click={() => {
+                            subComponents = subComponents.filter(
                                 (n) => n.component !== dataItem.component
-                            ))}
+                            );
+                            mappedComponents = mappedComponents.filter(
+                                (n) => n.component !== dataItem.component
+                            );
+                        }}
                     >
                         clear
                     </Icon>
