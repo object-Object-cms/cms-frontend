@@ -24,7 +24,8 @@ export const ComponentsProps: {
                 image: "0",
                 textColor: ["white", "black"]
             }
-        ]
+        ],
+        cycleTime: 3000
     }
 };
 
