@@ -1,5 +1,7 @@
 <script lang="ts">
     import Router from "svelte-spa-router";
+    import { fade } from "svelte/transition";
+
     import LoadIndicator from "./lib/LoadIndicator.svelte";
     import Menubar, { Link } from "./lib/Menubar.svelte";
 
@@ -22,7 +24,7 @@
 </script>
 
 {#if !initialLinksLoadComplete}
-    <div class="fixed left-0 top-0 right-0 bottom-0 z-50 bg-white">
+    <div class="fixed left-0 top-0 right-0 bottom-0 z-50 bg-white" out:fade>
         <LoadIndicator />
     </div>
 {/if}
