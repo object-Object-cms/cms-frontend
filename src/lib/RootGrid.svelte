@@ -83,24 +83,28 @@
 
 {#if editingMode}
     <div
-        class="fixed left-0 top-16 bottom-0 w-32 bg-slate-500 text-white transition-transform duration-300"
+        class="fixed left-0 top-16 bottom-16 w-32 text-white transition-transform duration-300"
         class:-translate-x-full={!leftSidebarExpanded}
     >
         <div
-            class="absolute top-1/2 left-full flex h-12 -translate-y-1/2 cursor-pointer
-                select-none items-center rounded-r-lg bg-slate-500 hover:bg-slate-600"
+            class="absolute top-1/2 left-full m-1 flex h-10 -translate-y-1/2 cursor-pointer
+                select-none items-center rounded-lg bg-slate-500 hover:bg-slate-600"
             on:click={toggleLeftSidebar}
         >
             <span
-                class="material-icons -m-1 {leftSidebarExpanded
-                    ? 'rotate-90'
-                    : '-rotate-90'}">expand_more</span
+                class="material-icons -m-1
+                    {leftSidebarExpanded ? 'rotate-90' : '-rotate-90'}"
             >
+                expand_more
+            </span>
         </div>
-        {#each Object.entries(ComponentsProps) as [name, proto]}
-            <!-- TODO: Get the component icon from somewhere -->
-            <ComponentButton {name} />
-        {/each}
+
+        <div class="m-2 h-full overflow-auto rounded-lg bg-slate-500">
+            {#each Object.entries(ComponentsProps) as [name, proto]}
+                <!-- TODO: Get the component icon from somewhere -->
+                <ComponentButton {name} />
+            {/each}
+        </div>
     </div>
     <div class="fixed right-8 top-32 flex h-96 w-64 rounded bg-slate-500">
         {#if selected !== null}
