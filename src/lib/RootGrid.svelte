@@ -18,7 +18,7 @@
 
     export let subComponents: InGridComponent[];
     export let editingMode = true;
-    export let selected: InGridComponent | null = null;
+    export let selected: typeof mappedComponents[0] | null = null;
 
     const COLS = 6;
     const cols = [[1100, COLS]];
@@ -125,7 +125,8 @@
             </span>
         </div>
 
-        <div class="m-2 h-full overflow-auto rounded-lg bg-slate-500">
+        <div class="m-2 h-1/2 overflow-auto rounded-lg bg-slate-500">
+            <div class="border-b border-slate-600 px-2 py-1">Toolbox</div>
             {#each Object.entries(ComponentsProps) as [name, proto]}
                 <!-- TODO: Get the component icon from somewhere -->
                 <ComponentButton
@@ -134,9 +135,20 @@
                 />
             {/each}
         </div>
+
+        <div class="m-2 h-1/2 overflow-auto rounded-lg bg-slate-500">
+            <div class="border-b border-slate-600 px-2 py-1">Components</div>
+            {#each mappedComponents as component}
+                <ComponentButton
+                    name={component.component.name}
+                    selected={selected === component}
+                    on:click={() => (selected = component)}
+                />
+            {/each}
+        </div>
     </div>
     <div
-        class="fixed right-0 top-16 bottom-16 w-64 text-white transition-transform duration-300"
+        class="fixed right-0 top-16 bottom-16 w-72 text-white transition-transform duration-300"
         class:translate-x-full={!rightSidebarExpanded}
     >
         <div
