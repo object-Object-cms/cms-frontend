@@ -33,7 +33,7 @@
         clearInterval(cycleInterval);
     }
 
-    function showSlide(index) {
+    function showSlide(index: number) {
         if (index >= 0 && index < slides.length) {
             slideIndex = index;
         }
