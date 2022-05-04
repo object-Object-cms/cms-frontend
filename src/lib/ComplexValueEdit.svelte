@@ -22,6 +22,13 @@
                     {#each value[name] as entry}
                         <ComplexValueEdit proto={typee[0]} bind:value={entry} />
                     {/each}
+                    <button
+                        on:click={() =>
+                            (value[name] = [
+                                ...value[name],
+                                JSON.parse(JSON.stringify(typee[0]))
+                            ])}>Add</button
+                    >
                 {/if}
             {:else if typeof typee === "string"}
                 <input type="text" bind:value={value[name]} />
