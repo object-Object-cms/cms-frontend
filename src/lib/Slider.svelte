@@ -79,7 +79,7 @@
             <div
                 class="h-2 w-8 cursor-pointer rounded-sm transition-colors
                     {slideIndex === i ? 'bg-opacity-75' : 'bg-opacity-20'}
-                    {slides[slideIndex].textColor === 'white'
+                    {slides[slideIndex]?.textColor === 'white'
                     ? 'bg-white'
                     : 'bg-black'}"
                 on:click={() => showSlide(i)}
@@ -88,12 +88,12 @@
     </div>
 
     <SliderArrow
-        color={slides[slideIndex].textColor}
+        color={slides[slideIndex]?.textColor}
         direction="left"
         on:click={prevSlide}
     />
     <SliderArrow
-        color={slides[slideIndex].textColor}
+        color={slides[slideIndex]?.textColor}
         direction="right"
         on:click={nextSlide}
     />
