@@ -1,13 +1,15 @@
+<script lang="ts" context="module">
+    export interface Link {
+        text: string;
+        url: string;
+    }
+</script>
+
 <script lang="ts">
     import { link } from "svelte-spa-router";
     import Icon from "./Icon.svelte";
     import { prefMenubarViewMode } from "./PreferencesController";
     import { clampWithRollover } from "./utils";
-
-    interface Link {
-        text: string;
-        url: string;
-    }
 
     export let links: Link[];
 

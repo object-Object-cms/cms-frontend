@@ -1,4 +1,4 @@
-<div class="fixed flex h-full w-full items-center justify-center">
+<div class="flex h-full w-full items-center justify-center">
     <span class="animate-reverse-spin material-icons">sync</span>
 </div>
 

@@ -1,41 +1,33 @@
 <script lang="ts">
     import Router from "svelte-spa-router";
-    import Menubar from "./lib/Menubar.svelte";
+    import LoadIndicator from "./lib/LoadIndicator.svelte";
+    import Menubar, { Link } from "./lib/Menubar.svelte";
 
     import Home from "./routes/Home.svelte";
 
     import "./App.css";
+
+    let menubarLinks: Link[] = [];
+    let initialLinksLoadComplete = false;
+
+    function refreshMenubarLinks() {
+        return fetch("dummydata/menubar.json")
+            .then((resp) => resp.json())
+            .then((links) => {
+                menubarLinks = links;
+            });
+    }
+
+    refreshMenubarLinks().then(() => (initialLinksLoadComplete = true));
 </script>
 
-<Menubar
-    links={[
-        { text: "Articles", url: "/articles" },
-        { text: "Gallery", url: "/gallery" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" },
-        { text: "Comments", url: "/comments" }
-    ]}
-/>
+{#if !initialLinksLoadComplete}
+    <div class="fixed left-0 top-0 right-0 bottom-0 z-50 bg-white">
+        <LoadIndicator />
+    </div>
+{/if}
+
+<Menubar links={menubarLinks} />
 
 <main>
     <Router

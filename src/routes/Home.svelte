@@ -4,7 +4,9 @@
 </script>
 
 {#await fetch("dummydata/test.json").then((n) => n.json())}
-    <LoadIndicator />
+    <div class="p-8">
+        <LoadIndicator />
+    </div>
 {:then component}
     <DynamicComponent descriptor={component} />
 {/await}
