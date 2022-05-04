@@ -2,7 +2,6 @@
     import DynamicComponent from "./DynamicComponent.svelte";
     import Grid from "svelte-grid";
     import gridHelp from "svelte-grid/build/helper";
-    import DynamicComponents from "./DynamicComponents.svelte";
     import NamedComponents, { ComponentsProps } from "./components";
     import ComplexValueEdit from "./ComplexValueEdit.svelte";
 
