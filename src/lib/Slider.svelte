@@ -59,7 +59,6 @@
                 <img
                     class="w-full"
                     src={slide.image}
-                    draggable="false"
                     alt="{slide.title} slide image"
                 />
                 <div
