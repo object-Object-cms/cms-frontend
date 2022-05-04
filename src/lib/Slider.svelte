@@ -1,5 +1,6 @@
 <script lang="ts">
     import SliderArrow from "./SliderArrow.svelte";
+    import { clampWithRollover } from "./utils";
 
     interface Slide {
         title: string;
@@ -12,10 +13,6 @@
     export let cycleTime = 3000;
 
     let slideIndex = 0;
-
-    function clampWithRollover(min, max, value) {
-        return value > max ? min : value < min ? max : value;
-    }
 
     function prevSlide() {
         slideIndex = clampWithRollover(0, slides.length - 1, slideIndex - 1);

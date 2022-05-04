@@ -2,6 +2,7 @@
     import { link } from "svelte-spa-router";
     import Icon from "./Icon.svelte";
     import { prefMenubarViewMode } from "./PreferencesController";
+    import { clampWithRollover } from "./utils";
 
     interface Link {
         text: string;
@@ -19,10 +20,6 @@
 
     function toggleViewMode() {
         $prefMenubarViewMode = !$prefMenubarViewMode;
-    }
-
-    function clampWithRollover(min, max, value) {
-        return value > max ? min : value < min ? max : value;
     }
 
     function prevLink() {
