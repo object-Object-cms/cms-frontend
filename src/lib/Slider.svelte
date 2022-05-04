@@ -46,8 +46,7 @@
 </script>
 
 <div
-    class="relative h-full w-full overflow-hidden"
-    style="user-select: none;"
+    class="relative h-full w-full select-none overflow-hidden"
     on:mouseenter={stopCycleTimer}
     on:mouseleave={startCycleTimer}
 >
