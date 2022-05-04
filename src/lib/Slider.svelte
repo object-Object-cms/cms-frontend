@@ -39,7 +39,7 @@
         }
     }
 
-    startCycleTimer();
+    $: startCycleTimer(), cycleTime;
 </script>
 
 <div
