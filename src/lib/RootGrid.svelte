@@ -6,6 +6,7 @@
     import ComplexValueEdit from "./ComplexValueEdit.svelte";
     import Icon from "./Icon.svelte";
     import ComponentButton from "./ComponentButton.svelte";
+    import DynamicComponents from "./DynamicComponents.svelte";
 
     type InGridComponent = {
         x: number;
@@ -25,7 +26,8 @@
     let mappedComponents = subComponents.map((n) => {
         return {
             [COLS]: gridHelp.item(n),
-            component: n.component
+            component: n.component,
+            id: crypto.randomUUID()
         };
     });
     $: subComponents.forEach((n) => ((n as any).fixed = !editingMode));
@@ -107,7 +109,28 @@
         <div class="m-2 h-full overflow-auto rounded-lg bg-slate-500">
             {#each Object.entries(ComponentsProps) as [name, proto]}
                 <!-- TODO: Get the component icon from somewhere -->
-                <ComponentButton {name} />
+                <ComponentButton
+                    {name}
+                    on:click={() => {
+                        let elem = {
+                            x: 0,
+                            y: 0,
+                            w: 1,
+                            h: 1,
+                            component: {
+                                name,
+                                props: JSON.parse(JSON.stringify(proto))
+                            },
+                            id: crypto.randomUUID()
+                        };
+                        subComponents.push(elem);
+                        mappedComponents.push({
+                            [COLS]: gridHelp.item(elem),
+                            component: elem.component,
+                            id: elem.id
+                        });
+                    }}
+                />
             {/each}
         </div>
     </div>
