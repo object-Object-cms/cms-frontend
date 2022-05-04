@@ -58,7 +58,9 @@
                         clear
                     </Icon>
                 </div>
-                <DynamicComponent descriptor={dataItem.component} />
+                <span class="pointer-events-none contents">
+                    <DynamicComponent descriptor={dataItem.component} />
+                </span>
             </div>
         {:else}
             <DynamicComponent descriptor={dataItem.component} />
