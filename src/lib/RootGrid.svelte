@@ -50,7 +50,7 @@
                     e.stopPropagation();
                 }}
                 class={`w-full ${
-                    selected === dataItem.id
+                    selected === dataItem
                         ? "border-red-500"
                         : "border-slate-500"
                 } relative h-full w-full rounded-sm border-2 border-solid`}
