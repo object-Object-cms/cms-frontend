@@ -54,12 +54,18 @@
             },
             id: crypto.randomUUID()
         };
-        subComponents.push(elem);
-        mappedComponents.push({
+        const item = {
             [COLS]: gridHelp.item(elem),
             component: elem.component,
             id: elem.id
-        });
+        };
+
+        const { x, y } = gridHelp.findSpace(item, mappedComponents, COLS);
+        item[COLS].x = x;
+        item[COLS].y = y;
+
+        subComponents.push(elem);
+        mappedComponents.push(item);
         subComponents = subComponents;
         mappedComponents = mappedComponents;
     }
