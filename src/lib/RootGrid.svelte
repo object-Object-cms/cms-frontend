@@ -5,6 +5,7 @@
     import NamedComponents, { ComponentsProps } from "./components";
     import ComplexValueEdit from "./ComplexValueEdit.svelte";
     import Icon from "./Icon.svelte";
+    import ComponentButton from "./ComponentButton.svelte";
 
     type InGridComponent = {
         x: number;
@@ -26,6 +27,12 @@
         [COLS]: gridHelp.item({ ...n, fixed: !editingMode }),
         component: n.component
     }));
+
+    let leftSidebarExpanded = true;
+
+    function toggleLeftSidebar() {
+        leftSidebarExpanded = !leftSidebarExpanded;
+    }
 </script>
 
 <div
@@ -70,11 +77,23 @@
 
 {#if editingMode}
     <div
-        class="fixed bottom-0 m-8 h-16 rounded-md bg-slate-500"
-        style="width: calc( 100% - 4rem );"
+        class="fixed left-0 top-16 bottom-0 w-32 bg-slate-500 text-white transition-transform duration-300"
+        class:-translate-x-full={!leftSidebarExpanded}
     >
+        <div
+            class="absolute top-1/2 left-full flex h-12 -translate-y-1/2 cursor-pointer
+                select-none items-center rounded-r-lg bg-slate-500 hover:bg-slate-600"
+            on:click={toggleLeftSidebar}
+        >
+            <span
+                class="material-icons -m-1 {leftSidebarExpanded
+                    ? 'rotate-90'
+                    : '-rotate-90'}">expand_more</span
+            >
+        </div>
         {#each Object.entries(ComponentsProps) as [name, proto]}
-            <button>{name}</button>
+            <!-- TODO: Get the component icon from somewhere -->
+            <ComponentButton {name} />
         {/each}
     </div>
     <div class="fixed right-8 top-32 flex h-96 w-64 rounded bg-slate-500">
