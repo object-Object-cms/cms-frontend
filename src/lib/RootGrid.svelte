@@ -31,9 +31,14 @@
     $: subComponents.forEach((n) => ((n as any).fixed = !editingMode));
 
     let leftSidebarExpanded = true;
+    let rightSidebarExpanded = true;
 
     function toggleLeftSidebar() {
         leftSidebarExpanded = !leftSidebarExpanded;
+    }
+
+    function toggleRightSidebar() {
+        rightSidebarExpanded = !rightSidebarExpanded;
     }
 </script>
 
@@ -106,19 +111,70 @@
             {/each}
         </div>
     </div>
-    <div class="fixed right-8 top-32 flex h-96 w-64 rounded bg-slate-500">
-        {#if selected !== null}
-            <div class="w-full p-4">
-                <h1 class="border-l">Editing: {selected.component.name}</h1>
-                <ComplexValueEdit
-                    bind:value={selected.component.props}
-                    proto={ComponentsProps[selected.component.name]}
-                />
+    <div
+        class="fixed right-0 top-16 bottom-16 w-64 text-white transition-transform duration-300"
+        class:translate-x-full={!rightSidebarExpanded}
+    >
+        <div
+            class="absolute top-1/2 right-full m-1 flex h-10 -translate-y-1/2 cursor-pointer
+                select-none items-center rounded-lg bg-slate-500 hover:bg-slate-600"
+            on:click={toggleRightSidebar}
+        >
+            <span
+                class="material-icons -m-1
+                    {rightSidebarExpanded ? '-rotate-90' : 'rotate-90'}"
+            >
+                expand_more
+            </span>
+        </div>
+
+        <div
+            class="m-2 flex h-full flex-col space-y-1 overflow-auto rounded-lg bg-slate-500"
+        >
+            <div class="mt-1 flex items-center space-x-2 px-2">
+                <!-- TODO: Get the component icon somehow -->
+                <span class="material-icons-outlined md-18">
+                    {selected ? "square" : "disabled_by_default"}
+                </span>
+                <span>{selected?.component?.name ?? "No selection"}</span>
             </div>
-        {:else}
-            <div class="w-full min-h-full flex justify-center items-center">
-                <p>No item selected</p>
-            </div>
-        {/if}
+            {#if selected}
+                <ComplexValueEdit bind:value={selected} proto={{ id: "id" }} />
+                <div class="overflow-auto pb-4">
+                    <details open>
+                        <summary class="bg-slate-400 px-2">Props</summary>
+                        <ComplexValueEdit
+                            bind:value={selected.component.props}
+                            proto={ComponentsProps[selected.component.name]}
+                        />
+                    </details>
+                    <details open>
+                        <summary class="bg-slate-400 px-2">Layout</summary>
+                        <ComplexValueEdit
+                            bind:value={selected[COLS]}
+                            proto={{
+                                x: 0,
+                                y: 0,
+                                w: 0,
+                                h: 0
+                            }}
+                        />
+                    </details>
+                </div>
+            {/if}
+            <!-- {#if selected !== null}
+                <div class="w-full p-4">
+                    <h1 class="border-l">Editing: {selected.component.name}</h1>
+                    <ComplexValueEdit
+                        bind:value={selected.component.props}
+                        proto={ComponentsProps[selected.component.name]}
+                    />
+                </div>
+            {:else}
+                <div class="w-full min-h-full flex justify-center items-center">
+                    <p>No item selected</p>
+                </div>
+            {/if} -->
+        </div>
     </div>
 {/if}
