@@ -3,7 +3,7 @@
     import Grid from "svelte-grid";
     import gridHelp from "svelte-grid/build/helper";
     import DynamicComponents from "./DynamicComponents.svelte";
-    import { ComponentsProps } from "./components";
+    import NamedComponents, { ComponentsProps } from "./components";
     import ComplexValueEdit from "./ComplexValueEdit.svelte";
 
     type InGridComponent = {
@@ -21,12 +21,11 @@
 
     const COLS = 6;
     const cols = [[1100, COLS]];
-    let mappedComponents = subComponents.map((n) => ({
+    let mappedComponents;
+    $: mappedComponents = subComponents.map((n) => ({
         [COLS]: gridHelp.item({ ...n, fixed: !editingMode }),
         component: n.component
     }));
-
-    $: console.log(selected);
 </script>
 
 <div
@@ -45,8 +44,15 @@
                     selected === dataItem.id
                         ? "border-red-500"
                         : "border-slate-500"
-                } h-full w-full rounded-sm border-2 border-solid`}
+                } relative h-full w-full rounded-sm border-2 border-solid`}
             >
+                <button
+                    class="absolute top-2 right-2 z-50 h-8 w-8 rounded-full bg-slate-500 text-red-500"
+                    on:click={() =>
+                        (subComponents = subComponents.filter(
+                            (n) => n.component !== dataItem.component
+                        ))}>X</button
+                >
                 <DynamicComponent descriptor={dataItem.component} />
             </div>
         {:else}
@@ -69,7 +75,7 @@
             <div class="w-full p-4">
                 <h1 class="border-l">Editing: {selected.component.name}</h1>
                 <ComplexValueEdit
-                    value={selected.component.props}
+                    bind:value={selected.component.props}
                     proto={ComponentsProps[selected.component.name]}
                 />
             </div>
