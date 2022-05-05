@@ -7,6 +7,7 @@
 
 @layer components {
     .button {
+        @apply inline-block;
         @apply cursor-pointer;
         @apply select-none;
         @apply rounded-md;
@@ -34,6 +35,13 @@
         @apply text-blue-600;
         @apply hover:bg-blue-600;
         @apply hover:text-white;
+    }
+
+    .button-blue {
+        @apply border-none;
+        @apply bg-blue-600;
+        @apply text-white;
+        @apply hover:bg-blue-500;
     }
 
     .icon {
