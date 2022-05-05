@@ -118,4 +118,8 @@
             </div>
         </div>
     </div>
+{:catch error}
+    <p class="container mx-auto text-red-600 text-center">
+        Failed to load gallery due to: {error}
+    </p>
 {/await}

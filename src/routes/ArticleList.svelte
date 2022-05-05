@@ -119,4 +119,8 @@
             </div>
         {/each}
     </div>
+{:catch error}
+    <p class="container mx-auto text-red-600 text-center">
+        Failed to load article list due to: {error}
+    </p>
 {/await}
