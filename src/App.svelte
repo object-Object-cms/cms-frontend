@@ -14,6 +14,7 @@
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
+    import Register from "./routes/Register.svelte";
 
     let menubarLinks: Link[] = [];
     let initialLinksLoadComplete = false;
@@ -53,6 +54,7 @@
             "/gallery": Gallery,
             "/comments": Comments,
             "/login": Login,
+            "/register": Register,
             "*": NotFound
         }}
         on:routeLoading={routeLoading}
