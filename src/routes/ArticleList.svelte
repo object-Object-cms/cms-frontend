@@ -1,5 +1,6 @@
 <script lang="ts">
     import LoadIndicator from "../lib/LoadIndicator.svelte";
+    import ArticleProperty from "../lib/ArticleProperty.svelte";
     import { link } from "svelte-spa-router";
 
     interface ArticlePreview {
@@ -41,13 +42,12 @@
                         style="background-image: url({article.bannerImage});"
                     />
                     <div class="p-2">
-                        <p
-                            class="text-gray-500 flex items-center text-sm space-x-1"
-                        >
-                            <span class="material-icons md-18">access_time</span
-                            >
-                            <span>{formatDate(article.publishDate)}</span>
-                        </p>
+                        <ArticleProperty icon="category">
+                            {article.category}
+                        </ArticleProperty>
+                        <ArticleProperty icon="access_time">
+                            {formatDate(article.publishDate)}
+                        </ArticleProperty>
                         <h2 class="text-xl">{article.title}</h2>
                         <p>{article.description}</p>
                         <a
