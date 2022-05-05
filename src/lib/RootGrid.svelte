@@ -61,6 +61,8 @@
         };
 
         const { x, y } = gridHelp.findSpace(item, mappedComponents, COLS);
+        elem.x = x;
+        elem.y = y;
         item[COLS].x = x;
         item[COLS].y = y;
 
