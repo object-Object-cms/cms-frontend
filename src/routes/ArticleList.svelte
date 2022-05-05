@@ -52,13 +52,13 @@
     let selectedSortingMode = 0;
 </script>
 
+<PageHeader>Articles</PageHeader>
+
 {#await loadArticleList()}
     <div class="p-8">
         <LoadIndicator />
     </div>
 {:then articles}
-    <PageHeader>Articles</PageHeader>
-
     <div
         class="flex flex-col space-y-2 container mx-auto p-4
             sm:space-y-0 sm:flex-row sm:space-x-4"
