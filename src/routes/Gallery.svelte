@@ -100,6 +100,7 @@
                 on:click={() => nextPhoto(photos.length)}
             />
         </div>
+        <p class="text-center">Photo {currentPhoto + 1} of {photos.length}</p>
         <div class="overflow-auto" bind:this={imageScroller}>
             <div class="flex w-max px-[50%]">
                 {#each photos as photo, i}
