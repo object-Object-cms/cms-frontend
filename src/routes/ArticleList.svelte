@@ -20,6 +20,35 @@
         const date = new Date(timestamp);
         return `${date.toDateString()}, ${date.toLocaleTimeString()}`;
     }
+
+    function getCategories(articles: ArticlePreview[]): string[] {
+        const categories = new Set<string>();
+        articles.forEach((a) => categories.add(a.category));
+        return [...categories];
+    }
+
+    let selectedCategoryFilter;
+
+    function sortDatePublishedDesc(
+        a: ArticlePreview,
+        b: ArticlePreview
+    ): number {
+        return b.publishDate - a.publishDate;
+    }
+
+    function sortDatePublishedAsc(
+        a: ArticlePreview,
+        b: ArticlePreview
+    ): number {
+        return a.publishDate - b.publishDate;
+    }
+
+    const sortingModes = [
+        { name: "Date published (newest)", func: sortDatePublishedDesc },
+        { name: "Date published (oldest)", func: sortDatePublishedAsc }
+    ];
+
+    let selectedSortingMode = 0;
 </script>
 
 {#await loadArticleList()}
@@ -33,8 +62,39 @@
         </div>
     </div>
 
+    <div
+        class="flex flex-col space-y-2 container mx-auto p-4
+            sm:space-y-0 sm:flex-row sm:space-x-4"
+    >
+        <label>
+            Filter:
+            <select
+                class="block bg-transparent border-2 border-gray-600 focus:border-blue-600 p-2 rounded-full"
+                bind:value={selectedCategoryFilter}
+            >
+                <option value="">--Category--</option>
+                {#each getCategories(articles) as category}
+                    <option value={category}>{category}</option>
+                {/each}
+            </select>
+        </label>
+        <label>
+            Sort by:
+            <select
+                class="block bg-transparent border-2 border-gray-600 focus:border-blue-600 p-2 rounded-full"
+                bind:value={selectedSortingMode}
+            >
+                {#each sortingModes as mode, i}
+                    <option value={i}>{mode.name}</option>
+                {/each}
+            </select>
+        </label>
+    </div>
+
     <div class="flex flex-wrap container mx-auto p-4">
-        {#each articles as article}
+        {#each articles
+            .filter((a) => !selectedCategoryFilter || a.category === selectedCategoryFilter)
+            .sort(sortingModes[selectedSortingMode].func) as article}
             <div class="w-full sm:w-1/2 lg:w-1/3 p-2">
                 <div class="border-2 rounded-lg overflow-hidden">
                     <div
@@ -53,8 +113,10 @@
                         <a
                             class="button button-big button-blue mt-2"
                             use:link
-                            href="/article/{article.id}">Read More</a
+                            href="/article/{article.id}"
                         >
+                            Read More
+                        </a>
                     </div>
                 </div>
             </div>

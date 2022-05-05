@@ -5,7 +5,7 @@
         "description": "This is a sample article to test the article list",
         "bannerImage": "dummydata/a.png",
         "category": "Articles",
-        "publishDate": 1602435721563
+        "publishDate": 1602435600000
     },
     {
         "id": "an-article",
@@ -13,30 +13,30 @@
         "description": "This is a sample article to test the article list",
         "bannerImage": "dummydata/a.png",
         "category": "Articles",
-        "publishDate": 1602435721563
+        "publishDate": 1602435200000
     },
     {
         "id": "an-article",
         "title": "An article",
         "description": "This is a sample article to test the article list",
         "bannerImage": "dummydata/b.png",
-        "category": "Articles",
-        "publishDate": 1602435721563
+        "category": "Tests",
+        "publishDate": 1602435400000
     },
     {
         "id": "an-article",
         "title": "An article",
         "description": "This is a sample article to test the article list",
         "bannerImage": "dummydata/a.png",
-        "category": "Articles",
-        "publishDate": 1602435721563
+        "category": "Tests",
+        "publishDate": 1602435700000
     },
     {
         "id": "an-article",
         "title": "An article",
         "description": "This is a sample article to test the article list",
         "bannerImage": "dummydata/a.png",
-        "category": "Articles",
-        "publishDate": 1602435721563
+        "category": "The",
+        "publishDate": 1602435500000
     }
 ]
