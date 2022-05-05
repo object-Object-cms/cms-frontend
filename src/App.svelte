@@ -8,6 +8,7 @@
     import Home from "./routes/Home.svelte";
     import Article from "./routes/Article.svelte";
     import ArticleList from "./routes/ArticleList.svelte";
+    import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
 
@@ -45,7 +46,8 @@
         routes={{
             "/": Home,
             "/article/:id": Article,
-            "/article": ArticleList
+            "/article": ArticleList,
+            "*": NotFound
         }}
         on:routeLoading={routeLoading}
     />
