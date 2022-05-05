@@ -6,10 +6,10 @@
     import Menubar, { Link } from "./lib/Menubar.svelte";
 
     import Home from "./routes/Home.svelte";
-
-    import "./App.css";
     import Article from "./routes/Article.svelte";
     import ArticleList from "./routes/ArticleList.svelte";
+
+    import "./App.css";
 
     let menubarLinks: Link[] = [];
     let initialLinksLoadComplete = false;
