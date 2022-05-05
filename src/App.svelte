@@ -10,6 +10,7 @@
     import ArticleList from "./routes/ArticleList.svelte";
     import Gallery from "./routes/Gallery.svelte";
     import Comments from "./routes/Comments.svelte";
+    import Login from "./routes/Login.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
@@ -51,6 +52,7 @@
             "/article": ArticleList,
             "/gallery": Gallery,
             "/comments": Comments,
+            "/login": Login,
             "*": NotFound
         }}
         on:routeLoading={routeLoading}
