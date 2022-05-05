@@ -19,6 +19,9 @@
             .then((resp) => resp.json())
             .then((links) => {
                 menubarLinks = links;
+            })
+            .catch((reason) => {
+                console.error("Failed to refresh menubar links:", reason);
             });
     }
 
