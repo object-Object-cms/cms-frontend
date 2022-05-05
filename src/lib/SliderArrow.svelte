@@ -10,7 +10,7 @@
         {direction === 'left' ? 'left-0' : 'right-0'}"
     on:click
 >
-    <span class="material-icons select-none drop-shadow">
+    <span class="material-icons select-none">
         {direction === "left" ? "arrow_back_ios" : "arrow_forward_ios"}
     </span>
 </div>
