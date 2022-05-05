@@ -23,6 +23,10 @@
     }
 
     refreshMenubarLinks().then(() => (initialLinksLoadComplete = true));
+
+    function routeLoading() {
+        refreshMenubarLinks();
+    }
 </script>
 
 {#if !initialLinksLoadComplete}
@@ -40,5 +44,6 @@
             "/article/:id": Article,
             "/article": ArticleList
         }}
+        on:routeLoading={routeLoading}
     />
 </main>
