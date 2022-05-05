@@ -8,6 +8,7 @@
     import Home from "./routes/Home.svelte";
     import Article from "./routes/Article.svelte";
     import ArticleList from "./routes/ArticleList.svelte";
+    import Gallery from "./routes/Gallery.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
@@ -47,6 +48,7 @@
             "/": Home,
             "/article/:id": Article,
             "/article": ArticleList,
+            "/gallery": Gallery,
             "*": NotFound
         }}
         on:routeLoading={routeLoading}
