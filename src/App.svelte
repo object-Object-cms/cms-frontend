@@ -8,6 +8,8 @@
     import Home from "./routes/Home.svelte";
 
     import "./App.css";
+    import Article from "./routes/Article.svelte";
+    import ArticleList from "./routes/ArticleList.svelte";
 
     let menubarLinks: Link[] = [];
     let initialLinksLoadComplete = false;
@@ -34,7 +36,9 @@
 <main>
     <Router
         routes={{
-            "/": Home
+            "/": Home,
+            "/article/:id": Article,
+            "/article": ArticleList
         }}
     />
 </main>
