@@ -9,6 +9,7 @@
     import Article from "./routes/Article.svelte";
     import ArticleList from "./routes/ArticleList.svelte";
     import Gallery from "./routes/Gallery.svelte";
+    import Comments from "./routes/Comments.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
@@ -49,6 +50,7 @@
             "/article/:id": Article,
             "/article": ArticleList,
             "/gallery": Gallery,
+            "/comments": Comments,
             "*": NotFound
         }}
         on:routeLoading={routeLoading}
