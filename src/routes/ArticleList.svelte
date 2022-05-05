@@ -1,6 +1,7 @@
 <script lang="ts">
     import LoadIndicator from "../lib/LoadIndicator.svelte";
     import ArticleProperty from "../lib/ArticleProperty.svelte";
+    import PageHeader from "../lib/PageHeader.svelte";
     import { link } from "svelte-spa-router";
 
     interface ArticlePreview {
@@ -56,11 +57,7 @@
         <LoadIndicator />
     </div>
 {:then articles}
-    <div class="bg-gray-300 p-4 pt-32">
-        <div class="container mx-auto">
-            <h1 class="text-4xl font-bold">Articles</h1>
-        </div>
-    </div>
+    <PageHeader>Articles</PageHeader>
 
     <div
         class="flex flex-col space-y-2 container mx-auto p-4
