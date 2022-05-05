@@ -30,7 +30,8 @@
             bind:this={tooltipElem}
         >
             <div
-                class="w-max rounded-sm bg-black bg-opacity-60 px-2 py-1 font-medium text-white"
+                class="w-max rounded-sm bg-opacity-60 px-2 py-1 font-medium text-white
+                    {inverted ? 'bg-white' : 'bg-black'}"
             >
                 {tooltip}
             </div>
