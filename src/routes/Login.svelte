@@ -27,6 +27,7 @@
                 <input
                     class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
                     type="text"
+                    required
                     bind:value={login}
                 />
             </div>
@@ -47,6 +48,7 @@
                 <input
                     class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
                     type="password"
+                    required
                     bind:value={password}
                 />
             </div>

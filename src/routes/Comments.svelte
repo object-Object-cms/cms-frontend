@@ -45,6 +45,7 @@
                 <input
                     class="w-full bg-gray-100 p-2 rounded"
                     type="text"
+                    required
                     bind:value={author}
                 />
             </label>
@@ -52,6 +53,7 @@
                 Comment:
                 <textarea
                     class="w-full resize-none bg-gray-100 p-2 rounded"
+                    required
                     bind:value={content}
                 />
             </label>
