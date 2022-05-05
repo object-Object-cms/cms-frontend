@@ -135,26 +135,30 @@
             </span>
         </div>
 
-        <div class="m-2 h-1/2 overflow-auto rounded-lg bg-slate-500">
+        <div class="m-2 flex h-1/2 flex-col rounded-lg bg-slate-500">
             <div class="border-b border-slate-600 px-2 py-1">Toolbox</div>
-            {#each Object.entries(ComponentsProps) as [name, proto]}
-                <!-- TODO: Get the component icon from somewhere -->
-                <ComponentButton
-                    {name}
-                    on:click={() => addComponent(name, proto)}
-                />
-            {/each}
+            <div class="overflow-auto">
+                {#each Object.entries(ComponentsProps) as [name, proto]}
+                    <!-- TODO: Get the component icon from somewhere -->
+                    <ComponentButton
+                        {name}
+                        on:click={() => addComponent(name, proto)}
+                    />
+                {/each}
+            </div>
         </div>
 
-        <div class="m-2 h-1/2 overflow-auto rounded-lg bg-slate-500">
+        <div class="m-2 flex h-1/2 flex-col rounded-lg bg-slate-500">
             <div class="border-b border-slate-600 px-2 py-1">Components</div>
-            {#each mappedComponents as component}
-                <ComponentButton
-                    name={component.component.name}
-                    selected={selected === component}
-                    on:click={() => (selected = component)}
-                />
-            {/each}
+            <div class="overflow-auto">
+                {#each mappedComponents as component}
+                    <ComponentButton
+                        name={component.component.name}
+                        selected={selected === component}
+                        on:click={() => (selected = component)}
+                    />
+                {/each}
+            </div>
         </div>
     </div>
     <div
