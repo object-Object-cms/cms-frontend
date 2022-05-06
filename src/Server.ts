@@ -11,6 +11,15 @@ export async function login(username, password): Promise<boolean | string> {
     return response.reason as string;
 }
 
+export async function register(username, password): Promise<boolean | string> {
+    const response = (await post("register", { username, password })) as any;
+    if (response.ok) {
+        localStorage.setItem("session", response.session);
+        return true;
+    }
+    return response.reason as string;
+}
+
 export async function cacheInfo() {
     let fromServer = (await get("me")) as any;
     if (fromServer.ok) {
