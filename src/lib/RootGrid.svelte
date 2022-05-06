@@ -181,6 +181,7 @@
         <div
             class="m-2 flex h-full flex-col space-y-1 overflow-auto rounded-lg bg-slate-500"
         >
+            <div class="border-b border-slate-600 px-2 py-1">Attributes</div>
             <div class="mt-1 flex items-center space-x-2 px-2">
                 <!-- TODO: Get the component icon somehow -->
                 <span class="material-icons-outlined md-18">

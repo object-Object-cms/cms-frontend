@@ -53,7 +53,9 @@
 <PageHeader>Gallery</PageHeader>
 
 {#await loadPhotos()}
-    <LoadIndicator />
+    <div class="p-8">
+        <LoadIndicator />
+    </div>
 {:then photos}
     <div class="container flex flex-wrap mx-auto p-2 justify-center">
         {#each photos as photo, i}
@@ -116,4 +118,8 @@
             </div>
         </div>
     </div>
+{:catch error}
+    <p class="container mx-auto text-red-600 text-center">
+        Failed to load gallery due to: {error}
+    </p>
 {/await}

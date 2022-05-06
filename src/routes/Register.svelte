@@ -1,33 +1,17 @@
 <script lang="ts">
-    import { login } from "../Server";
-
-    import LoadIndicator from "../lib/LoadIndicator.svelte";
-
-    let username = "";
+    let login = "";
     let password = "";
 
-    let loading = false;
-    let error = "";
-    let ok = false;
-
-    async function handleLogin(ev: SubmitEvent) {
+    function handleRegistration(ev: SubmitEvent) {
         ev.preventDefault();
-        if (loading) return;
-        loading = true;
-        error = "";
-        let res = await login(username, password);
-        if (res === true) {
-            ok = true;
-            setTimeout(() => (window.location.href = "/"), 500);
-        } else {
-            error = res as string;
-        }
-        loading = false;
+        console.log("Registering:");
+        console.log("login:", login);
+        console.log("password:", password);
     }
 </script>
 
 <div class="mx-auto max-w-xl p-4">
-    <form class="space-y-4 p-4 shadow-md" on:submit={handleLogin}>
+    <form class="space-y-4 p-4 shadow-md" on:submit={handleRegistration}>
         <div class="flex items-end space-x-2">
             <span
                 class="material-icons-outlined md-36 select-none text-gray-600"
@@ -44,8 +28,7 @@
                     class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
                     type="text"
                     required
-                    disabled={loading}
-                    bind:value={username}
+                    bind:value={login}
                 />
             </div>
         </div>
@@ -66,21 +49,11 @@
                     class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
                     type="password"
                     required
-                    disabled={loading}
                     bind:value={password}
                 />
             </div>
         </div>
 
-        <button class="button button-blue" type="submit">
-            {#if loading}
-                <LoadIndicator />
-            {:else if ok}
-                OK
-            {:else}
-                Login
-            {/if}
-        </button>
-        <p class="text-red-500">{error}</p>
+        <button class="button button-blue" type="submit">Register</button>
     </form>
 </div>

@@ -9,11 +9,13 @@
     import Article from "./routes/Article.svelte";
     import ArticleList from "./routes/ArticleList.svelte";
     import Gallery from "./routes/Gallery.svelte";
+    import Comments from "./routes/Comments.svelte";
     import Login from "./routes/Login.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
     import { cacheInfo } from "./Server";
+    import Register from "./routes/Register.svelte";
 
     let menubarLinks: Link[] = [];
     let initialLinksLoadComplete = false;
@@ -53,7 +55,9 @@
                 "/article/:id": Article,
                 "/article": ArticleList,
                 "/gallery": Gallery,
+                "/comments": Comments,
                 "/login": Login,
+                "/register": Register,
                 "*": NotFound
             }}
             on:routeLoading={routeLoading}
