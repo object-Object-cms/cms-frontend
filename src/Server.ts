@@ -35,25 +35,33 @@ export function getInfo(): typeof userInfo | null {
 }
 
 async function get(endpoint: string) {
-    return await (
-        await fetch(SERVER_ADDRESS + endpoint, {
-            method: "GET",
-            headers: {
-                Authorization: localStorage.getItem("session")
-            }
-        })
-    ).json();
+    try {
+        return await (
+            await fetch(SERVER_ADDRESS + endpoint, {
+                method: "GET",
+                headers: {
+                    Authorization: localStorage.getItem("session")
+                }
+            })
+        ).json();
+    } catch (err) {
+        return { ok: false, reason: err.message };
+    }
 }
 
 async function post(endpoint: string, data) {
-    return await (
-        await fetch(SERVER_ADDRESS + endpoint, {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: localStorage.getItem("session")
-            }
-        })
-    ).json();
+    try {
+        return await (
+            await fetch(SERVER_ADDRESS + endpoint, {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: localStorage.getItem("session")
+                }
+            })
+        ).json();
+    } catch (err) {
+        return { ok: false, reason: err.message };
+    }
 }
