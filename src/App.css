@@ -19,6 +19,11 @@
         @apply transition-colors;
     }
 
+    .button[disabled] {
+        @apply opacity-60;
+        @apply pointer-events-none;
+    }
+
     .button-green-outline {
         @apply border;
         @apply border-solid;
