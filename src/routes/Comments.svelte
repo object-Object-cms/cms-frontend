@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { currentAccount } from "../AccountManager";
+
     import LoadIndicator from "../lib/LoadIndicator.svelte";
     import PageHeader from "../lib/PageHeader.svelte";
 
@@ -11,7 +13,7 @@
         return fetch("dummydata/comments.json").then((resp) => resp.json());
     }
 
-    let author = "";
+    let author = $currentAccount.username;
     let content = "";
 
     function postComment(ev: SubmitEvent) {
