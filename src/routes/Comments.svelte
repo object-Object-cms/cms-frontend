@@ -13,7 +13,7 @@
         return fetch("dummydata/comments.json").then((resp) => resp.json());
     }
 
-    let author = $currentAccount.username;
+    let author = $currentAccount?.username ?? "";
     let content = "";
 
     function postComment(ev: SubmitEvent) {
