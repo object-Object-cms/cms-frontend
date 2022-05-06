@@ -68,3 +68,13 @@ export async function register(
         );
     }
 }
+
+export function getAccountType(accessLevel: number) {
+    if (accessLevel >= 100) {
+        return "Administrator";
+    } else if (accessLevel >= 50) {
+        return "Moderator";
+    } else {
+        return "Regular user";
+    }
+}

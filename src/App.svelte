@@ -14,6 +14,7 @@
     import Comments from "./routes/Comments.svelte";
     import Login from "./routes/Login.svelte";
     import Register from "./routes/Register.svelte";
+    import Profile from "./routes/Profile.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
@@ -65,6 +66,7 @@
             "/comments": Comments,
             "/login": Login,
             "/register": Register,
+            "/profile": Profile,
             "*": NotFound
         }}
         on:routeLoading={routeLoading}
