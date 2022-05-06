@@ -69,6 +69,11 @@ export async function register(
     }
 }
 
+export function logout() {
+    localStorage.removeItem("session");
+    currentAccount.set(null);
+}
+
 export function getAccountType(accessLevel: number) {
     if (accessLevel >= 100) {
         return "Administrator";
