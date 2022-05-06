@@ -4,6 +4,7 @@
 
     import LoadIndicator from "./lib/LoadIndicator.svelte";
     import Menubar, { Link } from "./lib/Menubar.svelte";
+    import { cacheInfo } from "./Server";
 
     import Home from "./routes/Home.svelte";
     import Article from "./routes/Article.svelte";
@@ -11,11 +12,10 @@
     import Gallery from "./routes/Gallery.svelte";
     import Comments from "./routes/Comments.svelte";
     import Login from "./routes/Login.svelte";
+    import Register from "./routes/Register.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
-    import { cacheInfo } from "./Server";
-    import Register from "./routes/Register.svelte";
 
     let menubarLinks: Link[] = [];
     let initialLinksLoadComplete = false;
