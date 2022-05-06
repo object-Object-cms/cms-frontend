@@ -4,9 +4,10 @@
 
     import LoadIndicator from "./lib/LoadIndicator.svelte";
     import Menubar, { Link } from "./lib/Menubar.svelte";
-    import { cacheInfo } from "./Server";
+    import { refreshAccountInfo, currentAccount } from "./AccountManager";
 
     import Home from "./routes/Home.svelte";
+
     import Article from "./routes/Article.svelte";
     import ArticleList from "./routes/ArticleList.svelte";
     import Gallery from "./routes/Gallery.svelte";
@@ -18,7 +19,7 @@
     import "./App.css";
 
     let menubarLinks: Link[] = [];
-    let initialLinksLoadComplete = false;
+    let startupFinished = false;
 
     function refreshMenubarLinks() {
         return fetch("dummydata/menubar.json")
@@ -31,36 +32,41 @@
             });
     }
 
-    refreshMenubarLinks().then(() => (initialLinksLoadComplete = true));
-
     function routeLoading() {
-        refreshMenubarLinks();
+        if (startupFinished) {
+            refreshMenubarLinks();
+            if ($currentAccount !== null) {
+                refreshAccountInfo();
+            }
+        }
+    }
+
+    async function runStartupTasks() {
+        await Promise.all([refreshMenubarLinks(), refreshAccountInfo()]);
+        startupFinished = true;
     }
 </script>
 
-{#if !initialLinksLoadComplete}
+{#await runStartupTasks()}
     <div class="fixed left-0 top-0 right-0 bottom-0 z-50 bg-white" out:fade>
         <LoadIndicator />
     </div>
-{/if}
-
-{#await cacheInfo()}
-    <LoadIndicator />
-{:then _}
-    <Menubar links={menubarLinks} />
-    <main>
-        <Router
-            routes={{
-                "/": Home,
-                "/article/:id": Article,
-                "/article": ArticleList,
-                "/gallery": Gallery,
-                "/comments": Comments,
-                "/login": Login,
-                "/register": Register,
-                "*": NotFound
-            }}
-            on:routeLoading={routeLoading}
-        />
-    </main>
 {/await}
+
+<Menubar links={menubarLinks} />
+
+<main>
+    <Router
+        routes={{
+            "/": Home,
+            "/article/:id": Article,
+            "/article": ArticleList,
+            "/gallery": Gallery,
+            "/comments": Comments,
+            "/login": Login,
+            "/register": Register,
+            "*": NotFound
+        }}
+        on:routeLoading={routeLoading}
+    />
+</main>

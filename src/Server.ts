@@ -1,43 +1,42 @@
 const SERVER_ADDRESS = "http://localhost:1234/";
 
-let userInfo: null | { username: string; accessLevel: number } = null;
+export interface APIResponse {
+    ok: boolean;
+    reason?: string;
+    [key: string]: any;
+}
 
-export async function login(username, password): Promise<boolean | string> {
-    const response = (await post("login", { username, password })) as any;
+export async function login(
+    username: string,
+    password: string
+): Promise<APIResponse> {
+    const response = await post("login", { username, password });
     if (response.ok) {
         localStorage.setItem("session", response.session);
-        return true;
     }
-    return response.reason as string;
+    return response;
 }
 
-export async function register(username, password): Promise<boolean | string> {
-    const response = (await post("register", { username, password })) as any;
+export async function register(
+    username: string,
+    password: string
+): Promise<APIResponse> {
+    const response = await post("register", { username, password });
     if (response.ok) {
         localStorage.setItem("session", response.session);
-        return true;
     }
-    return response.reason as string;
+    return response;
 }
 
-export async function cacheInfo() {
-    let fromServer = (await get("me")) as any;
-    if (fromServer.ok) {
-        userInfo = {
-            accessLevel: fromServer.accessLevel as number,
-            username: fromServer.username as string
-        };
-    }
+export function getSelfInfo() {
+    return get("me");
 }
 
-export function getInfo(): typeof userInfo | null {
-    return userInfo;
-}
-
-async function get(endpoint: string) {
+async function get(endpoint: string | URL): Promise<APIResponse> {
     try {
+        const endpointUrl = new URL(endpoint, SERVER_ADDRESS).toString();
         return await (
-            await fetch(SERVER_ADDRESS + endpoint, {
+            await fetch(endpointUrl, {
                 method: "GET",
                 headers: {
                     Authorization: localStorage.getItem("session")
@@ -49,10 +48,11 @@ async function get(endpoint: string) {
     }
 }
 
-async function post(endpoint: string, data) {
+async function post(endpoint: string | URL, data: any): Promise<APIResponse> {
     try {
+        const endpointUrl = new URL(endpoint, SERVER_ADDRESS).toString();
         return await (
-            await fetch(SERVER_ADDRESS + endpoint, {
+            await fetch(endpointUrl, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {

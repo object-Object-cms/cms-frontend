@@ -6,10 +6,10 @@
 </script>
 
 <script lang="ts">
-    import { getInfo } from "../Server";
     import { link } from "svelte-spa-router";
     import Icon from "./Icon.svelte";
     import { prefMenubarViewMode } from "./PreferencesController";
+    import { currentAccount } from "../AccountManager";
     import { clampWithRollover } from "./utils";
 
     export let links: Link[];
@@ -113,7 +113,17 @@
             <div
                 class="mt-auto mb-8 flex-shrink-0 space-x-2 sm:my-0 sm:ml-auto"
             >
-                {#if getInfo() === null}
+                {#if $currentAccount}
+                    <a
+                        class="button button-green-outline flex items-center"
+                        href="/login"
+                        use:link
+                        on:click={collapse}
+                    >
+                        <Icon>person</Icon>
+                        {$currentAccount.username}
+                    </a>
+                {:else}
                     <a
                         class="button button-green-outline"
                         href="/login"
@@ -129,16 +139,6 @@
                         on:click={collapse}
                     >
                         Register
-                    </a>
-                {:else}
-                    <a
-                        class="button button-green-outline flex items-center"
-                        href="/login"
-                        use:link
-                        on:click={collapse}
-                    >
-                        <Icon>person</Icon>
-                        {getInfo().username}
                     </a>
                 {/if}
             </div>

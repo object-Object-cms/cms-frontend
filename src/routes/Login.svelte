@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { login } from "../Server";
+    import { push } from "svelte-spa-router";
+    import { login } from "../AccountManager";
 
     import LoadIndicator from "../lib/LoadIndicator.svelte";
 
@@ -8,21 +9,19 @@
 
     let loading = false;
     let error = "";
-    let ok = false;
 
     async function handleLogin(ev: SubmitEvent) {
         ev.preventDefault();
         if (loading) return;
         loading = true;
         error = "";
-        let res = await login(username, password);
-        if (res === true) {
-            ok = true;
-            setTimeout(() => (window.location.href = "/"), 500);
-        } else {
-            error = res as string;
+        try {
+            await login(username, password);
+            push("/");
+        } catch (err) {
+            error = err.message;
+            loading = false;
         }
-        loading = false;
     }
 </script>
 
@@ -72,15 +71,15 @@
             </div>
         </div>
 
-        <button class="button button-blue" type="submit">
+        <button class="button button-blue" type="submit" disabled={loading}>
             {#if loading}
                 <LoadIndicator />
-            {:else if ok}
-                OK
             {:else}
                 Login
             {/if}
         </button>
-        <p class="text-red-500">{error}</p>
+        {#if error}
+            <p class="text-red-500">{error}</p>
+        {/if}
     </form>
 </div>
