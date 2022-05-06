@@ -9,9 +9,11 @@
     import Article from "./routes/Article.svelte";
     import ArticleList from "./routes/ArticleList.svelte";
     import Gallery from "./routes/Gallery.svelte";
+    import Login from "./routes/Login.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
+    import { cacheInfo } from "./Server";
 
     let menubarLinks: Link[] = [];
     let initialLinksLoadComplete = false;
@@ -40,17 +42,21 @@
     </div>
 {/if}
 
-<Menubar links={menubarLinks} />
-
-<main>
-    <Router
-        routes={{
-            "/": Home,
-            "/article/:id": Article,
-            "/article": ArticleList,
-            "/gallery": Gallery,
-            "*": NotFound
-        }}
-        on:routeLoading={routeLoading}
-    />
-</main>
+{#await cacheInfo()}
+    <LoadIndicator />
+{:then _}
+    <Menubar links={menubarLinks} />
+    <main>
+        <Router
+            routes={{
+                "/": Home,
+                "/article/:id": Article,
+                "/article": ArticleList,
+                "/gallery": Gallery,
+                "/login": Login,
+                "*": NotFound
+            }}
+            on:routeLoading={routeLoading}
+        />
+    </main>
+{/await}

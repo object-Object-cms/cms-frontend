@@ -104,7 +104,7 @@
                             );
                         }}
                     >
-                        clear
+                        user
                     </Icon>
                 </div>
                 <span class="pointer-events-none contents">

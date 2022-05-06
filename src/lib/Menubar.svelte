@@ -6,6 +6,7 @@
 </script>
 
 <script lang="ts">
+    import { getInfo } from "../Server";
     import { link } from "svelte-spa-router";
     import Icon from "./Icon.svelte";
     import { prefMenubarViewMode } from "./PreferencesController";
@@ -112,22 +113,34 @@
             <div
                 class="mt-auto mb-8 flex-shrink-0 space-x-2 sm:my-0 sm:ml-auto"
             >
-                <a
-                    class="button button-green-outline"
-                    href="/login"
-                    use:link
-                    on:click={collapse}
-                >
-                    Login
-                </a>
-                <a
-                    class="button button-blue-outline"
-                    href="/register"
-                    use:link
-                    on:click={collapse}
-                >
-                    Register
-                </a>
+                {#if getInfo() === null}
+                    <a
+                        class="button button-green-outline"
+                        href="/login"
+                        use:link
+                        on:click={collapse}
+                    >
+                        Login
+                    </a>
+                    <a
+                        class="button button-blue-outline"
+                        href="/register"
+                        use:link
+                        on:click={collapse}
+                    >
+                        Register
+                    </a>
+                {:else}
+                    <a
+                        class="button button-green-outline flex items-center"
+                        href="/login"
+                        use:link
+                        on:click={collapse}
+                    >
+                        <Icon>person</Icon>
+                        {getInfo().username}
+                    </a>
+                {/if}
             </div>
         </div>
 
