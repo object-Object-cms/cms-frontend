@@ -18,7 +18,7 @@
 
     export let subComponents: InGridComponent[];
     export let editingMode = true;
-    export let selected: typeof mappedComponents[0] | null = null;
+    export let selected: number | undefined;
 
     const COLS = 6;
     const cols = [[1100, COLS]];
@@ -76,19 +76,23 @@
 <div
     class="flex"
     style="height: calc( 100% - 2rem );"
-    on:click={() => (selected = null)}
+    on:click={() => (selected = undefined)}
 >
-    <Grid bind:items={mappedComponents} rowHeight={200} {cols} let:dataItem>
+    <Grid
+        bind:items={mappedComponents}
+        rowHeight={200}
+        {cols}
+        let:dataItem
+        let:index
+    >
         {#if editingMode}
             <div
                 on:click={(e) => {
-                    selected = dataItem;
+                    selected = index;
                     e.stopPropagation();
                 }}
                 class={`w-full ${
-                    selected === dataItem
-                        ? "border-red-500"
-                        : "border-slate-500"
+                    selected === index ? "border-red-500" : "border-slate-500"
                 } relative h-full w-full rounded-sm border-2 border-solid`}
             >
                 <div
@@ -102,6 +106,7 @@
                             mappedComponents = mappedComponents.filter(
                                 (n) => n.component !== dataItem.component
                             );
+                            selected = undefined;
                         }}
                     >
                         clear
@@ -151,11 +156,11 @@
         <div class="m-2 flex h-1/2 flex-col rounded-lg bg-slate-500">
             <div class="border-b border-slate-600 px-2 py-1">Components</div>
             <div class="overflow-auto">
-                {#each mappedComponents as component}
+                {#each mappedComponents as component, i}
                     <ComponentButton
                         name={component.component.name}
-                        selected={selected === component}
-                        on:click={() => (selected = component)}
+                        selected={selected === i}
+                        on:click={() => (selected = i)}
                     />
                 {/each}
             </div>
@@ -185,24 +190,33 @@
             <div class="mt-1 flex items-center space-x-2 px-2">
                 <!-- TODO: Get the component icon somehow -->
                 <span class="material-icons-outlined md-18">
-                    {selected ? "square" : "disabled_by_default"}
+                    {selected !== undefined ? "square" : "disabled_by_default"}
                 </span>
-                <span>{selected?.component?.name ?? "No selection"}</span>
+                <span
+                    >{mappedComponents[selected]?.component?.name ??
+                        "No selection"}</span
+                >
             </div>
-            {#if selected}
-                <ComplexValueEdit bind:value={selected} proto={{ id: "id" }} />
+            {#if selected !== undefined}
+                <ComplexValueEdit
+                    bind:value={mappedComponents[selected]}
+                    proto={{ id: "id" }}
+                />
                 <div class="overflow-auto pb-4">
                     <details open>
                         <summary class="bg-slate-400 px-2">Props</summary>
                         <ComplexValueEdit
-                            bind:value={selected.component.props}
-                            proto={ComponentsProps[selected.component.name]}
+                            bind:value={mappedComponents[selected].component
+                                .props}
+                            proto={ComponentsProps[
+                                mappedComponents[selected].component.name
+                            ]}
                         />
                     </details>
                     <details open>
                         <summary class="bg-slate-400 px-2">Layout</summary>
                         <ComplexValueEdit
-                            bind:value={selected[COLS]}
+                            bind:value={mappedComponents[selected][COLS]}
                             proto={{
                                 x: 0,
                                 y: 0,
