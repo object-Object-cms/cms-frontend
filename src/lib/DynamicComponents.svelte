@@ -1,7 +1,9 @@
 <script lang="ts">
-    import DynamicComponent from "./DynamicComponent.svelte";
+    import DynamicComponent, {
+        ComponentDescriptor
+    } from "./DynamicComponent.svelte";
 
-    export let components: any[];
+    export let components: (ComponentDescriptor | string)[];
 </script>
 
 {#each components as component}

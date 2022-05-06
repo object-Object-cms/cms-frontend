@@ -3,10 +3,13 @@
     "props": {
         "subComponents": [
             {
-                "x": 2,
-                "y": 1,
-                "w": 2,
-                "h": 1,
+                "id": "bd5d9dc1-c23a-4b58-bfa2-6e668b61162e",
+                "layout": {
+                    "x": 2,
+                    "y": 1,
+                    "w": 2,
+                    "h": 1
+                },
                 "component": {
                     "name": "Slider",
                     "props": {

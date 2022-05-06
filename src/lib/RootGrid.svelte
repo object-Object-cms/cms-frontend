@@ -1,5 +1,7 @@
 <script lang="ts">
-    import DynamicComponent from "./DynamicComponent.svelte";
+    import DynamicComponent, {
+        ComponentDescriptor
+    } from "./DynamicComponent.svelte";
     import Grid from "svelte-grid";
     import gridHelp from "svelte-grid/build/helper";
     import NamedComponents, { ComponentsProps } from "./components";
@@ -8,28 +10,32 @@
     import ComponentButton from "./ComponentButton.svelte";
 
     type InGridComponent = {
-        x: number;
-        y: number;
-        w: number;
-        h: number;
-        component: any;
         id: string;
+        layout: {
+            x: number;
+            y: number;
+            w: number;
+            h: number;
+        };
+        component: ComponentDescriptor;
     };
 
     export let subComponents: InGridComponent[];
     export let editingMode = true;
-    export let selected: number | undefined;
+    let selected: number | undefined;
 
     const COLS = 6;
     const cols = [[1100, COLS]];
     let mappedComponents = subComponents.map((n) => {
         return {
-            [COLS]: gridHelp.item(n),
-            component: n.component,
-            id: crypto.randomUUID()
+            id: n.id,
+            [COLS]: gridHelp.item({
+                ...n.layout,
+                fixed: !editingMode
+            }),
+            component: n.component
         };
     });
-    $: subComponents.forEach((n) => ((n as any).fixed = !editingMode));
 
     let leftSidebarExpanded = true;
     let rightSidebarExpanded = true;
@@ -43,33 +49,44 @@
     }
 
     function addComponent(name, proto) {
-        let elem = {
+        let position = {
             x: 0,
             y: 0,
             w: 1,
-            h: 1,
+            h: 1
+        };
+
+        const item = {
+            [COLS]: gridHelp.item(position),
             component: {
                 name,
                 props: JSON.parse(JSON.stringify(proto))
             },
             id: crypto.randomUUID()
         };
-        const item = {
-            [COLS]: gridHelp.item(elem),
-            component: elem.component,
-            id: elem.id
-        };
 
         const { x, y } = gridHelp.findSpace(item, mappedComponents, COLS);
-        elem.x = x;
-        elem.y = y;
         item[COLS].x = x;
         item[COLS].y = y;
 
-        subComponents.push(elem);
         mappedComponents.push(item);
-        subComponents = subComponents;
         mappedComponents = mappedComponents;
+    }
+
+    function exportGrid() {
+        const components = mappedComponents.map((c): InGridComponent => {
+            return {
+                id: c.id,
+                layout: {
+                    x: c[COLS].x,
+                    y: c[COLS].y,
+                    w: c[COLS].w,
+                    h: c[COLS].h
+                },
+                component: c.component
+            };
+        });
+        console.log(components);
     }
 </script>
 
@@ -100,9 +117,6 @@
                 >
                     <Icon
                         on:click={() => {
-                            subComponents = subComponents.filter(
-                                (n) => n.component !== dataItem.component
-                            );
                             mappedComponents = mappedComponents.filter(
                                 (n) => n.component !== dataItem.component
                             );
@@ -227,19 +241,6 @@
                     </details>
                 </div>
             {/if}
-            <!-- {#if selected !== null}
-                <div class="w-full p-4">
-                    <h1 class="border-l">Editing: {selected.component.name}</h1>
-                    <ComplexValueEdit
-                        bind:value={selected.component.props}
-                        proto={ComponentsProps[selected.component.name]}
-                    />
-                </div>
-            {:else}
-                <div class="w-full min-h-full flex justify-center items-center">
-                    <p>No item selected</p>
-                </div>
-            {/if} -->
         </div>
     </div>
 {/if}
