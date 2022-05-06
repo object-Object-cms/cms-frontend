@@ -4,7 +4,10 @@
     } from "./DynamicComponent.svelte";
     import Grid from "svelte-grid";
     import gridHelp from "svelte-grid/build/helper";
-    import NamedComponents, { ComponentsProps } from "./components";
+    import NamedComponents, {
+        ComponentIcons,
+        ComponentsProps
+    } from "./components";
     import ComplexValueEdit from "./ComplexValueEdit.svelte";
     import Icon from "./Icon.svelte";
     import ComponentButton from "./ComponentButton.svelte";
@@ -158,9 +161,9 @@
             <div class="border-b border-slate-600 px-2 py-1">Toolbox</div>
             <div class="overflow-auto">
                 {#each Object.entries(ComponentsProps) as [name, proto]}
-                    <!-- TODO: Get the component icon from somewhere -->
                     <ComponentButton
                         {name}
+                        icon={ComponentIcons[name]}
                         on:click={() => addComponent(name, proto)}
                     />
                 {/each}
@@ -173,6 +176,7 @@
                 {#each mappedComponents as component, i}
                     <ComponentButton
                         name={component.component.name}
+                        icon={ComponentIcons[component.component.name]}
                         selected={selected === i}
                         on:click={() => (selected = i)}
                     />
@@ -204,7 +208,11 @@
             <div class="mt-1 flex items-center space-x-2 px-2">
                 <!-- TODO: Get the component icon somehow -->
                 <span class="material-icons-outlined md-18">
-                    {selected !== undefined ? "square" : "disabled_by_default"}
+                    {selected !== undefined
+                        ? ComponentIcons[
+                              mappedComponents[selected].component.name
+                          ]
+                        : "disabled_by_default"}
                 </span>
                 <span
                     >{mappedComponents[selected]?.component?.name ??

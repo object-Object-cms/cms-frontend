@@ -29,4 +29,10 @@ export const ComponentsProps: {
     }
 };
 
+export const ComponentIcons: {
+    [key: keyof typeof NamedComponents]: string;
+} = {
+    Slider: "view_carousel"
+};
+
 export default NamedComponents;
