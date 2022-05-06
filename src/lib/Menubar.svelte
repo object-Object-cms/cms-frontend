@@ -116,7 +116,7 @@
                 {#if $currentAccount}
                     <a
                         class="button button-blue-outline flex items-center"
-                        href="/login"
+                        href="/profile"
                         use:link
                         on:click={collapse}
                     >
