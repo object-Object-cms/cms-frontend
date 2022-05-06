@@ -115,12 +115,12 @@
             >
                 {#if $currentAccount}
                     <a
-                        class="button button-green-outline flex items-center"
+                        class="button button-blue-outline flex items-center"
                         href="/login"
                         use:link
                         on:click={collapse}
                     >
-                        <Icon>person</Icon>
+                        <span class="material-icons">person</span>
                         {$currentAccount.username}
                     </a>
                 {:else}
