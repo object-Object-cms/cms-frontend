@@ -1,5 +1,6 @@
 <script lang="ts">
-    import Router from "svelte-spa-router";
+    import Router, { replace } from "svelte-spa-router";
+    import { wrap } from "svelte-spa-router/wrap";
     import { fade } from "svelte/transition";
 
     import LoadIndicator from "./lib/LoadIndicator.svelte";
@@ -42,6 +43,10 @@
         }
     }
 
+    function conditionsFailed() {
+        replace("/");
+    }
+
     async function runStartupTasks() {
         await Promise.all([refreshMenubarLinks(), refreshAccountInfo()]);
         startupFinished = true;
@@ -66,9 +71,17 @@
             "/comments": Comments,
             "/login": Login,
             "/register": Register,
-            "/profile": Profile,
+            "/profile": wrap({
+                component: Profile,
+                conditions: [
+                    () => {
+                        return $currentAccount !== null;
+                    }
+                ]
+            }),
             "*": NotFound
         }}
         on:routeLoading={routeLoading}
+        on:conditionsFailed={conditionsFailed}
     />
 </main>
