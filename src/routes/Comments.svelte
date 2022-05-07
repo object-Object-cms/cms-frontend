@@ -1,25 +1,38 @@
 <script lang="ts">
     import { currentAccount } from "../AccountManager";
+    import { Comment, getComments, postComment } from "../Server";
 
     import LoadIndicator from "../lib/LoadIndicator.svelte";
     import PageHeader from "../lib/PageHeader.svelte";
 
-    interface Comment {
-        author: string;
-        content: string;
-    }
-
-    function loadComments(): Promise<Comment[]> {
-        return fetch("dummydata/comments.json").then((resp) => resp.json());
-    }
-
     let content = "";
+    let comments: Comment[] = [];
+    let posting = false;
+    let error = "";
 
-    function postComment(ev: SubmitEvent) {
+    async function loadComments(): Promise<Comment[]> {
+        comments = await getComments();
+        return comments;
+    }
+
+    async function handleSubmit(ev: SubmitEvent) {
         ev.preventDefault();
-        console.log("Posting comment:");
-        console.log("content:", content);
+        if (posting) return;
+        posting = true;
+        error = "";
+        const ccontent = content;
         content = "";
+        try {
+            await postComment(ccontent);
+            try {
+                await loadComments();
+            } catch (err) {
+                error = `Failed to refresh comments: ${err.message}`;
+            }
+        } catch (err) {
+            error = `Failed to post comment: ${err.message}`;
+        }
+        posting = false;
     }
 </script>
 
@@ -29,24 +42,35 @@
     <div class="p-8">
         <LoadIndicator />
     </div>
-{:then comments}
+{:then}
     <div class="container mx-auto p-2 space-y-2">
         {#if $currentAccount}
             <form
                 class="bg-gray-300 mx-auto max-w-lg rounded-md p-2 space-y-2"
-                on:submit={postComment}
+                on:submit={handleSubmit}
             >
                 <label class="block w-full">
                     Comment:
                     <textarea
-                        class="w-full resize-none bg-gray-100 p-2 rounded"
+                        class="w-full resize-none bg-gray-100 p-2 mt-1 rounded"
                         required
                         bind:value={content}
                     />
                 </label>
-                <button class="button button-blue" type="submit">
-                    Post comment
+                <button
+                    class="button button-blue"
+                    type="submit"
+                    disabled={posting}
+                >
+                    {#if posting}
+                        <LoadIndicator />
+                    {:else}
+                        Post comment
+                    {/if}
                 </button>
+                {#if error}
+                    <p class="text-red-600">{error}</p>
+                {/if}
             </form>
         {:else}
             <p class="text-red-600 text-center">
@@ -54,12 +78,20 @@
             </p>
         {/if}
 
-        {#each comments as comment}
-            <div class="bg-slate-300 p-2 rounded">
-                <p class="text-blue-600 font-bold">{comment.author}</p>
-                <p>{comment.content}</p>
+        {#if comments.length > 0}
+            <div class="flex flex-col-reverse gap-2">
+                {#each comments as comment}
+                    <div class="bg-slate-300 p-2 rounded">
+                        <p class="text-blue-600 font-bold">
+                            {comment.username}
+                        </p>
+                        <p class="whitespace-pre-wrap">{comment.content}</p>
+                    </div>
+                {/each}
             </div>
-        {/each}
+        {:else}
+            <p class="text-center">No comments yet</p>
+        {/if}
     </div>
 {:catch error}
     <p class="container mx-auto text-red-600 text-center">

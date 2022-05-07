@@ -1,9 +1,16 @@
 const SERVER_ADDRESS = "http://localhost:1234/";
 
+export class APIError extends Error {}
+
 export interface APIResponse {
     ok: boolean;
     reason?: string;
     [key: string]: any;
+}
+
+export interface Comment {
+    username: string;
+    content: string;
 }
 
 export async function login(
@@ -30,6 +37,22 @@ export async function register(
 
 export function getSelfInfo() {
     return get("me");
+}
+
+export async function getComments(): Promise<Comment[]> {
+    const response = await get("comments");
+    if (response.ok) {
+        return response.comments;
+    } else {
+        throw new APIError(response.reason);
+    }
+}
+
+export async function postComment(content: string): Promise<void> {
+    const response = await post("create/comment", { content });
+    if (!response.ok) {
+        throw new APIError(response.reason);
+    }
 }
 
 async function get(endpoint: string | URL): Promise<APIResponse> {
