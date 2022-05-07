@@ -184,7 +184,7 @@
                 </div>
             </div>
 
-            <button class="button button-blue" type="submit"> Next </button>
+            <button class="button button-blue" type="submit">Next</button>
         </form>
     </div>
 {/if}
