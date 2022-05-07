@@ -225,16 +225,18 @@
                     proto={{ id: "id" }}
                 />
                 <div class="overflow-auto pb-4">
-                    <details open>
-                        <summary class="bg-slate-400 px-2">Props</summary>
-                        <ComplexValueEdit
-                            bind:value={mappedComponents[selected].component
-                                .props}
-                            proto={ComponentsProps[
-                                mappedComponents[selected].component.name
-                            ]}
-                        />
-                    </details>
+                    {#if Object.keys(ComponentsProps[mappedComponents[selected].component.name]).length > 0}
+                        <details open>
+                            <summary class="bg-slate-400 px-2">Props</summary>
+                            <ComplexValueEdit
+                                bind:value={mappedComponents[selected].component
+                                    .props}
+                                proto={ComponentsProps[
+                                    mappedComponents[selected].component.name
+                                ]}
+                            />
+                        </details>
+                    {/if}
                     <details open>
                         <summary class="bg-slate-400 px-2">Layout</summary>
                         <ComplexValueEdit
