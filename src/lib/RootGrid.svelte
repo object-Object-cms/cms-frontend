@@ -25,7 +25,7 @@
     };
 
     export let subComponents: InGridComponent[];
-    export let editingMode = true;
+    export let editingMode = false;
     let selected: number | undefined;
 
     const COLS = 6;
