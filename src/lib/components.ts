@@ -57,7 +57,7 @@ export const ComponentsProps: {
         textContent: new NonstandardValue(
             "textblock",
             "Content",
-            "Paragraph Content"
+            "Markdown Text"
         )
     }
 };
