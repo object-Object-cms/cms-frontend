@@ -65,7 +65,8 @@ export const ComponentIcons: {
     [key: keyof typeof NamedComponents]: string;
 } = {
     Slider: "view_carousel",
-    Image: "image"
+    Image: "image",
+    Paragraph: "view_headline"
 };
 
 export default NamedComponents;
