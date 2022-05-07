@@ -94,6 +94,12 @@
         @apply pl-8;
     }
 
+    .markdown ol {
+        @apply list-decimal;
+        @apply my-4;
+        @apply pl-8;
+    }
+
     .markdown :not(pre) > code {
         @apply bg-gray-200;
         @apply px-1;
