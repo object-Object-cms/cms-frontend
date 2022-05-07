@@ -116,7 +116,7 @@
                     selected = index;
                     e.stopPropagation();
                 }}
-                class={`w-full ${
+                class={`${
                     selected === index ? "border-red-500" : "border-slate-500"
                 } relative h-full w-full rounded-sm border-2 border-solid`}
             >
