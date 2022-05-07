@@ -13,6 +13,11 @@ export interface Comment {
     content: string;
 }
 
+export interface APIBlob {
+    id: number;
+    type: string;
+}
+
 export async function login(
     username: string,
     password: string
@@ -51,6 +56,15 @@ export async function getComments(): Promise<Comment[]> {
 export async function postComment(content: string): Promise<void> {
     const response = await post("create/comment", { content });
     if (!response.ok) {
+        throw new APIError(response.reason);
+    }
+}
+
+export async function getBlobs(): Promise<APIBlob[]> {
+    const response = await get("list/blobs");
+    if (response.ok) {
+        return response.blobs;
+    } else {
         throw new APIError(response.reason);
     }
 }

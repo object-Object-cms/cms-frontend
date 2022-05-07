@@ -5,9 +5,12 @@
     import PageHeader from "../lib/PageHeader.svelte";
 
     import { clampWithRollover } from "../lib/utils";
+    import { APIBlob, getBlobs, getBlobUrl } from "../Server";
 
-    function loadPhotos(): Promise<string[]> {
-        return fetch("dummydata/gallery.json").then((resp) => resp.json());
+    async function loadPhotos(): Promise<APIBlob[]> {
+        return (await getBlobs()).filter((blob) =>
+            blob.type.startsWith("image/")
+        );
     }
 
     let currentPhoto = 0;
@@ -61,7 +64,7 @@
         {#each photos as photo, i}
             <div
                 class="w-48 h-48 m-2 border-2 border-gray-600 cursor-pointer hover:scale-105"
-                style="background-image: url({photo});"
+                style="background-image: url({getBlobUrl(photo.id)});"
                 on:click={() => {
                     setCurrentPhoto(i, photos.length);
                     showFullscreenGallery();
@@ -93,7 +96,10 @@
             <div class="flex flex-grow items-center justify-center">
                 {#each photos as photo, i}
                     {#if currentPhoto === i}
-                        <img src={photo} alt="Gallery fullscreen" />
+                        <img
+                            src={getBlobUrl(photo.id)}
+                            alt="Gallery fullscreen"
+                        />
                     {/if}
                 {/each}
             </div>
@@ -111,7 +117,7 @@
                             {currentPhoto === i
                             ? 'border-blue-600'
                             : 'border-gray-600'}"
-                        style="background-image: url({photo});"
+                        style="background-image: url({getBlobUrl(photo.id)});"
                         on:click={() => setCurrentPhoto(i, photos.length)}
                     />
                 {/each}
