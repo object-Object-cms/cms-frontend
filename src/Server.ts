@@ -56,7 +56,7 @@ export function getSelfInfo() {
 }
 
 export async function getArticle(id: string): Promise<ComponentDescriptor> {
-    const response = await get(`articles/${id}`);
+    const response = await get(`article/${id}`);
     if (response.ok) {
         return response.content;
     } else {
