@@ -3,18 +3,10 @@
     import ArticleProperty from "../lib/ArticleProperty.svelte";
     import PageHeader from "../lib/PageHeader.svelte";
     import { link } from "svelte-spa-router";
-
-    interface ArticlePreview {
-        id: string;
-        title: string;
-        description: string;
-        bannerImage: string;
-        category: string;
-        publishDate: number;
-    }
+    import { ArticlePreview, getArticles } from "../Server";
 
     function loadArticleList(): Promise<ArticlePreview[]> {
-        return fetch("dummydata/articles.json").then((resp) => resp.json());
+        return getArticles();
     }
 
     function formatDate(timestamp: number) {
@@ -88,37 +80,41 @@
         </label>
     </div>
 
-    <div class="flex flex-wrap container mx-auto p-4">
-        {#each articles
-            .filter((a) => !selectedCategoryFilter || a.category === selectedCategoryFilter)
-            .sort(sortingModes[selectedSortingMode].func) as article}
-            <div class="w-full sm:w-1/2 lg:w-1/3 p-2">
-                <div class="border-2 rounded-lg overflow-hidden">
-                    <div
-                        class="h-24 bg-cover bg-center"
-                        style="background-image: url({article.bannerImage});"
-                    />
-                    <div class="p-2">
-                        <ArticleProperty icon="category">
-                            {article.category}
-                        </ArticleProperty>
-                        <ArticleProperty icon="access_time">
-                            {formatDate(article.publishDate)}
-                        </ArticleProperty>
-                        <h2 class="text-xl">{article.title}</h2>
-                        <p>{article.description}</p>
-                        <a
-                            class="button button-big button-blue mt-2"
-                            use:link
-                            href="/article/{article.id}"
-                        >
-                            Read More
-                        </a>
+    {#if articles.length > 0}
+        <div class="flex flex-wrap container mx-auto p-4">
+            {#each articles
+                .filter((a) => !selectedCategoryFilter || a.category === selectedCategoryFilter)
+                .sort(sortingModes[selectedSortingMode].func) as article}
+                <div class="w-full sm:w-1/2 lg:w-1/3 p-2">
+                    <div class="border-2 rounded-lg overflow-hidden">
+                        <div
+                            class="h-24 bg-cover bg-center"
+                            style="background-image: url({article.bannerImage});"
+                        />
+                        <div class="p-2">
+                            <ArticleProperty icon="category">
+                                {article.category}
+                            </ArticleProperty>
+                            <ArticleProperty icon="access_time">
+                                {formatDate(article.publishDate)}
+                            </ArticleProperty>
+                            <h2 class="text-xl">{article.title}</h2>
+                            <p>{article.description}</p>
+                            <a
+                                class="button button-big button-blue mt-2"
+                                use:link
+                                href="/article/{article.id}"
+                            >
+                                Read More
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {/each}
-    </div>
+            {/each}
+        </div>
+    {:else}
+        <p class="text-center">No articles yet.</p>
+    {/if}
 {:catch error}
     <p class="container mx-auto text-red-600 text-center">
         Failed to load article list due to: {error}

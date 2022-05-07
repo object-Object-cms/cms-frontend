@@ -18,6 +18,15 @@ export interface APIBlob {
     type: string;
 }
 
+export interface ArticlePreview {
+    id: string;
+    title: string;
+    description: string;
+    bannerImage: string;
+    category: string;
+    publishDate: number;
+}
+
 export async function login(
     username: string,
     password: string
@@ -42,6 +51,15 @@ export async function register(
 
 export function getSelfInfo() {
     return get("me");
+}
+
+export async function getArticles(): Promise<ArticlePreview[]> {
+    const response = await get("list/articles");
+    if (response.ok) {
+        return response.articles;
+    } else {
+        throw new APIError(response.reason);
+    }
 }
 
 export async function getComments(): Promise<Comment[]> {
