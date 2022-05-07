@@ -1,11 +1,13 @@
 import Icon from "./Icon.svelte";
 import Slider from "./Slider.svelte";
 import RootGrid from "./RootGrid.svelte";
+import Paragraph from "./Paragraph.svelte";
 
 const NamedComponents: { [key: string]: any } = {
     Icon,
     Slider,
-    RootGrid
+    RootGrid,
+    Paragraph
 };
 
 export type SimpleValue = string | number | boolean | string[] /* Combo box */;
@@ -26,13 +28,15 @@ export const ComponentsProps: {
             }
         ],
         cycleTime: 3000
-    }
+    },
+    Paragraph: {}
 };
 
 export const ComponentIcons: {
     [key: keyof typeof NamedComponents]: string;
 } = {
-    Slider: "view_carousel"
+    Slider: "view_carousel",
+    Paragraph: "view_headline"
 };
 
 export default NamedComponents;
