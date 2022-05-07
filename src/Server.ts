@@ -1,3 +1,5 @@
+import type { ComponentDescriptor } from "./lib/DynamicComponent.svelte";
+
 const SERVER_ADDRESS = "http://localhost:1234/";
 
 export class APIError extends Error {}
@@ -51,6 +53,15 @@ export async function register(
 
 export function getSelfInfo() {
     return get("me");
+}
+
+export async function getArticle(id: string): Promise<ComponentDescriptor> {
+    const response = await get(`articles/${id}`);
+    if (response.ok) {
+        return response.content;
+    } else {
+        throw new APIError(response.reason);
+    }
 }
 
 export async function getArticles(): Promise<ArticlePreview[]> {
