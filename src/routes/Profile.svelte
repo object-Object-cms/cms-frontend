@@ -27,9 +27,13 @@
         </div>
     </div>
     <div class="container mx-auto mt-4 flex flex-wrap">
-        <IconButton icon="add" on:click={() => push("/newArticle")}>
-            Add article
-        </IconButton>
+        {#if $currentAccount.accessLevel < 50}
+            <p>You have no available actions.</p>
+        {:else if $currentAccount.accessLevel >= 50}
+            <IconButton icon="add" on:click={() => push("/newArticle")}>
+                Add article
+            </IconButton>
+        {/if}
     </div>
 {:else}
     <p class="text-4xl text-center mt-4">You are not logged in.</p>
