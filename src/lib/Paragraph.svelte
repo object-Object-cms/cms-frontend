@@ -1,11 +1,9 @@
 <script lang="ts">
+    import SvelteMarkdown from "svelte-markdown";
+
     export let textContent = "";
 </script>
 
-<!--
-    Mom, can we have a paragraph?
-    No, there already is a paragraph at home.
-    Paragraph at home:
--->
-
-<p>{textContent}</p>
+<div class="markdown">
+    <SvelteMarkdown source={textContent} />
+</div>
