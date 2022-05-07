@@ -1,8 +1,9 @@
 <script lang="ts">
-    import type { ComplexValue } from "./components";
+    import { ComplexValue, NonstandardValue } from "./components";
     import ComplexValueEdit from "./ComplexValueEdit.svelte";
     import SimpleValueEdit from "./SimpleValueEdit.svelte";
     import ListElementEditHeaderButton from "./ListElementEditHeaderButton.svelte";
+    import ImageValueEdit from "./ImageValueEdit.svelte";
 
     export let value: any;
     export let proto: ComplexValue;
@@ -81,6 +82,13 @@
                     bind:value={value[name]}
                     type="checkbox"
                 />
+            {:else if typee instanceof NonstandardValue}
+                {#if typee._type === "image"}
+                    <ImageValueEdit
+                        name={typee.overrideName || name}
+                        bind:value={value[name]}
+                    />
+                {/if}
             {/if}
         </div>
     {/each}

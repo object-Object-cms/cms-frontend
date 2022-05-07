@@ -26,7 +26,8 @@ export class NonstandardValue {
     constructor(
         public _type: NonstandardType,
         public underlying: SimpleValue,
-        public overrideName: string | null = null
+        public overrideName: string | null = null,
+        public inline: boolean = false
     ) {}
 
     public toJSON() {
@@ -42,7 +43,7 @@ export const ComponentsProps: {
             {
                 title: "Title",
                 description: "Description",
-                image: "0",
+                image: new NonstandardValue("image", "0", "Image", true),
                 textColor: ["white", "black"]
             }
         ],

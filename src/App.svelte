@@ -5,6 +5,7 @@
 
     import LoadIndicator from "./lib/LoadIndicator.svelte";
     import Menubar, { Link } from "./lib/Menubar.svelte";
+    import ModalContainer from "./lib/modals/ModalContainer.svelte";
     import { refreshAccountInfo, currentAccount } from "./AccountManager";
 
     import Home from "./routes/Home.svelte";
@@ -85,3 +86,5 @@
         on:conditionsFailed={conditionsFailed}
     />
 </main>
+
+<ModalContainer />

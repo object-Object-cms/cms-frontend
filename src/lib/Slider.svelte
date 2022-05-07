@@ -1,5 +1,6 @@
 <script lang="ts">
     import SliderArrow from "./SliderArrow.svelte";
+    import { getBlobUrl } from "../Server";
     import { clampWithRollover } from "./utils";
 
     interface Slide {
@@ -39,6 +40,14 @@
         }
     }
 
+    function getImageUrl(src: string) {
+        if (src.startsWith("$") && src.length > 1) {
+            return getBlobUrl(src.substring(1));
+        } else {
+            return src;
+        }
+    }
+
     $: startCycleTimer(), cycleTime;
 </script>
 
@@ -58,7 +67,7 @@
             >
                 <img
                     class="w-full"
-                    src={slide.image}
+                    src={getImageUrl(slide.image)}
                     alt="{slide.title} slide image"
                 />
                 <div

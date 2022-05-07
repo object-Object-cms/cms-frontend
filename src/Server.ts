@@ -55,6 +55,17 @@ export async function postComment(content: string): Promise<void> {
     }
 }
 
+export async function uploadBlob(blob: Blob): Promise<number> {
+    const formData = new FormData();
+    formData.append("file", blob);
+    const response = await postMultipart("create/blob", formData);
+    if (response.ok) {
+        return response.id;
+    } else {
+        throw new APIError(response.reason);
+    }
+}
+
 async function get(endpoint: string | URL): Promise<APIResponse> {
     try {
         const endpointUrl = new URL(endpoint, SERVER_ADDRESS).toString();
@@ -87,4 +98,28 @@ async function post(endpoint: string | URL, data: any): Promise<APIResponse> {
     } catch (err) {
         return { ok: false, reason: err.message };
     }
+}
+
+async function postMultipart(
+    endpoint: string | URL,
+    data: FormData
+): Promise<APIResponse> {
+    try {
+        const endpointUrl = new URL(endpoint, SERVER_ADDRESS).toString();
+        return await (
+            await fetch(endpointUrl, {
+                method: "POST",
+                body: data,
+                headers: {
+                    Authorization: localStorage.getItem("session")
+                }
+            })
+        ).json();
+    } catch (err) {
+        return { ok: false, reason: err.message };
+    }
+}
+
+export function getBlobUrl(id: string | number) {
+    return new URL(`/blob/${id}`, SERVER_ADDRESS).toString();
 }

@@ -230,7 +230,7 @@
                     proto={{ id: "id" }}
                 />
                 <div class="overflow-auto pb-4">
-                    {#if Object.entries(ComponentsProps[mappedComponents[selected].component.name]).filter((n) => !(n[1] instanceof NonstandardValue)).length > 0}
+                    {#if Object.entries(ComponentsProps[mappedComponents[selected].component.name]).filter((n) => !(n[1] instanceof NonstandardValue) || n[1].inline).length > 0}
                         <details open>
                             <summary class="bg-slate-400 px-2">Props</summary>
                             <ComplexValueEdit
@@ -243,7 +243,7 @@
                         </details>
                     {/if}
                     {#each Object.entries(ComponentsProps[mappedComponents[selected].component.name])
-                        .filter((n) => n[1] instanceof NonstandardValue)
+                        .filter((n) => n[1] instanceof NonstandardValue && !n[1].inline)
                         .map(coerceTypes) as [name, nonstandard]}
                         <details open>
                             <summary class="bg-slate-400 px-2">
