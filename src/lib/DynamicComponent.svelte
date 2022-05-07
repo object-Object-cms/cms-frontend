@@ -13,6 +13,16 @@
     export let descriptor: ComponentDescriptor;
 </script>
 
-<svelte:component this={NamedComponents[descriptor.name]} {...descriptor.props}>
-    <DynamicComponents components={descriptor.children} />
-</svelte:component>
+{#if descriptor.children}
+    <svelte:component
+        this={NamedComponents[descriptor.name]}
+        {...descriptor.props}
+    >
+        <DynamicComponents components={descriptor.children} />
+    </svelte:component>
+{:else}
+    <svelte:component
+        this={NamedComponents[descriptor.name]}
+        {...descriptor.props}
+    />
+{/if}
