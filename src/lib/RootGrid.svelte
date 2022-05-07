@@ -6,7 +6,8 @@
     import gridHelp from "svelte-grid/build/helper";
     import NamedComponents, {
         ComponentIcons,
-        ComponentsProps
+        ComponentsProps,
+        NonstandardValue
     } from "./components";
     import ComplexValueEdit from "./ComplexValueEdit.svelte";
     import Icon from "./Icon.svelte";
@@ -90,6 +91,10 @@
             };
         });
         console.log(components);
+    }
+
+    function coerceTypes(a: any) {
+        return a as [string, NonstandardValue];
     }
 </script>
 
@@ -236,6 +241,21 @@
                                 ]}
                             />
                         </details>
+                        {#each Object.entries(ComponentsProps[mappedComponents[selected].component.name])
+                            .filter((n) => n[1] instanceof NonstandardValue)
+                            .map(coerceTypes) as [name, nonstandard]}
+                            <details open>
+                                <summary class="bg-slate-400 px-2"
+                                    >{nonstandard.overrideName || name}</summary
+                                >
+                                {#if nonstandard._type === "textblock"}
+                                    <textarea
+                                        bind:value={mappedComponents[selected]
+                                            .component.props[name]}
+                                    />
+                                {/if}
+                            </details>
+                        {/each}
                     {/if}
                     <details open>
                         <summary class="bg-slate-400 px-2">Layout</summary>
