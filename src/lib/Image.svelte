@@ -5,4 +5,4 @@
     export let alt: string;
 </script>
 
-<img src={getImageUrl(image)} {alt} />
+<img class="max-h-full" src={getImageUrl(image)} {alt} />
