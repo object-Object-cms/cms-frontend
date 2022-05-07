@@ -58,7 +58,7 @@ export function getSelfInfo() {
 export async function getArticle(id: string): Promise<ComponentDescriptor> {
     const response = await get(`article/${id}`);
     if (response.ok) {
-        return response.content;
+        return JSON.parse(response.content);
     } else {
         throw new APIError(response.reason);
     }
