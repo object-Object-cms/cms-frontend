@@ -1,7 +1,6 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
     import ModalIcon from "./ModalIcon.svelte";
-    import TallButton from "./TallButton.svelte";
     import Gallery from "../../routes/Gallery.svelte";
 
     export let responseHandler: (blobId: number) => void;
