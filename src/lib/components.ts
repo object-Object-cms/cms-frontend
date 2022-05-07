@@ -46,10 +46,4 @@ export const ComponentIcons: {
     Image: "image"
 };
 
-export const ComponentChildrenType: {
-    [key: keyof typeof NamedComponents]: string;
-} = {
-    Paragraph: "text"
-};
-
 export default NamedComponents;

@@ -2,7 +2,7 @@
     export interface ComponentDescriptor {
         name: string;
         props: { [key: string]: any };
-        children?: (ComponentDescriptor | string)[];
+        children?: ComponentDescriptor[];
     }
 </script>
 

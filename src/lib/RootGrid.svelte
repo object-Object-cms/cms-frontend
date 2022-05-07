@@ -5,7 +5,6 @@
     import Grid from "svelte-grid";
     import gridHelp from "svelte-grid/build/helper";
     import NamedComponents, {
-        ComponentChildrenType,
         ComponentIcons,
         ComponentsProps
     } from "./components";
@@ -69,26 +68,12 @@
             id: crypto.randomUUID()
         };
 
-        if (ComponentChildrenType[name] === "text") {
-            (item.component as ComponentDescriptor).children = [""];
-        }
-
         const { x, y } = gridHelp.findSpace(item, mappedComponents, COLS);
         item[COLS].x = x;
         item[COLS].y = y;
 
         mappedComponents.push(item);
         mappedComponents = mappedComponents;
-    }
-
-    function checkTextComponent(component: ComponentDescriptor) {
-        if (ComponentChildrenType[component.name] === "text") {
-            if (typeof component.children?.[0] !== "string") {
-                component.children = [""];
-            }
-            return true;
-        }
-        return false;
     }
 
     function exportGrid() {
@@ -250,18 +235,6 @@
                                     mappedComponents[selected].component.name
                                 ]}
                             />
-                        </details>
-                    {/if}
-                    {#if checkTextComponent(mappedComponents[selected].component)}
-                        <details open>
-                            <summary class="bg-slate-400 px-2">Text</summary>
-                            <div class="p-2">
-                                <textarea
-                                    class="w-full text-black"
-                                    bind:value={mappedComponents[selected]
-                                        .component.children[0]}
-                                />
-                            </div>
                         </details>
                     {/if}
                     <details open>
