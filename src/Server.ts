@@ -22,6 +22,7 @@ export interface APIBlob {
 
 export interface ArticlePreview {
     id: string;
+    author: string;
     title: string;
     description: string;
     bannerImage: string;

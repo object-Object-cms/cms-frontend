@@ -94,6 +94,9 @@
                             )});"
                         />
                         <div class="p-2">
+                            <ArticleProperty icon="person">
+                                {article.author}
+                            </ArticleProperty>
                             <ArticleProperty icon="category">
                                 {article.category}
                             </ArticleProperty>
