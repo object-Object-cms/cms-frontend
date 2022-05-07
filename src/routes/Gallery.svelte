@@ -63,7 +63,7 @@
     <div class="container flex flex-wrap mx-auto p-2 justify-center">
         {#each photos as photo, i}
             <div
-                class="w-48 h-48 m-2 border-2 border-gray-600 cursor-pointer hover:scale-105"
+                class="w-48 h-48 m-2 bg-cover bg-center border-2 border-gray-600 cursor-pointer hover:scale-105"
                 style="background-image: url({getBlobUrl(photo.id)});"
                 on:click={() => {
                     setCurrentPhoto(i, photos.length);
@@ -80,23 +80,24 @@
             ? 'visible opacity-100'
             : 'invisible opacity-0'}"
     >
-        <div class="flex p-2 justify-end">
+        <div class="flex p-2 justify-end flex-shrink-0">
             <Icon
                 inverted={true}
                 tooltip="Close"
                 on:click={hideFullscreenGallery}>close</Icon
             >
         </div>
-        <div class="flex flex-grow">
+        <div class="flex flex-grow min-h-0">
             <GalleryArrow
                 direction="left"
                 on:click={() => prevPhoto(photos.length)}
             />
 
-            <div class="flex flex-grow items-center justify-center">
+            <div class="flex flex-grow items-center justify-center py-2">
                 {#each photos as photo, i}
                     {#if currentPhoto === i}
                         <img
+                            class="max-h-full"
                             src={getBlobUrl(photo.id)}
                             alt="Gallery fullscreen"
                         />
@@ -108,12 +109,14 @@
                 on:click={() => nextPhoto(photos.length)}
             />
         </div>
-        <p class="text-center">Photo {currentPhoto + 1} of {photos.length}</p>
-        <div class="overflow-auto" bind:this={imageScroller}>
+        <p class="text-center flex-shrink-0">
+            Photo {currentPhoto + 1} of {photos.length}
+        </p>
+        <div class="overflow-auto flex-shrink-0" bind:this={imageScroller}>
             <div class="flex w-max px-[50%]">
                 {#each photos as photo, i}
                     <div
-                        class="w-32 h-32 flex-shrink-0 m-2 border-2 cursor-pointer hover:scale-105
+                        class="w-32 h-32 bg-cover bg-center flex-shrink-0 m-2 border-2 cursor-pointer hover:scale-105
                             {currentPhoto === i
                             ? 'border-blue-600'
                             : 'border-gray-600'}"
