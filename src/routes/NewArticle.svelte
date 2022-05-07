@@ -5,6 +5,7 @@
     import { createArticle, getBlobUrl } from "../Server";
     import RootGrid from "../lib/RootGrid.svelte";
     import LoadIndicator from "../lib/LoadIndicator.svelte";
+    import { push } from "svelte-spa-router";
 
     let title = "";
     let description = "";
@@ -48,7 +49,7 @@
                 category,
                 component
             );
-            alert("Article id: " + id);
+            push("/article/" + id);
         } catch (err) {
             error = err.message;
             creating = false;
