@@ -1,7 +1,6 @@
 <script lang="ts">
     import SliderArrow from "./SliderArrow.svelte";
-    import { getBlobUrl } from "../Server";
-    import { clampWithRollover } from "./utils";
+    import { clampWithRollover, getImageUrl } from "./utils";
 
     interface Slide {
         title: string;
@@ -37,14 +36,6 @@
     function showSlide(index: number) {
         if (index >= 0 && index < slides.length) {
             slideIndex = index;
-        }
-    }
-
-    function getImageUrl(src: string) {
-        if (src.startsWith("$") && src.length > 1) {
-            return getBlobUrl(src.substring(1));
-        } else {
-            return src;
         }
     }
 

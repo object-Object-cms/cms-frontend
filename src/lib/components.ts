@@ -50,7 +50,7 @@ export const ComponentsProps: {
         cycleTime: 3000
     },
     Image: {
-        image: "0",
+        image: new NonstandardValue("image", "0", "Image", true),
         alt: "Alternative text"
     },
     Paragraph: {

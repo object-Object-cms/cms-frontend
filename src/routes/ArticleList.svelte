@@ -3,7 +3,7 @@
     import ArticleProperty from "../lib/ArticleProperty.svelte";
     import PageHeader from "../lib/PageHeader.svelte";
     import { link } from "svelte-spa-router";
-    import { ArticlePreview, getArticles } from "../Server";
+    import { ArticlePreview, getArticles, getBlobUrl } from "../Server";
 
     function loadArticleList(): Promise<ArticlePreview[]> {
         return getArticles();
@@ -89,7 +89,9 @@
                     <div class="border-2 rounded-lg overflow-hidden">
                         <div
                             class="h-24 bg-cover bg-center"
-                            style="background-image: url({article.bannerImage});"
+                            style="background-image: url({getBlobUrl(
+                                article.bannerImage
+                            )});"
                         />
                         <div class="p-2">
                             <ArticleProperty icon="category">
