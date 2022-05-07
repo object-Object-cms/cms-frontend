@@ -159,7 +159,7 @@
 
         <div class="m-2 flex h-1/2 flex-col rounded-lg bg-slate-500">
             <div class="border-b border-slate-600 px-2 py-1">Toolbox</div>
-            <div class="overflow-auto">
+            <div class="overflow-y-auto overflow-x-hidden">
                 {#each Object.entries(ComponentsProps) as [name, proto]}
                     <ComponentButton
                         {name}
@@ -172,7 +172,7 @@
 
         <div class="m-2 flex h-1/2 flex-col rounded-lg bg-slate-500">
             <div class="border-b border-slate-600 px-2 py-1">Components</div>
-            <div class="overflow-auto">
+            <div class="overflow-y-auto overflow-x-hidden">
                 {#each mappedComponents as component, i}
                     <ComponentButton
                         name={component.component.name}
