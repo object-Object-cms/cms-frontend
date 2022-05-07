@@ -60,6 +60,57 @@
         @apply hover:bg-black;
         @apply hover:bg-opacity-20;
     }
+
+    .markdown {
+        @apply p-2;
+    }
+
+    .markdown h1 {
+        @apply text-4xl;
+        @apply font-semibold;
+        @apply my-4;
+        @apply pb-1;
+        @apply border-b;
+        @apply border-gray-300;
+    }
+
+    .markdown h2 {
+        @apply text-3xl;
+        @apply font-semibold;
+        @apply my-4;
+        @apply pb-1;
+        @apply border-b;
+        @apply border-gray-300;
+    }
+
+    .markdown a {
+        @apply text-blue-600;
+        @apply hover:underline;
+    }
+
+    .markdown ul {
+        @apply list-disc;
+        @apply my-4;
+        @apply pl-8;
+    }
+
+    .markdown :not(pre) > code {
+        @apply bg-gray-200;
+        @apply px-1;
+        @apply py-px;
+        @apply rounded;
+    }
+
+    .markdown pre > code {
+        @apply block;
+        @apply bg-gray-200;
+        @apply p-2;
+        @apply rounded;
+    }
+
+    .markdown p {
+        @apply my-4;
+    }
 }
 
 @layer utilities {
