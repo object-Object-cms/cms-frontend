@@ -4,6 +4,6 @@
     export let textContent = "";
 </script>
 
-<div class="markdown">
+<div class="markdown h-full overflow-hidden">
     <SvelteMarkdown source={textContent} />
 </div>
