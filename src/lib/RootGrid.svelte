@@ -230,7 +230,7 @@
                     proto={{ id: "id" }}
                 />
                 <div class="overflow-auto pb-4">
-                    {#if Object.keys(ComponentsProps[mappedComponents[selected].component.name]).length > 0}
+                    {#if Object.entries(ComponentsProps[mappedComponents[selected].component.name]).filter((n) => !(n[1] instanceof NonstandardValue)).length > 0}
                         <details open>
                             <summary class="bg-slate-400 px-2">Props</summary>
                             <ComplexValueEdit
@@ -241,22 +241,25 @@
                                 ]}
                             />
                         </details>
-                        {#each Object.entries(ComponentsProps[mappedComponents[selected].component.name])
-                            .filter((n) => n[1] instanceof NonstandardValue)
-                            .map(coerceTypes) as [name, nonstandard]}
-                            <details open>
-                                <summary class="bg-slate-400 px-2"
-                                    >{nonstandard.overrideName || name}</summary
-                                >
-                                {#if nonstandard._type === "textblock"}
+                    {/if}
+                    {#each Object.entries(ComponentsProps[mappedComponents[selected].component.name])
+                        .filter((n) => n[1] instanceof NonstandardValue)
+                        .map(coerceTypes) as [name, nonstandard]}
+                        <details open>
+                            <summary class="bg-slate-400 px-2">
+                                {nonstandard.overrideName || name}
+                            </summary>
+                            {#if nonstandard._type === "textblock"}
+                                <div class="p-2">
                                     <textarea
+                                        class="w-full text-black"
                                         bind:value={mappedComponents[selected]
                                             .component.props[name]}
                                     />
-                                {/if}
-                            </details>
-                        {/each}
-                    {/if}
+                                </div>
+                            {/if}
+                        </details>
+                    {/each}
                     <details open>
                         <summary class="bg-slate-400 px-2">Layout</summary>
                         <ComplexValueEdit
