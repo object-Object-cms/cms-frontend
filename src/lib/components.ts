@@ -39,4 +39,10 @@ export const ComponentIcons: {
     Paragraph: "view_headline"
 };
 
+export const ComponentChildrenType: {
+    [key: keyof typeof NamedComponents]: string;
+} = {
+    Paragraph: "text"
+};
+
 export default NamedComponents;
