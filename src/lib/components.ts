@@ -1,14 +1,12 @@
 import Icon from "./Icon.svelte";
 import Slider from "./Slider.svelte";
 import RootGrid from "./RootGrid.svelte";
-import Paragraph from "./Paragraph.svelte";
 import Image from "./Image.svelte";
 
 const NamedComponents: { [key: string]: any } = {
     Icon,
     Slider,
     RootGrid,
-    Paragraph,
     Image
 };
 
@@ -31,7 +29,6 @@ export const ComponentsProps: {
         ],
         cycleTime: 3000
     },
-    Paragraph: {},
     Image: {
         image: "0",
         alt: "Alternative text"
@@ -42,7 +39,6 @@ export const ComponentIcons: {
     [key: keyof typeof NamedComponents]: string;
 } = {
     Slider: "view_carousel",
-    Paragraph: "view_headline",
     Image: "image"
 };
 
