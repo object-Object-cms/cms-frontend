@@ -3,6 +3,7 @@
     import { currentAccount, getAccountType, logout } from "../AccountManager";
 
     import Icon from "../lib/Icon.svelte";
+    import IconButton from "../lib/IconButton.svelte";
 
     function handleLogout() {
         push("/");
@@ -24,6 +25,11 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container mx-auto mt-4 flex flex-wrap">
+        <IconButton icon="add" on:click={() => push("/newArticle")}>
+            Add article
+        </IconButton>
     </div>
 {:else}
     <p class="text-4xl text-center mt-4">You are not logged in.</p>

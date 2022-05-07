@@ -17,6 +17,7 @@
     import Login from "./routes/Login.svelte";
     import Register from "./routes/Register.svelte";
     import Profile from "./routes/Profile.svelte";
+    import NewArticle from "./routes/NewArticle.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
@@ -42,6 +43,7 @@
                 refreshAccountInfo();
             }
         }
+        dispatchEvent(new Event("hideMenubarAcceptors"));
     }
 
     function conditionsFailed() {
@@ -80,6 +82,7 @@
                     }
                 ]
             }),
+            "/newArticle": NewArticle,
             "*": NotFound
         }}
         on:routeLoading={routeLoading}

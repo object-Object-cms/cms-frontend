@@ -24,7 +24,7 @@
         component: ComponentDescriptor;
     };
 
-    export let subComponents: InGridComponent[];
+    export let subComponents: InGridComponent[] = [];
     export let editingMode = false;
     let selected: number | undefined;
 
@@ -77,7 +77,7 @@
         mappedComponents = mappedComponents;
     }
 
-    function exportGrid() {
+    export function exportGrid() {
         const components = mappedComponents.map((c): InGridComponent => {
             return {
                 id: c.id,
@@ -90,7 +90,7 @@
                 component: c.component
             };
         });
-        console.log(components);
+        return components;
     }
 
     function coerceTypes(a: any) {

@@ -74,6 +74,28 @@ export async function getArticles(): Promise<ArticlePreview[]> {
     }
 }
 
+export async function createArticle(
+    title: string,
+    description: string,
+    bannerimage: string,
+    category: string,
+    content: ComponentDescriptor
+): Promise<number> {
+    const contentStr = JSON.stringify(content);
+    const response = await post("create/article", {
+        title,
+        description,
+        bannerimage,
+        category,
+        content: contentStr
+    });
+    if (response.ok) {
+        return response.id;
+    } else {
+        throw new APIError(response.reason);
+    }
+}
+
 export async function getComments(): Promise<Comment[]> {
     const response = await get("comments");
     if (response.ok) {

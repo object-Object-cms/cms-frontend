@@ -16,6 +16,9 @@
 
     let expanded = false;
     let linkIndex = 0;
+    let showMenubarAcceptors = false;
+    let menubarCancel: () => void;
+    let menubarAccept: () => void;
 
     function collapse() {
         expanded = false;
@@ -32,9 +35,24 @@
     function nextLink() {
         linkIndex = clampWithRollover(0, links.length - 1, linkIndex + 1);
     }
+
+    addEventListener("showMenubarAcceptors", (ev: CustomEvent) => {
+        showMenubarAcceptors = true;
+        menubarCancel = ev.detail.cancelHandler;
+        menubarAccept = ev.detail.acceptHandler;
+    });
+
+    addEventListener("hideMenubarAcceptors", () => {
+        showMenubarAcceptors = false;
+        menubarCancel = undefined;
+        menubarAccept = undefined;
+    });
 </script>
 
 <header class="z-40 flex h-16 items-center bg-slate-200 p-2">
+    {#if showMenubarAcceptors}
+        <Icon on:click={menubarCancel} tooltip="Cancel">close</Icon>
+    {/if}
     <div class="container mx-auto flex items-center">
         <details
             class="details-reset group peer mr-2 sm:hidden"
@@ -150,4 +168,7 @@
             </Icon>
         </span>
     </div>
+    {#if showMenubarAcceptors}
+        <Icon on:click={menubarAccept} tooltip="Accept">done</Icon>
+    {/if}
 </header>
