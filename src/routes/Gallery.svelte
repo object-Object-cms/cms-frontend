@@ -16,6 +16,8 @@
     let currentPhoto = 0;
     let fullscreenGalleryShown = false;
     let imageScroller: HTMLDivElement | undefined;
+    export let picker = false;
+    export let responseHandler: (blobId: number) => void = () => {};
 
     const FULLSCREEN_THUMBNAIL_WIDTH = 128 + 16;
 
@@ -53,7 +55,7 @@
     }
 </script>
 
-<PageHeader>Gallery</PageHeader>
+<PageHeader>{picker ? "Pick a photo" : "Gallery"}</PageHeader>
 
 {#await loadPhotos()}
     <div class="p-8">
@@ -66,8 +68,12 @@
                 class="w-48 h-48 m-2 bg-cover bg-center border-2 border-gray-600 cursor-pointer hover:scale-105"
                 style="background-image: url({getBlobUrl(photo.id)});"
                 on:click={() => {
-                    setCurrentPhoto(i, photos.length);
-                    showFullscreenGallery();
+                    if (picker) {
+                        responseHandler(photo.id);
+                    } else {
+                        setCurrentPhoto(i, photos.length);
+                        showFullscreenGallery();
+                    }
                 }}
             />
         {/each}
