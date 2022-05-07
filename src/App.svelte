@@ -18,6 +18,7 @@
     import Register from "./routes/Register.svelte";
     import Profile from "./routes/Profile.svelte";
     import NewArticle from "./routes/NewArticle.svelte";
+    import EditArticle from "./routes/EditArticle.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
@@ -83,6 +84,7 @@
                 ]
             }),
             "/newArticle": NewArticle,
+            "/editArticle/:id": EditArticle,
             "*": NotFound
         }}
         on:routeLoading={routeLoading}

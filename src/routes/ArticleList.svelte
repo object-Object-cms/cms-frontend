@@ -42,9 +42,12 @@
     ];
 
     let selectedSortingMode = 0;
+
+    export let picker = false;
+    export let responseHandler: (id: string) => void = () => {};
 </script>
 
-<PageHeader>Articles</PageHeader>
+<PageHeader>{picker ? "Pick an article" : "Articles"}</PageHeader>
 
 {#await loadArticleList()}
     <div class="p-8">
@@ -105,13 +108,22 @@
                             </ArticleProperty>
                             <h2 class="text-xl">{article.title}</h2>
                             <p>{article.description}</p>
-                            <a
-                                class="button button-big button-blue mt-2"
-                                use:link
-                                href="/article/{article.id}"
-                            >
-                                Read More
-                            </a>
+                            {#if picker}
+                                <button
+                                    class="button button-big button-blue mt-2"
+                                    on:click={() => responseHandler(article.id)}
+                                >
+                                    Choose
+                                </button>
+                            {:else}
+                                <a
+                                    class="button button-big button-blue mt-2"
+                                    use:link
+                                    href="/article/{article.id}"
+                                >
+                                    Read More
+                                </a>
+                            {/if}
                         </div>
                     </div>
                 </div>

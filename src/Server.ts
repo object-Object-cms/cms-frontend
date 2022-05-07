@@ -96,6 +96,21 @@ export async function createArticle(
     }
 }
 
+export async function editArticle(
+    id: string,
+    description: string,
+    content: ComponentDescriptor
+): Promise<void> {
+    const contentStr = JSON.stringify(content);
+    const response = await post("edit/article/" + id, {
+        description,
+        content: contentStr
+    });
+    if (!response.ok) {
+        throw new APIError(response.reason);
+    }
+}
+
 export async function getComments(): Promise<Comment[]> {
     const response = await get("comments");
     if (response.ok) {
