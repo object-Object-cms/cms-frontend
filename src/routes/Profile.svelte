@@ -25,4 +25,6 @@
             </div>
         </div>
     </div>
+{:else}
+    <p class="text-4xl text-center mt-4">You are not logged in.</p>
 {/if}
