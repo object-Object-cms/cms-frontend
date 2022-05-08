@@ -56,6 +56,8 @@
         await Promise.all([refreshMenubarLinks(), refreshAccountInfo()]);
         startupFinished = true;
     }
+
+    setInterval(refreshAccountInfo, 30000);
 </script>
 
 {#await runStartupTasks()}
