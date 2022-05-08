@@ -132,8 +132,8 @@
             </form>
         </div>
     {/if}
-{:catch}
+{:catch err}
     <p class="container mx-auto text-red-600 text-center">
-        Failed to load article for editing due to: {error}
+        Failed to load article for editing due to: {err.message}
     </p>
 {/await}
