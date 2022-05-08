@@ -1,3 +1,4 @@
+import type { ThemeComponent } from "./lib/themes";
 import type { ComponentDescriptor } from "./lib/DynamicComponent.svelte";
 
 const SERVER_ADDRESS = "http://localhost:1234/";
@@ -78,7 +79,7 @@ export async function editCorePage(
     }
 }
 
-export async function getArticle(id: string): Promise<ComponentDescriptor> {
+export async function getArticle(id: string): Promise<ThemeComponent> {
     const response = await get(`article/${id}`);
     if (response.ok) {
         return JSON.parse(response.content);
@@ -101,7 +102,7 @@ export async function createArticle(
     description: string,
     bannerimage: string,
     category: string,
-    content: ComponentDescriptor
+    content: ThemeComponent
 ): Promise<number> {
     const contentStr = JSON.stringify(content);
     const response = await post("create/article", {
@@ -121,7 +122,7 @@ export async function createArticle(
 export async function editArticle(
     id: string,
     description: string,
-    content: ComponentDescriptor
+    content: ThemeComponent
 ): Promise<void> {
     const contentStr = JSON.stringify(content);
     const response = await post("edit/article/" + id, {

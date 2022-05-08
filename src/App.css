@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    :root {
+        --theme-link-color: #2563eb;
+    }
+}
+
 @layer components {
     .button {
         @apply inline-block;
@@ -63,6 +69,8 @@
 
     .markdown {
         @apply p-2;
+        font-family: var(--theme-font-family);
+        color: var(--theme-text-color);
     }
 
     .markdown h1 {
@@ -84,8 +92,8 @@
     }
 
     .markdown a {
-        @apply text-blue-600;
         @apply hover:underline;
+        color: var(--theme-link-color);
     }
 
     .markdown ul {
@@ -156,5 +164,21 @@
     }
     .material-icons-outlined.md-48 {
         font-size: 48px;
+    }
+
+    .themed-background {
+        background-color: var(--theme-background-color);
+    }
+
+    .themed-text {
+        color: var(--theme-text-color);
+    }
+
+    .themed-link {
+        color: var(--theme-link-color);
+    }
+
+    .themed-font {
+        font-family: var(--theme-font-family);
     }
 }

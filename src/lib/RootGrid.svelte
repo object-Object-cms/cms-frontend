@@ -99,8 +99,8 @@
 </script>
 
 <div
-    class="flex"
-    style="height: calc( 100% - 2rem );"
+    class="themed-background flex"
+    style="min-height: calc( 100vh - 4rem );"
     on:click={() => (selected = undefined)}
 >
     <Grid

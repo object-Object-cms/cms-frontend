@@ -1,16 +1,29 @@
 <script lang="ts">
     import { editArticle, getArticle, getArticles } from "../Server";
+    import { ThemeComponent, themes } from "../lib/themes";
     import RootGrid from "../lib/RootGrid.svelte";
     import LoadIndicator from "../lib/LoadIndicator.svelte";
+    import ThemeSelect from "../lib/ThemeSelect.svelte";
+    import CustomThemeEdit from "../lib/CustomThemeEdit.svelte";
+    import ThemedComponent from "../lib/ThemedComponent.svelte";
     import { push } from "svelte-spa-router";
 
     let description = "";
+    let theme = "";
     let gatheredMetadata = false;
     let updating = false;
     let error = "";
 
     let initialComponents = [];
     let rootGrid: RootGrid;
+    let customThemeVariables = {};
+
+    function editTheme(ev: CustomEvent) {
+        theme = "custom";
+        customThemeVariables = JSON.parse(
+            JSON.stringify(themes[ev.detail.id].variables)
+        );
+    }
 
     function discardLayout() {
         dispatchEvent(new Event("hideMenubarAcceptors"));
@@ -32,9 +45,19 @@
                 subComponents: layout
             }
         };
+
+        const themeComponent: ThemeComponent = {
+            theme: {
+                name: theme
+            },
+            component
+        };
+
+        if (theme === "custom")
+            themeComponent.theme.variables = customThemeVariables;
         updating = true;
         try {
-            await editArticle(params.id, description, component);
+            await editArticle(params.id, description, themeComponent);
             push("/article/" + params.id);
         } catch (err) {
             error = err.message;
@@ -62,12 +85,16 @@
         );
         if (article) {
             description = article.description;
-            const component = await getArticle(params.id);
-            if (component.name === "RootGrid") {
-                initialComponents = component.props.subComponents;
+            const themeComponent = await getArticle(params.id);
+            if (themeComponent.component.name === "RootGrid") {
+                theme = themeComponent.theme.name;
+                if (theme === "custom")
+                    customThemeVariables = themeComponent.theme.variables;
+                initialComponents =
+                    themeComponent.component.props.subComponents;
             } else {
                 throw new Error(
-                    `Unknown root element type "${component.name}"`
+                    `Unknown root element type "${themeComponent.component.name}"`
                 );
             }
         } else {
@@ -94,11 +121,17 @@
             <p class="text-center text-2xl">Editing article...</p>
         </div>
     {:else if gatheredMetadata}
-        <RootGrid
-            editingMode={true}
-            subComponents={initialComponents}
-            bind:this={rootGrid}
-        />
+        <ThemedComponent
+            themeVariables={theme === "custom"
+                ? customThemeVariables
+                : themes[theme]?.variables}
+        >
+            <RootGrid
+                editingMode={true}
+                subComponents={initialComponents}
+                bind:this={rootGrid}
+            />
+        </ThemedComponent>
     {:else}
         <div class="mx-auto max-w-xl p-4">
             <form class="space-y-4 p-4 shadow-md" on:submit={metadataEntered}>
@@ -127,6 +160,58 @@
                         />
                     </div>
                 </div>
+
+                <div class="flex items-end space-x-2">
+                    <span
+                        class="material-icons-outlined md-36 select-none text-gray-600"
+                    >
+                        format_paint
+                    </span>
+                    <div class="group flex flex-grow flex-col">
+                        <span
+                            class="text-xs text-gray-600 group-focus-within:text-blue-600"
+                        >
+                            Theme
+                        </span>
+                        <ThemeSelect
+                            {themes}
+                            bind:selected={theme}
+                            on:editTheme={editTheme}
+                        />
+                    </div>
+                </div>
+
+                {#if theme === "custom"}
+                    <div class="ml-12 space-y-2">
+                        <CustomThemeEdit
+                            bind:themeVariables={customThemeVariables}
+                        />
+                    </div>
+                {/if}
+
+                {#if theme}
+                    <p
+                        class="text-xs text-gray-600 group-focus-within:text-blue-600"
+                    >
+                        Preview:
+                    </p>
+                    <ThemedComponent
+                        themeVariables={theme === "custom"
+                            ? customThemeVariables
+                            : themes[theme]?.variables}
+                    >
+                        <div
+                            class="p-4 themed-background themed-font border-gray-600 border-2"
+                        >
+                            <p class="themed-text">Sample text</p>
+                            <p
+                                class="themed-link cursor-pointer hover:underline"
+                            >
+                                This is a link
+                            </p>
+                        </div>
+                    </ThemedComponent>
+                {/if}
 
                 <button class="button button-blue" type="submit">Next</button>
             </form>
