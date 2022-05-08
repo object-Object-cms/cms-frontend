@@ -19,6 +19,7 @@
     import Profile from "./routes/Profile.svelte";
     import NewArticle from "./routes/NewArticle.svelte";
     import EditArticle from "./routes/EditArticle.svelte";
+    import EditCorePage from "./routes/EditCorePage.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
@@ -85,6 +86,7 @@
             }),
             "/newArticle": NewArticle,
             "/editArticle/:id": EditArticle,
+            "/editCore/:name": EditCorePage,
             "*": NotFound
         }}
         on:routeLoading={routeLoading}

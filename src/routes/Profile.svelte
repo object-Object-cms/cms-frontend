@@ -47,6 +47,11 @@
                 Edit article
             </IconButton>
         {/if}
+        {#if $currentAccount.accessLevel >= 100}
+            <IconButton icon="home" on:click={() => push("/editCore/HOME")}>
+                Edit home page
+            </IconButton>
+        {/if}
     </div>
 {:else}
     <p class="text-4xl text-center mt-4">You are not logged in.</p>

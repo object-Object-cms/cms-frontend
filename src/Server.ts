@@ -65,6 +65,19 @@ export async function getCorePage(name: string): Promise<ComponentDescriptor> {
     }
 }
 
+export async function editCorePage(
+    name: string,
+    content: ComponentDescriptor
+): Promise<void> {
+    const contentStr = JSON.stringify(content);
+    const response = await post("edit/core/" + name, {
+        content: contentStr
+    });
+    if (!response.ok) {
+        throw new APIError(response.reason);
+    }
+}
+
 export async function getArticle(id: string): Promise<ComponentDescriptor> {
     const response = await get(`article/${id}`);
     if (response.ok) {

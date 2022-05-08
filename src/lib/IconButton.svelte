@@ -4,7 +4,7 @@
 </script>
 
 <div
-    class="group relative flex h-32 w-32 cursor-pointer select-none flex-col items-center justify-center rounded-full p-1 transition-colors
+    class="group relative flex h-32 w-32 cursor-pointer select-none flex-col items-center justify-center rounded-full p-2 text-center transition-colors
         {inverted ? 'hover:bg-white' : 'hover:bg-black'} hover:bg-opacity-20"
     on:click
 >
