@@ -11,5 +11,7 @@
     on:click
 >
     <span class="material-icons-outlined md-18">{icon}</span>
-    <span>{name}</span>
+    <span class="overflow-hidden overflow-ellipsis whitespace-nowrap"
+        >{name}</span
+    >
 </div>
