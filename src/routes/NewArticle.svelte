@@ -3,7 +3,11 @@
     import PhotoPickModal from "../lib/modals/PhotoPickModal.svelte";
     import Icon from "../lib/Icon.svelte";
     import { createArticle, getBlobUrl } from "../Server";
-    import { ThemeComponent, themes } from "../lib/themes";
+    import {
+        ThemeComponent,
+        themeComponentTemplates,
+        themes
+    } from "../lib/themes";
     import RootGrid from "../lib/RootGrid.svelte";
     import LoadIndicator from "../lib/LoadIndicator.svelte";
     import ThemeSelect from "../lib/ThemeSelect.svelte";
@@ -19,7 +23,9 @@
     let gatheredMetadata = false;
     let creating = false;
     let error = "";
+    let lastThemeTemplateLoaded = "";
 
+    let initialComponents = [];
     let rootGrid: RootGrid;
     let customThemeVariables = {};
 
@@ -47,6 +53,11 @@
         dispatchEvent(new Event("hideMenubarAcceptors"));
         const layout = rootGrid.exportGrid();
         console.log("layout:", layout);
+
+        // save the new layout in case the request fails
+        // the user will be able to resume where they left
+        initialComponents = layout;
+
         const component = {
             name: "RootGrid",
             props: {
@@ -90,6 +101,13 @@
             alert("Please select a theme!");
             return;
         }
+        if (theme === "custom") {
+            initialComponents = [];
+        } else if (lastThemeTemplateLoaded !== theme) {
+            initialComponents = themeComponentTemplates[theme]();
+            console.log(initialComponents);
+            lastThemeTemplateLoaded = theme;
+        }
         gatheredMetadata = true;
         dispatchEvent(
             new CustomEvent("showMenubarAcceptors", {
@@ -113,7 +131,11 @@
             ? customThemeVariables
             : themes[theme]?.variables}
     >
-        <RootGrid editingMode={true} bind:this={rootGrid} />
+        <RootGrid
+            editingMode={true}
+            subComponents={initialComponents}
+            bind:this={rootGrid}
+        />
     </ThemedComponent>
 {:else}
     <div class="mx-auto max-w-xl p-4">
