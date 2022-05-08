@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-    <div class="container mx-auto mt-4 flex flex-wrap gap-4">
+    <div class="container mx-auto mt-4 flex flex-wrap justify-center gap-4">
         {#if $currentAccount.accessLevel < 50}
             <p>You have no available actions.</p>
         {:else if $currentAccount.accessLevel >= 50}
