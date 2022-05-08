@@ -86,6 +86,10 @@
             alert("Please select a banner image!");
             return;
         }
+        if (theme === "") {
+            alert("Please select a theme!");
+            return;
+        }
         gatheredMetadata = true;
         dispatchEvent(
             new CustomEvent("showMenubarAcceptors", {

@@ -68,6 +68,10 @@
 
     function metadataEntered(ev: SubmitEvent) {
         ev.preventDefault();
+        if (theme === "") {
+            alert("Please select a theme!");
+            return;
+        }
         gatheredMetadata = true;
         dispatchEvent(
             new CustomEvent("showMenubarAcceptors", {
