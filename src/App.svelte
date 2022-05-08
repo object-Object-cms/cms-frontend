@@ -57,7 +57,11 @@
         startupFinished = true;
     }
 
-    setInterval(refreshAccountInfo, 30000);
+    setInterval(() => {
+        if ($currentAccount !== null) {
+            refreshAccountInfo();
+        }
+    }, 30000);
 </script>
 
 {#await runStartupTasks()}
