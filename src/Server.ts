@@ -56,6 +56,15 @@ export function getSelfInfo() {
     return get("me");
 }
 
+export async function getCorePage(name: string): Promise<ComponentDescriptor> {
+    const response = await get(`core/${name}`);
+    if (response.ok) {
+        return JSON.parse(response.content);
+    } else {
+        throw new APIError(response.reason);
+    }
+}
+
 export async function getArticle(id: string): Promise<ComponentDescriptor> {
     const response = await get(`article/${id}`);
     if (response.ok) {
