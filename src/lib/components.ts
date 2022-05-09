@@ -3,13 +3,15 @@ import Slider from "./Slider.svelte";
 import RootGrid from "./RootGrid.svelte";
 import Image from "./Image.svelte";
 import Paragraph from "./Paragraph.svelte";
+import NewsBox from "./NewsBox.svelte";
 
 const NamedComponents: { [key: string]: any } = {
     Icon,
     Slider,
     RootGrid,
     Image,
-    Paragraph
+    Paragraph,
+    NewsBox
 };
 
 export type SimpleValue = string | number | boolean | string[] /* Combo box */;
@@ -59,6 +61,12 @@ export const ComponentsProps: {
             "Content",
             "Markdown Text"
         )
+    },
+    NewsBox: {
+        title: "Title",
+        description: "Description",
+        linkUrl: "/",
+        linkText: "Go somewhere"
     }
 };
 
@@ -67,7 +75,8 @@ export const ComponentIcons: {
 } = {
     Slider: "view_carousel",
     Image: "image",
-    Paragraph: "view_headline"
+    Paragraph: "view_headline",
+    NewsBox: "feed"
 };
 
 export default NamedComponents;
