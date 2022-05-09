@@ -3,19 +3,22 @@
 
     let currentModal;
     let responseHandler: (...args: any[]) => void;
+    let modalExtra: any;
 
-    function openModal(modal, handler: (...args: any[]) => void) {
+    function openModal(modal, handler: (...args: any[]) => void, extra) {
         currentModal = modal;
         responseHandler = handler;
+        modalExtra = extra;
     }
 
     function closeModal() {
         currentModal = undefined;
         responseHandler = undefined;
+        modalExtra = undefined;
     }
 
     addEventListener("requestModalOpen", (ev: CustomEvent) => {
-        openModal(ev.detail.modal, ev.detail.responseHandler);
+        openModal(ev.detail.modal, ev.detail.responseHandler, ev.detail.extra);
     });
 
     addEventListener("requestModalClose", () => closeModal());
@@ -39,6 +42,7 @@
                     this={currentModal}
                     {closeModal}
                     {responseHandler}
+                    extra={modalExtra}
                 />
             </div>
         </div>

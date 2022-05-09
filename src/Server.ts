@@ -134,6 +134,13 @@ export async function editArticle(
     }
 }
 
+export async function deleteArticle(id: string): Promise<void> {
+    const response = await post("delete/article/" + id, {});
+    if (!response.ok) {
+        throw new APIError(response.reason);
+    }
+}
+
 export async function getComments(): Promise<Comment[]> {
     const response = await get("comments");
     if (response.ok) {

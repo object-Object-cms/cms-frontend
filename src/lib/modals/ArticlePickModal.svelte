@@ -4,6 +4,7 @@
 
     export let closeModal: () => void;
     export let responseHandler: (id: string) => void;
+    export let extra: { action: string };
 
     function articlePicked(id: string) {
         responseHandler(id);
@@ -16,7 +17,7 @@
 >
     <div class="flex items-center justify-between p-2">
         <span class="w-6" />
-        <span class="text-xl font-bold">Edit article</span>
+        <span class="text-xl font-bold">{extra.action ?? "Pick"} article</span>
         <ModalIcon on:click={closeModal}>close</ModalIcon>
     </div>
     <div class="overflow-auto">

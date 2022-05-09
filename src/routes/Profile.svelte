@@ -2,22 +2,43 @@
     import { push } from "svelte-spa-router";
     import { currentAccount, getAccountType, logout } from "../AccountManager";
     import { openModal } from "../lib/modals/modalUtils";
+    import { deleteArticle } from "../Server";
 
     import Icon from "../lib/Icon.svelte";
     import IconButton from "../lib/IconButton.svelte";
     import ArticlePickModal from "../lib/modals/ArticlePickModal.svelte";
+    import LoadIndicator from "../lib/LoadIndicator.svelte";
+
+    let deleting = false;
+    let deletionError = "";
 
     function handleLogout() {
         push("/");
         logout();
     }
 
-    function articlePicked(id: string) {
+    function articleEditPicked(id: string) {
         push("/editArticle/" + id);
     }
 
+    async function articleDeletePicked(id: string) {
+        if (deleting) return;
+        deletionError = "";
+        deleting = true;
+        try {
+            await deleteArticle(id);
+        } catch (err) {
+            deletionError = err.message;
+        }
+        deleting = false;
+    }
+
     function editArticle() {
-        openModal(ArticlePickModal, articlePicked);
+        openModal(ArticlePickModal, articleEditPicked, { action: "Edit" });
+    }
+
+    function handleDeleteArticle() {
+        openModal(ArticlePickModal, articleDeletePicked, { action: "Delete" });
     }
 </script>
 
@@ -36,6 +57,11 @@
             </div>
         </div>
     </div>
+    {#if deletionError}
+        <p class="text-center text-red-600">
+            Failed to delete article: {deletionError}
+        </p>
+    {/if}
     <div class="container mx-auto mt-4 flex flex-wrap justify-center gap-4">
         {#if $currentAccount.accessLevel < 50}
             <p>You have no available actions.</p>
@@ -46,6 +72,15 @@
             <IconButton icon="edit" on:click={editArticle}>
                 Edit article
             </IconButton>
+            {#if deleting}
+                <div class="h-32 w-32">
+                    <LoadIndicator />
+                </div>
+            {:else}
+                <IconButton icon="delete" on:click={handleDeleteArticle}>
+                    Delete article
+                </IconButton>
+            {/if}
         {/if}
         {#if $currentAccount.accessLevel >= 100}
             <IconButton icon="home" on:click={() => push("/editCore/HOME")}>
