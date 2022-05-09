@@ -7,6 +7,7 @@
     import Menubar, { Link } from "./lib/Menubar.svelte";
     import ModalContainer from "./lib/modals/ModalContainer.svelte";
     import { refreshAccountInfo, currentAccount } from "./AccountManager";
+    import { getCorePage } from "./Server";
 
     import Home from "./routes/Home.svelte";
 
@@ -28,10 +29,9 @@
     let startupFinished = false;
 
     function refreshMenubarLinks() {
-        return fetch("dummydata/menubar.json")
-            .then((resp) => resp.json())
+        return getCorePage("MENUBAR")
             .then((links) => {
-                menubarLinks = links;
+                menubarLinks = links as unknown as Link[];
             })
             .catch((reason) => {
                 console.error("Failed to refresh menubar links:", reason);
