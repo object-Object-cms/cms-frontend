@@ -4,6 +4,7 @@ import RootGrid from "./RootGrid.svelte";
 import Image from "./Image.svelte";
 import Paragraph from "./Paragraph.svelte";
 import NewsBox from "./NewsBox.svelte";
+import Footer from "./Footer.svelte";
 
 const NamedComponents: { [key: string]: any } = {
     Icon,
@@ -11,7 +12,8 @@ const NamedComponents: { [key: string]: any } = {
     RootGrid,
     Image,
     Paragraph,
-    NewsBox
+    NewsBox,
+    Footer
 };
 
 export type SimpleValue = string | number | boolean | string[] /* Combo box */;
@@ -67,6 +69,15 @@ export const ComponentsProps: {
         description: "Description",
         linkUrl: "/",
         linkText: "Go somewhere"
+    },
+    Footer: {
+        links: [
+            {
+                text: "Link",
+                url: "/"
+            }
+        ],
+        copyrightText: "Copyright 2022"
     }
 };
 
@@ -76,7 +87,8 @@ export const ComponentIcons: {
     Slider: "view_carousel",
     Image: "image",
     Paragraph: "view_headline",
-    NewsBox: "feed"
+    NewsBox: "feed",
+    Footer: "short_text"
 };
 
 export default NamedComponents;
