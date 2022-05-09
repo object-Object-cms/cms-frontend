@@ -86,6 +86,12 @@
             <IconButton icon="home" on:click={() => push("/editCore/HOME")}>
                 Edit home page
             </IconButton>
+            <IconButton
+                icon="linear_scale"
+                on:click={() => push("/editMenubar")}
+            >
+                Edit menubar
+            </IconButton>
         {/if}
     </div>
 {:else}
