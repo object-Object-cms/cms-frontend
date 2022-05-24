@@ -57,6 +57,13 @@ export function getSelfInfo() {
     return get("me");
 }
 
+export async function changePassword(newPassword: string): Promise<void> {
+    const response = await post("change_password", { password: newPassword });
+    if (!response.ok) {
+        throw new APIError(response.reason);
+    }
+}
+
 export async function getCorePage(name: string): Promise<ComponentDescriptor> {
     const response = await get(`core/${name}`);
     if (response.ok) {

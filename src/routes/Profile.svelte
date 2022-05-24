@@ -2,15 +2,23 @@
     import { push } from "svelte-spa-router";
     import { currentAccount, getAccountType, logout } from "../AccountManager";
     import { openModal } from "../lib/modals/modalUtils";
-    import { deleteArticle } from "../Server";
+    import { changePassword, deleteArticle } from "../Server";
 
     import Icon from "../lib/Icon.svelte";
     import IconButton from "../lib/IconButton.svelte";
     import ArticlePickModal from "../lib/modals/ArticlePickModal.svelte";
+    import PasswordChangeModal from "../lib/modals/PasswordChangeModal.svelte";
     import LoadIndicator from "../lib/LoadIndicator.svelte";
 
+    interface Status {
+        message: string;
+        type: "success" | "error";
+    }
+
+    let changingPassword = false;
     let deleting = false;
-    let deletionError = "";
+
+    let status: Status = null;
 
     function handleLogout() {
         push("/");
@@ -23,14 +31,36 @@
 
     async function articleDeletePicked(id: string) {
         if (deleting) return;
-        deletionError = "";
+        status = null;
         deleting = true;
         try {
             await deleteArticle(id);
         } catch (err) {
-            deletionError = err.message;
+            status = {
+                message: `Failed to delete article: ${err.message}`,
+                type: "error"
+            };
         }
         deleting = false;
+    }
+
+    async function newPasswordSubmitted(password: string) {
+        if (changingPassword) return;
+        status = null;
+        changingPassword = true;
+        try {
+            await changePassword(password);
+            status = {
+                message: "Password changed successfully",
+                type: "success"
+            };
+        } catch (err) {
+            status = {
+                message: `Failed to change password: ${err.message}`,
+                type: "error"
+            };
+        }
+        changingPassword = false;
     }
 
     function editArticle() {
@@ -39,6 +69,10 @@
 
     function handleDeleteArticle() {
         openModal(ArticlePickModal, articleDeletePicked, { action: "Delete" });
+    }
+
+    function handleChangePassword() {
+        openModal(PasswordChangeModal, newPasswordSubmitted);
     }
 </script>
 
@@ -57,15 +91,26 @@
             </div>
         </div>
     </div>
-    {#if deletionError}
-        <p class="text-center text-red-600">
-            Failed to delete article: {deletionError}
+    {#if status}
+        <p
+            class="text-center {status.type === 'success'
+                ? 'text-green-600'
+                : 'text-red-600'}"
+        >
+            {status.message}
         </p>
     {/if}
     <div class="container mx-auto mt-4 flex flex-wrap justify-center gap-4">
-        {#if $currentAccount.accessLevel < 50}
-            <p>You have no available actions.</p>
-        {:else if $currentAccount.accessLevel >= 50}
+        {#if changingPassword}
+            <div class="h-32 w-32">
+                <LoadIndicator />
+            </div>
+        {:else}
+            <IconButton icon="lock" on:click={handleChangePassword}>
+                Change password
+            </IconButton>
+        {/if}
+        {#if $currentAccount.accessLevel >= 50}
             <IconButton icon="add" on:click={() => push("/newArticle")}>
                 Add article
             </IconButton>
