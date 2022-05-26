@@ -137,6 +137,9 @@
             >
                 Edit menubar
             </IconButton>
+            <IconButton icon="person" on:click={() => push("/manageUsers")}>
+                Manage users
+            </IconButton>
         {/if}
     </div>
 {:else}

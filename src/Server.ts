@@ -21,6 +21,12 @@ export interface APIBlob {
     type: string;
 }
 
+export interface APIUser {
+    id: number;
+    accessLevel: number;
+    username: string;
+}
+
 export interface ArticlePreview {
     id: string;
     author: string;
@@ -60,6 +66,15 @@ export function getSelfInfo() {
 export async function changePassword(newPassword: string): Promise<void> {
     const response = await post("change_password", { password: newPassword });
     if (!response.ok) {
+        throw new APIError(response.reason);
+    }
+}
+
+export async function getUsers(): Promise<APIUser[]> {
+    const response = await get("list/users");
+    if (response.ok) {
+        return response.users;
+    } else {
         throw new APIError(response.reason);
     }
 }
