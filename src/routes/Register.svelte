@@ -28,6 +28,9 @@
             loading = false;
         }
     }
+
+    let autofocusInput: HTMLInputElement;
+    $: autofocusInput?.focus();
 </script>
 
 <div class="mx-auto max-w-xl p-4">
@@ -52,6 +55,7 @@
                     type="text"
                     minlength="5"
                     required
+                    bind:this={autofocusInput}
                     bind:value={username}
                 />
             </div>
