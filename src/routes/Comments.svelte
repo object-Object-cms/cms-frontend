@@ -82,8 +82,12 @@
             <div class="flex flex-col-reverse gap-2">
                 {#each comments as comment}
                     <div class="bg-slate-300 p-2 rounded">
-                        <p class="text-blue-600 font-bold">
-                            {comment.username}
+                        <p
+                            class="{comment.username
+                                ? 'text-blue-600'
+                                : 'text-red-600'} font-bold"
+                        >
+                            {comment.username ?? "Deleted User"}
                         </p>
                         <p class="whitespace-pre-wrap">{comment.content}</p>
                     </div>
