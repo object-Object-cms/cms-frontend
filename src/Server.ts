@@ -79,6 +79,29 @@ export async function getUsers(): Promise<APIUser[]> {
     }
 }
 
+export async function editUser(
+    id: number,
+    username: string,
+    accessLevel: number,
+    password?: string
+): Promise<void> {
+    const response = await post("edit/user/" + id, {
+        username,
+        accessLevel,
+        password
+    });
+    if (!response.ok) {
+        throw new APIError(response.reason);
+    }
+}
+
+export async function deleteUser(id: number): Promise<void> {
+    const response = await post("delete/user/" + id, {});
+    if (!response.ok) {
+        throw new APIError(response.reason);
+    }
+}
+
 export async function getCorePage(name: string): Promise<ComponentDescriptor> {
     const response = await get(`core/${name}`);
     if (response.ok) {
