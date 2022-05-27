@@ -53,7 +53,7 @@
     >
         {#each slides as slide}
             <div
-                class="relative h-full min-w-full
+                class="relative flex h-full min-w-full items-center
                     {slide.textColor === 'white' ? 'bg-black' : 'bg-white'}"
             >
                 <img
