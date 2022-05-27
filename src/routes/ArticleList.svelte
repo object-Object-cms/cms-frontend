@@ -42,6 +42,7 @@
     ];
 
     let selectedSortingMode = 0;
+    let searchTerm = "";
 
     export let picker = false;
     export let responseHandler: (id: string) => void = () => {};
@@ -61,7 +62,7 @@
         <label>
             Filter:
             <select
-                class="block bg-transparent border-2 border-gray-600 focus:border-blue-600 p-2 rounded-full"
+                class="block h-10 bg-transparent border-2 border-gray-600 focus:border-blue-600 p-2 rounded-full"
                 bind:value={selectedCategoryFilter}
             >
                 <option value="">--Category--</option>
@@ -73,7 +74,7 @@
         <label>
             Sort by:
             <select
-                class="block bg-transparent border-2 border-gray-600 focus:border-blue-600 p-2 rounded-full"
+                class="block h-10 bg-transparent border-2 border-gray-600 focus:border-blue-600 p-2 rounded-full"
                 bind:value={selectedSortingMode}
             >
                 {#each sortingModes as mode, i}
@@ -81,12 +82,26 @@
                 {/each}
             </select>
         </label>
+        <label>
+            Search:
+            <input
+                class="block h-10 outline-none bg-transparent border-2 border-gray-600 focus:border-blue-600 p-2 rounded-full"
+                bind:value={searchTerm}
+            />
+        </label>
     </div>
 
     {#if articles.length > 0}
         <div class="flex flex-wrap container mx-auto p-4">
             {#each articles
                 .filter((a) => !selectedCategoryFilter || a.category === selectedCategoryFilter)
+                .filter((a) => !searchTerm || a.title
+                            .toLowerCase()
+                            .indexOf(searchTerm.toLowerCase()) != -1 || a.description
+                            .toLowerCase()
+                            .indexOf(searchTerm.toLowerCase()) != -1 || a.category
+                            .toLowerCase()
+                            .indexOf(searchTerm.toLowerCase()) != -1)
                 .sort(sortingModes[selectedSortingMode].func) as article}
                 <div class="w-full sm:w-1/2 lg:w-1/3 p-2">
                     <div class="border-2 rounded-lg overflow-hidden">
