@@ -79,6 +79,23 @@ export async function getUsers(): Promise<APIUser[]> {
     }
 }
 
+export async function createUser(
+    username: string,
+    password: string,
+    accessLevel: number
+): Promise<number> {
+    const response = await post("create/user", {
+        username,
+        password,
+        accessLevel
+    });
+    if (response.ok) {
+        return response.id;
+    } else {
+        throw new APIError(response.reason);
+    }
+}
+
 export async function editUser(
     id: number,
     username: string,

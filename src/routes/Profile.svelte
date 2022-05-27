@@ -7,8 +7,8 @@
     import Icon from "../lib/Icon.svelte";
     import IconButton from "../lib/IconButton.svelte";
     import ArticlePickModal from "../lib/modals/ArticlePickModal.svelte";
-    import PasswordChangeModal from "../lib/modals/PasswordChangeModal.svelte";
     import LoadIndicator from "../lib/LoadIndicator.svelte";
+    import PasswordModal from "../lib/modals/PasswordModal.svelte";
 
     interface Status {
         message: string;
@@ -72,7 +72,7 @@
     }
 
     function handleChangePassword() {
-        openModal(PasswordChangeModal, newPasswordSubmitted);
+        openModal(PasswordModal, newPasswordSubmitted, { mode: "change" });
     }
 </script>
 

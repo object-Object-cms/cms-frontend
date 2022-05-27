@@ -3,6 +3,7 @@
 
     export let closeModal: () => void;
     export let responseHandler: (password: string) => void;
+    export let extra: { mode: string };
 
     let password = "";
     let confirmPassword = "";
@@ -23,7 +24,9 @@
 >
     <div class="flex items-center justify-between p-2">
         <span class="w-6" />
-        <span class="text-xl font-bold">Enter new password</span>
+        <span class="text-xl font-bold">
+            Enter {extra.mode === "change" ? "new" : ""} password
+        </span>
         <ModalIcon on:click={closeModal}>close</ModalIcon>
     </div>
     <div>
@@ -80,7 +83,13 @@
                 </div>
             </div>
 
-            <button class="button button-blue" type="submit"> Change </button>
+            <button class="button button-blue" type="submit"
+                >{extra.mode === "set"
+                    ? "Set"
+                    : extra.mode === "change"
+                    ? "Change"
+                    : "Done"}</button
+            >
         </form>
     </div>
 </div>

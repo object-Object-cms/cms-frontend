@@ -4,7 +4,7 @@
     import Icon from "./Icon.svelte";
     import LoadIndicator from "./LoadIndicator.svelte";
     import { openModal } from "./modals/modalUtils";
-    import PasswordChangeModal from "./modals/PasswordChangeModal.svelte";
+    import PasswordModal from "./modals/PasswordModal.svelte";
 
     export let user: APIUser;
     export let disabled = false;
@@ -27,6 +27,7 @@
 
     function leaveEdit() {
         editing = false;
+        dispatch("leaveEdit");
     }
 
     async function saveChanges() {
@@ -35,9 +36,11 @@
             editAccessLevel === user.accessLevel
         ) {
             console.log("no changes");
-            dispatch("updateBegin");
+            dispatch("clearError");
             leaveEdit();
-        } else {
+        } else if (editUsername.length < 3) {
+            alert("Username must be at least 3 characters long");
+        } else if (editAccessLevel >= 0 && editAccessLevel <= 100) {
             console.log("saving changes");
             if (updating) return;
             updating = true;
@@ -55,6 +58,8 @@
                 dispatch("updateError", { err, action: "edit" });
                 updating = false;
             }
+        } else {
+            alert("Access level must be in range 0-100");
         }
     }
 
@@ -79,7 +84,7 @@
         if (editPassword) {
             editPassword = undefined;
         } else {
-            openModal(PasswordChangeModal, newPasswordSubmitted);
+            openModal(PasswordModal, newPasswordSubmitted, { mode: "change" });
         }
     }
 </script>
