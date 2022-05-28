@@ -248,9 +248,13 @@ export async function getGallery(): Promise<APIBlob[]> {
     }
 }
 
-export async function uploadBlob(blob: Blob): Promise<number> {
+export async function uploadBlob(
+    blob: Blob,
+    showInGallery: boolean
+): Promise<number> {
     const formData = new FormData();
     formData.append("file", blob);
+    if (showInGallery) formData.append("showInGallery", "true");
     const response = await postMultipart("create/blob", formData);
     if (response.ok) {
         return response.id;

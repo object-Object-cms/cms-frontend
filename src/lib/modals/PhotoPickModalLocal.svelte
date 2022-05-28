@@ -6,6 +6,7 @@
     import LoadIndicator from "../LoadIndicator.svelte";
 
     export let responseHandler: (blobId: number) => void;
+    export let extra: { addToGallery?: boolean };
     export let forced: boolean;
 
     const dispatch = createEventDispatcher();
@@ -32,7 +33,7 @@
         uploading = true;
         error = "";
         try {
-            const id = await uploadBlob(file);
+            const id = await uploadBlob(file, extra?.addToGallery === true);
             responseHandler(id);
             closeModal();
         } catch (err) {
