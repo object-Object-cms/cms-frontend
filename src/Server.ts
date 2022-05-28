@@ -239,6 +239,15 @@ export async function getBlobs(): Promise<APIBlob[]> {
     }
 }
 
+export async function getGallery(): Promise<APIBlob[]> {
+    const response = await get("gallery");
+    if (response.ok) {
+        return response.blobs;
+    } else {
+        throw new APIError(response.reason);
+    }
+}
+
 export async function uploadBlob(blob: Blob): Promise<number> {
     const formData = new FormData();
     formData.append("file", blob);
