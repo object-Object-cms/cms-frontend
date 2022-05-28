@@ -5,10 +5,10 @@
     import PageHeader from "../lib/PageHeader.svelte";
 
     import { clampWithRollover } from "../lib/utils";
-    import { APIBlob, getBlobUrl, getGallery } from "../Server";
+    import { APIBlob, getBlobs, getBlobUrl, getGallery } from "../Server";
 
     async function loadPhotos(): Promise<APIBlob[]> {
-        return (await getGallery()).filter((blob) =>
+        return (await (picker ? getBlobs() : getGallery())).filter((blob) =>
             blob.type.startsWith("image/")
         );
     }
