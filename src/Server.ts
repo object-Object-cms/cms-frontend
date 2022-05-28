@@ -23,6 +23,7 @@ export interface Comment {
 export interface APIBlob {
     id: number;
     type: string;
+    showInGallery: 0 | 1;
 }
 
 export interface APIUser {
@@ -259,6 +260,16 @@ export async function uploadBlob(
     if (response.ok) {
         return response.id;
     } else {
+        throw new APIError(response.reason);
+    }
+}
+
+export async function editBlob(
+    id: number,
+    showInGallery: boolean
+): Promise<void> {
+    const response = await post("edit/blob/" + id, { showInGallery });
+    if (!response.ok) {
         throw new APIError(response.reason);
     }
 }

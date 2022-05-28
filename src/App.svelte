@@ -23,6 +23,7 @@
     import EditCorePage from "./routes/EditCorePage.svelte";
     import EditMenubar from "./routes/EditMenubar.svelte";
     import ManageUsers from "./routes/ManageUsers.svelte";
+    import ManageGallery from "./routes/ManageGallery.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
@@ -97,6 +98,7 @@
             "/editCore/:name": EditCorePage,
             "/editMenubar": EditMenubar,
             "/manageUsers": ManageUsers,
+            "/manageGallery": ManageGallery,
             "*": NotFound
         }}
         on:routeLoading={routeLoading}

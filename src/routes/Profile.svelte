@@ -126,6 +126,9 @@
                     Delete article
                 </IconButton>
             {/if}
+            <IconButton icon="photo" on:click={() => push("/manageGallery")}>
+                Manage gallery
+            </IconButton>
         {/if}
         {#if $currentAccount.accessLevel >= 100}
             <IconButton icon="home" on:click={() => push("/editCore/HOME")}>
