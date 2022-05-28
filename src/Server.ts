@@ -12,6 +12,7 @@ export interface APIResponse {
 }
 
 export interface Comment {
+    id: number;
     author: {
         id: number;
         username: string;
@@ -217,6 +218,13 @@ export async function getComments(): Promise<Comment[]> {
 
 export async function postComment(content: string): Promise<void> {
     const response = await post("create/comment", { content });
+    if (!response.ok) {
+        throw new APIError(response.reason);
+    }
+}
+
+export async function deleteComment(id: number): Promise<void> {
+    const response = await post("delete/comment/" + id, {});
     if (!response.ok) {
         throw new APIError(response.reason);
     }

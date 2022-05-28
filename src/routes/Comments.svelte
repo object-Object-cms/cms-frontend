@@ -1,6 +1,11 @@
 <script lang="ts">
     import { currentAccount } from "../AccountManager";
-    import { Comment, getComments, postComment } from "../Server";
+    import {
+        Comment,
+        deleteComment,
+        getComments,
+        postComment
+    } from "../Server";
 
     import LoadIndicator from "../lib/LoadIndicator.svelte";
     import PageHeader from "../lib/PageHeader.svelte";
@@ -10,6 +15,7 @@
     let comments: Comment[] = [];
     let posting = false;
     let error = "";
+    let deletingId;
 
     async function loadComments(): Promise<Comment[]> {
         comments = await getComments();
@@ -34,6 +40,23 @@
             error = `Failed to post comment: ${err.message}`;
         }
         posting = false;
+    }
+
+    async function handleDelete(comment: Comment) {
+        if (deletingId) return;
+        deletingId = comment.id;
+        error = "";
+        try {
+            await deleteComment(comment.id);
+            try {
+                await loadComments();
+            } catch (err) {
+                error = `Failed to refresh comments: ${err.message}`;
+            }
+        } catch (err) {
+            error = `Failed to delete comment: ${err.message}`;
+        }
+        deletingId = undefined;
     }
 </script>
 
@@ -82,7 +105,7 @@
         {#if comments.length > 0}
             <div class="flex flex-col-reverse gap-2">
                 {#each comments as comment}
-                    <div class="flex bg-slate-300 p-2 rounded">
+                    <div class="flex items-start bg-slate-300 p-2 rounded">
                         <div class="flex-grow">
                             <p
                                 class="{comment.author.username
@@ -94,7 +117,23 @@
                             <p class="whitespace-pre-wrap">{comment.content}</p>
                         </div>
                         {#if $currentAccount && ($currentAccount.id === comment.author.id || $currentAccount.accessLevel >= 50)}
-                            <Icon tooltip="Delete comment">delete</Icon>
+                            {#if deletingId === comment.id}
+                                <div class="p-1">
+                                    <LoadIndicator />
+                                </div>
+                            {:else}
+                                <div
+                                    class={deletingId
+                                        ? "pointer-events-none opacity-50"
+                                        : ""}
+                                >
+                                    <Icon
+                                        tooltip="Delete comment"
+                                        on:click={() => handleDelete(comment)}
+                                        >delete</Icon
+                                    >
+                                </div>
+                            {/if}
                         {/if}
                     </div>
                 {/each}
