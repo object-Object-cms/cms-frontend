@@ -7,10 +7,12 @@
 
     export let closeModal: () => void;
     export let responseHandler: (blobId: number) => void;
-    let page = 0;
+    export let extra: { forcePage?: number } | undefined;
+    let page = extra?.forcePage ?? 0;
+    const forced = extra?.forcePage != null;
 
     function changePage(ev: CustomEvent) {
-        page = ev.detail.page;
+        if (!forced) page = ev.detail.page;
     }
 </script>
 
@@ -32,6 +34,7 @@
                 on:changePage={changePage}
                 on:modalCloseRequested={closeModal}
                 {responseHandler}
+                {forced}
             />
         </div>
     {:else if page === 2}
@@ -40,6 +43,7 @@
                 on:changePage={changePage}
                 on:modalCloseRequested={closeModal}
                 {responseHandler}
+                {forced}
             />
         </div>
     {/if}

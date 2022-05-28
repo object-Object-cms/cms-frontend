@@ -6,6 +6,7 @@
     import LoadIndicator from "../LoadIndicator.svelte";
 
     export let responseHandler: (blobId: number) => void;
+    export let forced: boolean;
 
     const dispatch = createEventDispatcher();
 
@@ -80,7 +81,11 @@
 
 <div class="flex h-full flex-col p-2">
     <div class="flex items-center justify-between">
-        <ModalIcon on:click={() => changePage(0)}>arrow_back</ModalIcon>
+        {#if forced}
+            <span class="w-6" />
+        {:else}
+            <ModalIcon on:click={() => changePage(0)}>arrow_back</ModalIcon>
+        {/if}
         <span class="text-xl font-bold">Local file</span>
         <ModalIcon on:click={closeModal}>close</ModalIcon>
     </div>

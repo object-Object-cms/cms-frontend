@@ -4,6 +4,7 @@
     import Gallery from "../../routes/Gallery.svelte";
 
     export let responseHandler: (blobId: number) => void;
+    export let forced: boolean;
 
     const dispatch = createEventDispatcher();
 
@@ -23,7 +24,11 @@
 
 <div class="flex h-full flex-col">
     <div class="flex items-center justify-between p-2">
-        <ModalIcon on:click={() => changePage(0)}>arrow_back</ModalIcon>
+        {#if forced}
+            <span class="w-6" />
+        {:else}
+            <ModalIcon on:click={() => changePage(0)}>arrow_back</ModalIcon>
+        {/if}
         <span class="text-xl font-bold">Gallery</span>
         <ModalIcon on:click={closeModal}>close</ModalIcon>
     </div>
