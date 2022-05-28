@@ -12,7 +12,10 @@ export interface APIResponse {
 }
 
 export interface Comment {
-    username: string;
+    author: {
+        id: number;
+        username: string;
+    };
     content: string;
 }
 

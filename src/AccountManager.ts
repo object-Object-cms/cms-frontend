@@ -1,4 +1,4 @@
-import { Writable, writable } from "svelte/store";
+import { writable } from "svelte/store";
 import {
     login as serverLogin,
     register as serverRegister,
@@ -8,6 +8,7 @@ import {
 export class AccountManagerError extends Error {}
 
 export interface Account {
+    id: number;
     username: string;
     accessLevel: number;
 }
@@ -18,6 +19,7 @@ export async function refreshAccountInfo(): Promise<Account> {
     const response = await getSelfInfo();
     if (response.ok) {
         const account: Account = {
+            id: response.id,
             username: response.username,
             accessLevel: response.accessLevel
         };

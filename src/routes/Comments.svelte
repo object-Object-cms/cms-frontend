@@ -4,6 +4,7 @@
 
     import LoadIndicator from "../lib/LoadIndicator.svelte";
     import PageHeader from "../lib/PageHeader.svelte";
+    import Icon from "../lib/Icon.svelte";
 
     let content = "";
     let comments: Comment[] = [];
@@ -81,15 +82,20 @@
         {#if comments.length > 0}
             <div class="flex flex-col-reverse gap-2">
                 {#each comments as comment}
-                    <div class="bg-slate-300 p-2 rounded">
-                        <p
-                            class="{comment.username
-                                ? 'text-blue-600'
-                                : 'text-red-600'} font-bold"
-                        >
-                            {comment.username ?? "Deleted User"}
-                        </p>
-                        <p class="whitespace-pre-wrap">{comment.content}</p>
+                    <div class="flex bg-slate-300 p-2 rounded">
+                        <div class="flex-grow">
+                            <p
+                                class="{comment.author.username
+                                    ? 'text-blue-600'
+                                    : 'text-red-600'} font-bold"
+                            >
+                                {comment.author.username ?? "Deleted User"}
+                            </p>
+                            <p class="whitespace-pre-wrap">{comment.content}</p>
+                        </div>
+                        {#if $currentAccount && ($currentAccount.id === comment.author.id || $currentAccount.accessLevel >= 50)}
+                            <Icon tooltip="Delete comment">delete</Icon>
+                        {/if}
                     </div>
                 {/each}
             </div>
