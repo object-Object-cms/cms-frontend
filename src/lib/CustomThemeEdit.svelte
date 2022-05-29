@@ -78,34 +78,34 @@
     bind:value={themeVariables.boxBorderColor}
 />
 
-<MaterialInputHeader>Buttons</MaterialInputHeader>
+<MaterialInputHeader>Accents</MaterialInputHeader>
 <MaterialColorIconInput
     icon="format_color_fill"
-    label="Primary button color"
-    bind:value={themeVariables.buttonColorPrimary}
+    label="Primary accent color"
+    bind:value={themeVariables.accentColorPrimary}
 />
 <MaterialColorIconInput
     icon="ads_click"
-    label="Primary button hover color"
-    bind:value={themeVariables.buttonHoverPrimary}
+    label="Primary accent hover color"
+    bind:value={themeVariables.accentHoverPrimary}
 />
 <MaterialColorIconInput
     icon="format_color_text"
-    label="Primary button text color"
-    bind:value={themeVariables.buttonTextPrimary}
+    label="Primary accent text color"
+    bind:value={themeVariables.accentTextPrimary}
 />
 <MaterialColorIconInput
     icon="format_color_fill"
-    label="Secondary button color"
-    bind:value={themeVariables.buttonColorSecondary}
+    label="Secondary accent color"
+    bind:value={themeVariables.accentColorSecondary}
 />
 <MaterialColorIconInput
     icon="ads_click"
-    label="Secondary button hover color"
-    bind:value={themeVariables.buttonHoverSecondary}
+    label="Secondary accent hover color"
+    bind:value={themeVariables.accentHoverSecondary}
 />
 <MaterialColorIconInput
     icon="format_color_text"
-    label="Secondary button text color"
-    bind:value={themeVariables.buttonTextSecondary}
+    label="Secondary accent text color"
+    bind:value={themeVariables.accentTextSecondary}
 />

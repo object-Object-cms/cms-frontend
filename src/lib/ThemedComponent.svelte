@@ -28,12 +28,12 @@
         );
         appendStyle(vars.boxTextColorSecondary, "box-text-color-secondary");
         appendStyle(vars.boxBorderColor, "box-border-color");
-        appendStyle(vars.buttonColorPrimary, "button-color-primary");
-        appendStyle(vars.buttonHoverPrimary, "button-hover-primary");
-        appendStyle(vars.buttonTextPrimary, "button-text-primary");
-        appendStyle(vars.buttonColorSecondary, "button-color-secondary");
-        appendStyle(vars.buttonHoverSecondary, "button-hover-secondary");
-        appendStyle(vars.buttonTextSecondary, "button-text-secondary");
+        appendStyle(vars.accentColorPrimary, "accent-color-primary");
+        appendStyle(vars.accentHoverPrimary, "accent-hover-primary");
+        appendStyle(vars.accentTextPrimary, "accent-text-primary");
+        appendStyle(vars.accentColorSecondary, "accent-color-secondary");
+        appendStyle(vars.accentHoverSecondary, "accent-hover-secondary");
+        appendStyle(vars.accentTextSecondary, "accent-text-secondary");
 
         if (vars.fontFamily) {
             switch (vars.fontFamily) {

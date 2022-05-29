@@ -15,12 +15,12 @@ export interface ThemeVariables {
     boxBackgroundColorSecondary: string;
     boxTextColorSecondary: string;
     boxBorderColor: string;
-    buttonColorPrimary: string;
-    buttonHoverPrimary: string;
-    buttonTextPrimary: string;
-    buttonColorSecondary: string;
-    buttonHoverSecondary: string;
-    buttonTextSecondary: string;
+    accentColorPrimary: string;
+    accentHoverPrimary: string;
+    accentTextPrimary: string;
+    accentColorSecondary: string;
+    accentHoverSecondary: string;
+    accentTextSecondary: string;
     fontFamily: string;
 }
 
@@ -61,12 +61,12 @@ export const themes: Themes = {
             boxBackgroundColorSecondary: "#d1d5db",
             boxTextColorSecondary: "#000000",
             boxBorderColor: "#9ca3af",
-            buttonColorPrimary: "#2563eb",
-            buttonHoverPrimary: "#3b82f6",
-            buttonTextPrimary: "#ffffff",
-            buttonColorSecondary: "#16a34a",
-            buttonHoverSecondary: "#22c55e",
-            buttonTextSecondary: "#ffffff",
+            accentColorPrimary: "#2563eb",
+            accentHoverPrimary: "#3b82f6",
+            accentTextPrimary: "#ffffff",
+            accentColorSecondary: "#16a34a",
+            accentHoverSecondary: "#22c55e",
+            accentTextSecondary: "#ffffff",
             fontFamily: "sans-serif"
         }
     },
@@ -86,12 +86,12 @@ export const themes: Themes = {
             boxBackgroundColorSecondary: "#374151",
             boxTextColorSecondary: "#ffffff",
             boxBorderColor: "#4b5563",
-            buttonColorPrimary: "#3b82f6",
-            buttonHoverPrimary: "#60a5fa",
-            buttonTextPrimary: "#ffffff",
-            buttonColorSecondary: "#22c55e",
-            buttonHoverSecondary: "#4ade80",
-            buttonTextSecondary: "#ffffff",
+            accentColorPrimary: "#3b82f6",
+            accentHoverPrimary: "#60a5fa",
+            accentTextPrimary: "#ffffff",
+            accentColorSecondary: "#22c55e",
+            accentHoverSecondary: "#4ade80",
+            accentTextSecondary: "#ffffff",
             fontFamily: "sans-serif"
         }
     },
@@ -111,12 +111,12 @@ export const themes: Themes = {
             boxBackgroundColorSecondary: "#facc15",
             boxTextColorSecondary: "#7c2d12",
             boxBorderColor: "#eab308",
-            buttonColorPrimary: "#ea580c",
-            buttonHoverPrimary: "#f97316",
-            buttonTextPrimary: "#ffffff",
-            buttonColorSecondary: "#e11d48",
-            buttonHoverSecondary: "#f43f5e",
-            buttonTextSecondary: "#ffffff",
+            accentColorPrimary: "#ea580c",
+            accentHoverPrimary: "#f97316",
+            accentTextPrimary: "#ffffff",
+            accentColorSecondary: "#e11d48",
+            accentHoverSecondary: "#f43f5e",
+            accentTextSecondary: "#ffffff",
             fontFamily: "cursive"
         }
     }

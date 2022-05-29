@@ -56,47 +56,47 @@
     }
 
     .button-themed-primary {
-        background-color: var(--theme-button-color-primary);
-        color: var(--theme-button-text-primary);
+        background-color: var(--theme-accent-color-primary);
+        color: var(--theme-accent-text-primary);
         @apply border-none;
     }
 
     .button-themed-primary:hover {
-        background-color: var(--theme-button-hover-primary);
+        background-color: var(--theme-accent-hover-primary);
     }
 
     .button-themed-primary-outline {
-        border-color: var(--theme-button-color-primary);
-        color: var(--theme-button-color-primary);
+        border-color: var(--theme-accent-color-primary);
+        color: var(--theme-accent-color-primary);
         @apply border;
         @apply border-solid;
     }
 
     .button-themed-primary-outline:hover {
-        background-color: var(--theme-button-color-primary);
-        color: var(--theme-button-text-primary);
+        background-color: var(--theme-accent-color-primary);
+        color: var(--theme-accent-text-primary);
     }
 
     .button-themed-secondary {
-        background-color: var(--theme-button-color-secondary);
-        color: var(--theme-button-text-secondary);
+        background-color: var(--theme-accent-color-secondary);
+        color: var(--theme-accent-text-secondary);
         @apply border-none;
     }
 
     .button-themed-secondary:hover {
-        background-color: var(--theme-button-hover-secondary);
+        background-color: var(--theme-accent-hover-secondary);
     }
 
     .button-themed-secondary-outline {
-        border-color: var(--theme-button-color-secondary);
-        color: var(--theme-button-color-secondary);
+        border-color: var(--theme-accent-color-secondary);
+        color: var(--theme-accent-color-secondary);
         @apply border;
         @apply border-solid;
     }
 
     .button-themed-secondary-outline:hover {
-        background-color: var(--theme-button-color-secondary);
-        color: var(--theme-button-text-secondary);
+        background-color: var(--theme-accent-color-secondary);
+        color: var(--theme-accent-text-secondary);
     }
 
     .icon {
