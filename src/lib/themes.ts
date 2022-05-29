@@ -137,6 +137,26 @@ The paragraph supports *Mark***down** styling.`
             }
         ];
     },
+    dark() {
+        return [
+            {
+                id: crypto.randomUUID(),
+                layout: {
+                    x: 0,
+                    y: 0,
+                    w: 6,
+                    h: 2
+                },
+                component: {
+                    name: "Paragraph",
+                    props: {
+                        textContent: `# Dark theme
+When the standard theme is too bright dark theme has got you covered.`
+                    }
+                }
+            }
+        ];
+    },
     hotTomato() {
         return [
             {
