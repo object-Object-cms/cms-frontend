@@ -10,6 +10,7 @@ export interface ThemeVariables {
     linkColor: string;
     dimTextColor: string;
     divisorColor: string;
+    shadowColor: string;
     boxBackgroundColorPrimary: string;
     boxTextColorPrimary: string;
     boxBackgroundColorSecondary: string;
@@ -56,6 +57,7 @@ export const themes: Themes = {
             linkColor: "#2563eb",
             dimTextColor: "#6b7280",
             divisorColor: "#d1d5db",
+            shadowColor: "#000000",
             boxBackgroundColorPrimary: "#f3f4f6",
             boxTextColorPrimary: "#000000",
             boxBackgroundColorSecondary: "#d1d5db",
@@ -81,6 +83,7 @@ export const themes: Themes = {
             linkColor: "#60a5fa",
             dimTextColor: "#9ca3af",
             divisorColor: "#4b5563",
+            shadowColor: "#ffffff",
             boxBackgroundColorPrimary: "#1f2937",
             boxTextColorPrimary: "#ffffff",
             boxBackgroundColorSecondary: "#374151",
@@ -106,6 +109,7 @@ export const themes: Themes = {
             linkColor: "#ea580c",
             dimTextColor: "#ef4444",
             divisorColor: "#f87171",
+            shadowColor: "#000000",
             boxBackgroundColorPrimary: "#fde047",
             boxTextColorPrimary: "#78350f",
             boxBackgroundColorSecondary: "#facc15",

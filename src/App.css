@@ -261,4 +261,9 @@
     .themed-accent-secondary-border {
         border-color: var(--theme-accent-color-secondary);
     }
+
+    .themed-shadow {
+        --tw-shadow-color: var(--theme-shadow-color);
+        --tw-shadow: var(--tw-shadow-colored);
+    }
 }

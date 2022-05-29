@@ -32,6 +32,11 @@
     label="Divisor color"
     bind:value={themeVariables.divisorColor}
 />
+<MaterialColorIconInput
+    icon="lens_blur"
+    label="Shadow color"
+    bind:value={themeVariables.shadowColor}
+/>
 
 <div class="flex items-end space-x-2">
     <span class="material-icons-outlined md-36 themed-dim-text select-none">

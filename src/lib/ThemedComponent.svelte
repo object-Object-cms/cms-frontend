@@ -17,6 +17,9 @@
         appendStyle(vars.linkColor, "link-color");
         appendStyle(vars.dimTextColor, "dim-text-color");
         appendStyle(vars.divisorColor, "divisor-color");
+        if (vars.shadowColor) {
+            appendStyle(vars.shadowColor + "20", "shadow-color");
+        }
         appendStyle(
             vars.boxBackgroundColorPrimary,
             "box-background-color-primary"
