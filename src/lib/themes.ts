@@ -83,7 +83,7 @@ export const themes: Themes = {
             linkColor: "#60a5fa",
             dimTextColor: "#9ca3af",
             divisorColor: "#4b5563",
-            shadowColor: "#ffffff",
+            shadowColor: "#555555",
             boxBackgroundColorPrimary: "#1f2937",
             boxTextColorPrimary: "#ffffff",
             boxBackgroundColorSecondary: "#374151",
