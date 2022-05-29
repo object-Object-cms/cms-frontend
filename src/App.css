@@ -222,7 +222,7 @@
         color: var(--theme-box-text-color-secondary);
     }
 
-    .themed-border-box {
+    .themed-box-border {
         border-color: var(--theme-box-border-color);
     }
 }
