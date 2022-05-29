@@ -1,5 +1,6 @@
 <script lang="ts">
     import { createPopper, Instance } from "@popperjs/core";
+    import { iconsInverted } from "./IconColors";
 
     let container: HTMLDivElement | undefined;
     let tooltipElem: HTMLSpanElement | undefined;
@@ -7,6 +8,7 @@
 
     export let tooltip: string | undefined = undefined;
     export let inverted = false;
+    $: _inv = inverted || $iconsInverted;
 
     $: {
         lastPopper?.destroy();
@@ -18,7 +20,7 @@
 
 <div
     class="group relative h-8 w-8 cursor-pointer select-none rounded-full p-1 transition-colors
-        {inverted ? 'hover:bg-white' : 'hover:bg-black'} hover:bg-opacity-20"
+        {_inv ? 'hover:bg-white' : 'hover:bg-black'} hover:bg-opacity-20"
     bind:this={container}
     on:click
 >
@@ -31,7 +33,7 @@
         >
             <div
                 class="w-max rounded-sm bg-opacity-60 px-2 py-1 font-medium text-white
-                    {inverted ? 'bg-white' : 'bg-black'}"
+                    {_inv ? 'bg-white' : 'bg-black'}"
             >
                 {tooltip}
             </div>
