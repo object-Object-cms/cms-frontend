@@ -34,10 +34,14 @@
             <LoadIndicator />
         </div>
     {:else}
-        <button
-            class="button button-blue block mx-auto m-4"
-            on:click={uploadPhoto}>Upload new photo</button
-        >
+        <div class="p-4">
+            <button
+                class="button button-blue block mx-auto"
+                on:click={uploadPhoto}
+            >
+                Upload new photo
+            </button>
+        </div>
     {/if}
     <div class="container mx-auto divide-y divide-gray-400">
         {#each photos as photo}
