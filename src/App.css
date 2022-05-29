@@ -5,12 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    :root {
-        --theme-link-color: #2563eb;
-    }
-}
-
 @layer components {
     .button {
         @apply inline-block;
