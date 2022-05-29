@@ -70,7 +70,7 @@
     }
 
     function storeEditingUser(user) {
-        if (editingUser) editingUser.editing = false;
+        if (editingUser && editingUser !== user) editingUser.editing = false;
         editingUser = user;
     }
 </script>
