@@ -55,7 +55,7 @@ export const themes: Themes = {
             boxTextColorPrimary: "#000000",
             boxBackgroundColorSecondary: "#d1d5db",
             boxTextColorSecondary: "#000000",
-            boxBorderColor: "#6b7280",
+            boxBorderColor: "#9ca3af",
             buttonColorPrimary: "#2563eb",
             buttonHoverPrimary: "#3b82f6",
             buttonTextPrimary: "#ffffff",
