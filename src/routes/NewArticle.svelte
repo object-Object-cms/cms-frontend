@@ -140,7 +140,10 @@
     </ThemedComponent>
 {:else}
     <div class="mx-auto max-w-xl p-4">
-        <form class="space-y-4 p-4 shadow-md" on:submit={metadataEntered}>
+        <form
+            class="space-y-4 p-4 shadow-md themed-shadow"
+            on:submit={metadataEntered}
+        >
             <h1 class="text-2xl font-bold">Create new article</h1>
             {#if error}
                 <p class="text-red-600">Failed to create article: {error}</p>
