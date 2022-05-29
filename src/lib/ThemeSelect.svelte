@@ -8,7 +8,7 @@
     export let selected: string;
 </script>
 
-<div class="mt-1 flex justify-center gap-4">
+<div class="mt-1 flex flex-wrap justify-center gap-4">
     {#each Object.entries(themes) as [id, theme]}
         <div
             class="flex cursor-pointer select-none flex-col items-center space-y-2 rounded border-2
