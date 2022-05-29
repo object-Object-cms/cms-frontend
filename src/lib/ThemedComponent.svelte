@@ -41,7 +41,7 @@
         if (vars.fontFamily) {
             switch (vars.fontFamily) {
                 case "sans-serif":
-                    style += `--theme-font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica Neue",Arial,Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";`;
+                    style += `--theme-font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";`;
                     break;
                 case "serif":
                     style += `--theme-font-family:ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;`;
