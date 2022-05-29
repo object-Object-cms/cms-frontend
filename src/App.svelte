@@ -99,7 +99,9 @@
 >
     <Menubar links={menubarLinks} />
 
-    <main>
+    <main
+        class="themed-background themed-text themed-font min-h-[calc(100vh-4rem)]"
+    >
         <Router
             routes={{
                 "/": Home,

@@ -70,19 +70,19 @@
     <div class="container mx-auto p-2 space-y-2">
         {#if $currentAccount}
             <form
-                class="bg-gray-300 mx-auto max-w-lg rounded-md p-2 space-y-2"
+                class="themed-box-secondary mx-auto max-w-lg rounded-md p-2 space-y-2"
                 on:submit={handleSubmit}
             >
                 <label class="block w-full">
                     Comment:
                     <textarea
-                        class="w-full resize-none bg-gray-100 p-2 mt-1 rounded"
+                        class="w-full resize-none themed-box-primary p-2 mt-1 rounded"
                         required
                         bind:value={content}
                     />
                 </label>
                 <button
-                    class="button button-blue"
+                    class="button button-themed-primary"
                     type="submit"
                     disabled={posting}
                 >
@@ -105,11 +105,13 @@
         {#if comments.length > 0}
             <div class="flex flex-col-reverse gap-2">
                 {#each comments as comment}
-                    <div class="flex items-start bg-slate-300 p-2 rounded">
+                    <div
+                        class="flex items-start themed-box-primary p-2 rounded"
+                    >
                         <div class="flex-grow">
                             <p
                                 class="{comment.author.username
-                                    ? 'text-blue-600'
+                                    ? 'themed-accent-primary-text'
                                     : 'text-red-600'} font-bold"
                             >
                                 {comment.author.username ?? "Deleted User"}

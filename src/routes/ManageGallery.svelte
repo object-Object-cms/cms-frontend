@@ -36,14 +36,14 @@
     {:else}
         <div class="p-4">
             <button
-                class="button button-blue block mx-auto"
+                class="button button-themed-primary block mx-auto"
                 on:click={uploadPhoto}
             >
                 Upload new photo
             </button>
         </div>
     {/if}
-    <div class="container mx-auto divide-y divide-gray-400">
+    <div class="container mx-auto divide-y themed-divide">
         {#each photos as photo}
             <PhotoEdit {photo} />
         {/each}

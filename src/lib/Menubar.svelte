@@ -49,7 +49,9 @@
     });
 </script>
 
-<header class="z-40 flex h-16 items-center bg-slate-200 p-2">
+<header
+    class="themed-box-secondary themed-font z-40 flex h-16 items-center p-2"
+>
     {#if showMenubarAcceptors}
         <Icon on:click={menubarCancel} tooltip="Cancel">close</Icon>
     {/if}
@@ -64,8 +66,8 @@
         </details>
         <a class="text-2xl sm:mr-4" href="/" use:link>CMS</a>
         <div
-            class="invisible fixed left-0 top-16 right-0 bottom-0 z-30 flex min-w-0 flex-grow flex-col
-                items-center bg-slate-200 peer-open:visible sm:visible sm:static sm:z-auto sm:flex-row"
+            class="themed-box-secondary invisible fixed left-0 top-16 right-0 bottom-0 z-30 flex min-w-0 flex-grow
+                flex-col items-center peer-open:visible sm:visible sm:static sm:z-auto sm:flex-row"
         >
             {#if $prefMenubarViewMode}
                 <div
@@ -133,7 +135,7 @@
             >
                 {#if $currentAccount}
                     <a
-                        class="button button-blue-outline flex items-center"
+                        class="button button-themed-primary-outline flex items-center"
                         href="/profile"
                         use:link
                         on:click={collapse}
@@ -143,7 +145,7 @@
                     </a>
                 {:else}
                     <a
-                        class="button button-green-outline"
+                        class="button button-themed-secondary-outline"
                         href="/login"
                         use:link
                         on:click={collapse}
@@ -151,7 +153,7 @@
                         Login
                     </a>
                     <a
-                        class="button button-blue-outline"
+                        class="button button-themed-primary-outline"
                         href="/register"
                         use:link
                         on:click={collapse}

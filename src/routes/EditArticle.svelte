@@ -146,18 +146,18 @@
                 {/if}
                 <div class="flex items-end space-x-2">
                     <span
-                        class="material-icons-outlined md-36 select-none text-gray-600"
+                        class="material-icons-outlined md-36 select-none themed-dim-text"
                     >
                         description
                     </span>
                     <div class="group flex flex-grow flex-col">
                         <span
-                            class="text-xs text-gray-600 group-focus-within:text-blue-600"
+                            class="text-xs themed-dim-text group-focus-within:themed-accent-primary-text"
                         >
                             Description
                         </span>
                         <input
-                            class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
+                            class="w-full bg-transparent border-b-2 themed-box-border p-1 outline-none focus:themed-accent-primary-border"
                             type="text"
                             required
                             minlength="10"
@@ -168,13 +168,13 @@
 
                 <div class="flex items-end space-x-2">
                     <span
-                        class="material-icons-outlined md-36 select-none text-gray-600"
+                        class="material-icons-outlined md-36 select-none themed-dim-text"
                     >
                         format_paint
                     </span>
                     <div class="group flex flex-grow flex-col">
                         <span
-                            class="text-xs text-gray-600 group-focus-within:text-blue-600"
+                            class="text-xs themed-dim-text group-focus-within:themed-accent-primary-text"
                         >
                             Theme
                         </span>
@@ -202,7 +202,9 @@
                     />
                 {/if}
 
-                <button class="button button-blue" type="submit">Next</button>
+                <button class="button button-themed-primary" type="submit"
+                    >Next</button
+                >
             </form>
         </div>
     {/if}

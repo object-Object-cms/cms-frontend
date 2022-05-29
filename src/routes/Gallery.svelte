@@ -65,7 +65,7 @@
     <div class="container flex flex-wrap mx-auto p-2 justify-center">
         {#each photos as photo, i}
             <div
-                class="w-48 h-48 m-2 bg-cover bg-center border-2 border-gray-600 cursor-pointer hover:scale-105"
+                class="w-48 h-48 m-2 bg-cover bg-center border-2 themed-box-border cursor-pointer hover:scale-105"
                 style="background-image: url({getBlobUrl(photo.id)});"
                 on:click={() => {
                     if (picker) {
@@ -124,7 +124,7 @@
                     <div
                         class="w-32 h-32 bg-cover bg-center flex-shrink-0 m-2 border-2 cursor-pointer hover:scale-105
                             {currentPhoto === i
-                            ? 'border-blue-600'
+                            ? 'themed-accent-primary-border'
                             : 'border-gray-600'}"
                         style="background-image: url({getBlobUrl(photo.id)});"
                         on:click={() => setCurrentPhoto(i, photos.length)}

@@ -13,7 +13,7 @@
 </script>
 
 <div
-    class="flex h-5/6 w-11/12 max-w-full flex-col overflow-hidden rounded-lg bg-white text-black"
+    class="themed-background themed-text flex h-5/6 w-11/12 max-w-full flex-col overflow-hidden rounded-lg"
 >
     <div class="flex items-center justify-between p-2">
         <span class="w-6" />

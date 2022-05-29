@@ -19,7 +19,7 @@
 <div
     class="{page === 2
         ? 'h-5/6 w-11/12'
-        : 'h-96 w-72'} max-w-full overflow-hidden rounded-lg bg-white text-black"
+        : 'h-96 w-72'} themed-background themed-text max-w-full overflow-hidden rounded-lg"
 >
     {#if page === 0}
         <div class="h-full" transition:slide>

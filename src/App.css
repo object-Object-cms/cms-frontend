@@ -230,6 +230,10 @@
         border-color: var(--theme-divisor-color);
     }
 
+    .themed-divide-border {
+        border-color: var(--theme-divisor-color);
+    }
+
     .themed-font {
         font-family: var(--theme-font-family);
     }
@@ -246,5 +250,21 @@
 
     .themed-box-border {
         border-color: var(--theme-box-border-color);
+    }
+
+    .themed-accent-primary-text {
+        color: var(--theme-accent-color-primary);
+    }
+
+    .themed-accent-secondary-text {
+        color: var(--theme-accent-color-secondary);
+    }
+
+    .themed-accent-primary-border {
+        border-color: var(--theme-accent-color-primary);
+    }
+
+    .themed-accent-secondary-border {
+        border-color: var(--theme-accent-color-secondary);
     }
 }

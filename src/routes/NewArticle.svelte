@@ -147,18 +147,18 @@
             {/if}
             <div class="flex items-end space-x-2">
                 <span
-                    class="material-icons-outlined md-36 select-none text-gray-600"
+                    class="material-icons-outlined md-36 select-none themed-dim-text"
                 >
                     title
                 </span>
                 <div class="group flex flex-grow flex-col">
                     <span
-                        class="text-xs text-gray-600 group-focus-within:text-blue-600"
+                        class="text-xs themed-dim-text group-focus-within:themed-accent-primary-text"
                     >
                         Title
                     </span>
                     <input
-                        class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
+                        class="w-full bg-transparent border-b-2 themed-box-border p-1 outline-none focus:themed-accent-primary-border"
                         type="text"
                         required
                         minlength="5"
@@ -169,18 +169,18 @@
 
             <div class="flex items-end space-x-2">
                 <span
-                    class="material-icons-outlined md-36 select-none text-gray-600"
+                    class="material-icons-outlined md-36 select-none themed-dim-text"
                 >
                     description
                 </span>
                 <div class="group flex flex-grow flex-col">
                     <span
-                        class="text-xs text-gray-600 group-focus-within:text-blue-600"
+                        class="text-xs themed-dim-text group-focus-within:themed-accent-primary-text"
                     >
                         Description
                     </span>
                     <input
-                        class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
+                        class="w-full bg-transparent border-b-2 themed-box-border p-1 outline-none focus:themed-accent-primary-border"
                         type="text"
                         required
                         minlength="10"
@@ -191,18 +191,18 @@
 
             <div class="flex items-end space-x-2">
                 <span
-                    class="material-icons-outlined md-36 select-none text-gray-600"
+                    class="material-icons-outlined md-36 select-none themed-dim-text"
                 >
                     category
                 </span>
                 <div class="group flex flex-grow flex-col">
                     <span
-                        class="text-xs text-gray-600 group-focus-within:text-blue-600"
+                        class="text-xs themed-dim-text group-focus-within:themed-accent-primary-text"
                     >
                         Category
                     </span>
                     <input
-                        class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
+                        class="w-full bg-transparent border-b-2 themed-box-border p-1 outline-none focus:themed-accent-primary-border"
                         type="text"
                         required
                         minlength="5"
@@ -213,13 +213,13 @@
 
             <div class="flex items-end space-x-2">
                 <span
-                    class="material-icons-outlined md-36 select-none text-gray-600"
+                    class="material-icons-outlined md-36 select-none themed-dim-text"
                 >
                     image
                 </span>
                 <div class="group flex flex-grow flex-col">
                     <span
-                        class="text-xs text-gray-600 group-focus-within:text-blue-600"
+                        class="text-xs themed-dim-text group-focus-within:themed-accent-primary-text"
                     >
                         Banner image
                     </span>
@@ -233,7 +233,7 @@
                         {:else}
                             <span>No banner selected</span>
                         {/if}
-                        <span class="text-gray-600 ml-auto">
+                        <span class="themed-dim-text ml-auto">
                             <Icon on:click={pickBannerImage}>file_upload</Icon>
                         </span>
                     </div>
@@ -242,13 +242,13 @@
 
             <div class="flex items-end space-x-2">
                 <span
-                    class="material-icons-outlined md-36 select-none text-gray-600"
+                    class="material-icons-outlined md-36 select-none themed-dim-text"
                 >
                     format_paint
                 </span>
                 <div class="group flex flex-grow flex-col">
                     <span
-                        class="text-xs text-gray-600 group-focus-within:text-blue-600"
+                        class="text-xs themed-dim-text group-focus-within:themed-accent-primary-text"
                     >
                         Theme
                     </span>

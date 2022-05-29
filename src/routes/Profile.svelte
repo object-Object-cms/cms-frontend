@@ -77,7 +77,7 @@
 </script>
 
 {#if $currentAccount}
-    <div class="bg-gray-300 p-4">
+    <div class="themed-box-primary p-4">
         <div class="container mx-auto flex flex-col">
             <div class="flex justify-end">
                 <Icon tooltip="Logout" on:click={handleLogout}>logout</Icon>

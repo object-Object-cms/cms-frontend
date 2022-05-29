@@ -38,7 +38,11 @@
         {#if error}
             <p class="text-red-600">Failed to save: {error}</p>
         {/if}
-        <button class="button button-blue" on:click={save} disabled={saving}>
+        <button
+            class="button button-themed-primary"
+            on:click={save}
+            disabled={saving}
+        >
             {#if saving}
                 <LoadIndicator />
             {:else}

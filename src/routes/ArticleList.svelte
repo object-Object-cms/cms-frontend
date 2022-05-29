@@ -62,7 +62,7 @@
         <label>
             Filter:
             <select
-                class="block h-10 bg-transparent border-2 border-gray-600 focus:border-blue-600 p-2 rounded-full"
+                class="block h-10 bg-transparent border-2 themed-box-primary themed-box-border focus:themed-accent-primary-border p-2 rounded-full"
                 bind:value={selectedCategoryFilter}
             >
                 <option value="">--Category--</option>
@@ -74,7 +74,7 @@
         <label>
             Sort by:
             <select
-                class="block h-10 bg-transparent border-2 border-gray-600 focus:border-blue-600 p-2 rounded-full"
+                class="block h-10 bg-transparent border-2 themed-box-primary themed-box-border focus:themed-accent-primary-border p-2 rounded-full"
                 bind:value={selectedSortingMode}
             >
                 {#each sortingModes as mode, i}
@@ -85,7 +85,7 @@
         <label>
             Search:
             <input
-                class="block h-10 outline-none bg-transparent border-2 border-gray-600 focus:border-blue-600 p-2 rounded-full"
+                class="block h-10 outline-none bg-transparent border-2 themed-box-primary themed-box-border focus:themed-accent-primary-border p-2 rounded-full"
                 bind:value={searchTerm}
             />
         </label>
@@ -104,7 +104,9 @@
                             .indexOf(searchTerm.toLowerCase()) != -1)
                 .sort(sortingModes[selectedSortingMode].func) as article}
                 <div class="w-full sm:w-1/2 lg:w-1/3 p-2">
-                    <div class="border-2 rounded-lg overflow-hidden">
+                    <div
+                        class="border-2 themed-box-primary themed-box-border rounded-lg overflow-hidden"
+                    >
                         <div
                             class="h-24 bg-cover bg-center"
                             style="background-image: url({getBlobUrl(
@@ -125,14 +127,14 @@
                             <p>{article.description}</p>
                             {#if picker}
                                 <button
-                                    class="button button-big button-blue mt-2"
+                                    class="button button-themed-primary mt-2"
                                     on:click={() => responseHandler(article.id)}
                                 >
                                     Choose
                                 </button>
                             {:else}
                                 <a
-                                    class="button button-big button-blue mt-2"
+                                    class="button button-themed-primary mt-2"
                                     use:link
                                     href="/article/{article.id}"
                                 >

@@ -32,18 +32,18 @@
     <form class="space-y-4 p-4 shadow-md" on:submit={handleLogin}>
         <div class="flex items-end space-x-2">
             <span
-                class="material-icons-outlined md-36 select-none text-gray-600"
+                class="material-icons-outlined md-36 themed-dim-text select-none"
             >
                 account_circle
             </span>
             <div class="group flex flex-grow flex-col">
                 <span
-                    class="text-xs text-gray-600 group-focus-within:text-blue-600"
+                    class="themed-dim-text group-focus-within:themed-accent-primary-text text-xs"
                 >
                     Login
                 </span>
                 <input
-                    class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
+                    class="themed-box-border focus:themed-accent-primary-border w-full border-b-2 bg-transparent p-1 outline-none"
                     type="text"
                     required
                     disabled={loading}
@@ -55,18 +55,18 @@
 
         <div class="flex items-end space-x-2">
             <span
-                class="material-icons-outlined md-36 select-none text-gray-600"
+                class="material-icons-outlined md-36 themed-dim-text select-none"
             >
                 lock
             </span>
             <div class="group flex flex-grow flex-col">
                 <span
-                    class="text-xs text-gray-600 group-focus-within:text-blue-600"
+                    class="themed-dim-text group-focus-within:themed-accent-primary-text text-xs"
                 >
                     Password
                 </span>
                 <input
-                    class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
+                    class="themed-box-border focus:themed-accent-primary-border w-full border-b-2 bg-transparent p-1 outline-none"
                     type="password"
                     required
                     disabled={loading}
@@ -75,7 +75,11 @@
             </div>
         </div>
 
-        <button class="button button-blue" type="submit" disabled={loading}>
+        <button
+            class="button button-themed-primary"
+            type="submit"
+            disabled={loading}
+        >
             {#if loading}
                 <LoadIndicator />
             {:else}

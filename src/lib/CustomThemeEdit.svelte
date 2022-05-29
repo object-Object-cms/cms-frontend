@@ -34,14 +34,19 @@
 />
 
 <div class="flex items-end space-x-2">
-    <span class="material-icons-outlined md-36 select-none text-gray-600">
+    <span class="material-icons-outlined md-36 themed-dim-text select-none">
         text_fields
     </span>
     <div class="group flex flex-grow flex-col">
-        <span class="text-xs text-gray-600 group-focus-within:text-blue-600">
+        <span
+            class="themed-dimtext group-focus-within:themed-accent-primary-text text-xs"
+        >
             Font style
         </span>
-        <select bind:value={themeVariables.fontFamily}>
+        <select
+            class="themed-box-primary"
+            bind:value={themeVariables.fontFamily}
+        >
             <option value="sans-serif">Sans serif</option>
             <option value="serif">Serif</option>
             <option value="monospace">Monospace</option>

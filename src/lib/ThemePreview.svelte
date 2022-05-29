@@ -13,10 +13,14 @@ This is an example text component, styled with **Mark***down*
 [A link to nowhere](javascript:void(0))`;
 </script>
 
-<p class="text-xs text-gray-600 group-focus-within:text-blue-600">Preview:</p>
+<p
+    class="themed-dim-text group-focus-within:themed-accent-primary-text text-xs"
+>
+    Preview:
+</p>
 <ThemedComponent {themeVariables}>
     <div
-        class="themed-background themed-text themed-font border-2 border-gray-600 p-4"
+        class="themed-background themed-text themed-font themed-box-border border-2 p-4"
     >
         <Paragraph textContent={markdownPreviewSource} />
         <NewsBox
