@@ -13,6 +13,7 @@
     import { clampWithRollover } from "./utils";
 
     export let links: Link[];
+    export let bright;
 
     let expanded = false;
     let linkIndex = 0;
@@ -53,7 +54,9 @@
     class="themed-box-secondary themed-font z-40 flex h-16 items-center p-2"
 >
     {#if showMenubarAcceptors}
-        <Icon on:click={menubarCancel} tooltip="Cancel">close</Icon>
+        <Icon on:click={menubarCancel} inverted={!bright} tooltip="Cancel"
+            >close</Icon
+        >
     {/if}
     <div class="container mx-auto flex items-center">
         <details
@@ -73,7 +76,11 @@
                 <div
                     class="flex flex-grow items-center justify-center space-x-4"
                 >
-                    <Icon tooltip="Show previous link" on:click={prevLink}>
+                    <Icon
+                        tooltip="Show previous link"
+                        inverted={!bright}
+                        on:click={prevLink}
+                    >
                         arrow_back
                     </Icon>
                     {#each links as linkObj, i}
@@ -96,7 +103,11 @@
                             </a>
                         {/if}
                     {/each}
-                    <Icon tooltip="Show next link" on:click={nextLink}>
+                    <Icon
+                        tooltip="Show next link"
+                        inverted={!bright}
+                        on:click={nextLink}
+                    >
                         arrow_forward
                     </Icon>
                 </div>
@@ -165,12 +176,18 @@
         </div>
 
         <span class="ml-auto sm:ml-4">
-            <Icon tooltip="Change view mode" on:click={toggleViewMode}>
+            <Icon
+                tooltip="Change view mode"
+                inverted={!bright}
+                on:click={toggleViewMode}
+            >
                 brightness_6
             </Icon>
         </span>
     </div>
     {#if showMenubarAcceptors}
-        <Icon on:click={menubarAccept} tooltip="Accept">done</Icon>
+        <Icon on:click={menubarAccept} tooltip="Accept" inverted={!bright}
+            >done</Icon
+        >
     {/if}
 </header>

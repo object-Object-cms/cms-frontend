@@ -32,6 +32,7 @@
     let menubarLinks: Link[] = [];
     let startupFinished = false;
     let globalTheme: ThemeDescriptor = { name: "standard" };
+    let menubarBright = true;
 
     function refreshMenubarLinks() {
         return getCorePage("MENUBAR")
@@ -49,6 +50,18 @@
                 // it just so happens that ComponentDescriptor has a name property
                 // so no need for casts
                 globalTheme = theme;
+
+                const vars =
+                    globalTheme.name === "custom"
+                        ? globalTheme.variables
+                        : themes[globalTheme.name].variables;
+                const menubarBgColor = vars.boxBackgroundColorSecondary;
+                const r = parseInt(menubarBgColor.substring(1, 3), 16) / 255;
+                const g = parseInt(menubarBgColor.substring(3, 5), 16) / 255;
+                const b = parseInt(menubarBgColor.substring(5, 7), 16) / 255;
+                const y = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+                console.log("y", y);
+                menubarBright = y > 0.5;
             })
             .catch((reason) => {
                 console.error("Failed to refresh global theme:", reason);
@@ -97,7 +110,7 @@
         ? globalTheme.variables
         : themes[globalTheme.name].variables}
 >
-    <Menubar links={menubarLinks} />
+    <Menubar links={menubarLinks} bright={menubarBright} />
 
     <main
         class="themed-background themed-text themed-font min-h-[calc(100vh-4rem)]"
