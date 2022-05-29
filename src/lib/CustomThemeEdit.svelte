@@ -85,6 +85,11 @@
     bind:value={themeVariables.buttonColorPrimary}
 />
 <MaterialColorIconInput
+    icon="ads_click"
+    label="Primary button hover color"
+    bind:value={themeVariables.buttonHoverPrimary}
+/>
+<MaterialColorIconInput
     icon="format_color_text"
     label="Primary button text color"
     bind:value={themeVariables.buttonTextPrimary}

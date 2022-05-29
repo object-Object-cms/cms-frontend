@@ -29,6 +29,7 @@
         appendStyle(vars.boxTextColorSecondary, "box-text-color-secondary");
         appendStyle(vars.boxBorderColor, "box-border-color");
         appendStyle(vars.buttonColorPrimary, "button-color-primary");
+        appendStyle(vars.buttonHoverPrimary, "button-hover-primary");
         appendStyle(vars.buttonTextPrimary, "button-text-primary");
 
         if (vars.fontFamily) {

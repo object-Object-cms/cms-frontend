@@ -16,6 +16,7 @@ export interface ThemeVariables {
     boxTextColorSecondary: string;
     boxBorderColor: string;
     buttonColorPrimary: string;
+    buttonHoverPrimary: string;
     buttonTextPrimary: string;
     fontFamily: string;
 }
@@ -56,6 +57,7 @@ export const themes: Themes = {
             boxTextColorSecondary: "#000000",
             boxBorderColor: "#9ca3af",
             buttonColorPrimary: "#2563eb",
+            buttonHoverPrimary: "#3b82f6",
             buttonTextPrimary: "#ffffff",
             fontFamily: "sans-serif"
         }
@@ -77,6 +79,7 @@ export const themes: Themes = {
             boxTextColorSecondary: "#000000",
             boxBorderColor: "#9ca3af",
             buttonColorPrimary: "#2563eb",
+            buttonHoverPrimary: "#3b82f6",
             buttonTextPrimary: "#ffffff",
             fontFamily: "cursive"
         }
