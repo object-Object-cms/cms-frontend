@@ -48,10 +48,10 @@
                     Login
                 </span>
                 <input
-                    class="themed-box-border focus:themed-accent-primary-border w-full border-b-2 bg-transparent p-1 outline-none
+                    class="focus:themed-accent-primary-border w-full border-b-2 bg-transparent p-1 outline-none
                         {username.length != 0 && username.length < 5
                         ? 'border-red-500'
-                        : 'border-gray-400'}"
+                        : 'themed-box-border'}"
                     type="text"
                     minlength="5"
                     required
@@ -74,10 +74,10 @@
                     Password
                 </span>
                 <input
-                    class="themed-box-border focus:themed-accent-primary-border w-full border-b-2 bg-transparent p-1 outline-none
+                    class="focus:themed-accent-primary-border w-full border-b-2 bg-transparent p-1 outline-none
                         {password.length !== 0 && password.length < 8
                         ? 'border-red-500'
-                        : 'border-gray-400'}"
+                        : 'themed-box-border'}"
                     type="password"
                     minlength="8"
                     required
@@ -99,11 +99,11 @@
                     Confirm Password
                 </span>
                 <input
-                    class="themed-box-border focus:themed-accent-primary-border w-full border-b-2 bg-transparent p-1 outline-none
+                    class="focus:themed-accent-primary-border w-full border-b-2 bg-transparent p-1 outline-none
                         {confirmPassword.length !== 0 &&
                     (confirmPassword.length < 8 || password !== confirmPassword)
                         ? 'border-red-500'
-                        : 'border-gray-400'}"
+                        : 'themed-box-border'}"
                     type="password"
                     minlength="8"
                     required
