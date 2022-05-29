@@ -13,6 +13,7 @@
     import ThemeSelect from "../lib/ThemeSelect.svelte";
     import CustomThemeEdit from "../lib/CustomThemeEdit.svelte";
     import ThemedComponent from "../lib/ThemedComponent.svelte";
+    import ThemePreview from "../lib/ThemePreview.svelte";
     import { push } from "svelte-spa-router";
 
     let title = "";
@@ -268,25 +269,11 @@
             {/if}
 
             {#if theme}
-                <p
-                    class="text-xs text-gray-600 group-focus-within:text-blue-600"
-                >
-                    Preview:
-                </p>
-                <ThemedComponent
+                <ThemePreview
                     themeVariables={theme === "custom"
                         ? customThemeVariables
                         : themes[theme]?.variables}
-                >
-                    <div
-                        class="p-4 themed-background themed-font border-gray-600 border-2"
-                    >
-                        <p class="themed-text">Sample text</p>
-                        <p class="themed-link cursor-pointer hover:underline">
-                            This is a link
-                        </p>
-                    </div>
-                </ThemedComponent>
+                />
             {/if}
 
             <button class="button button-blue" type="submit">Next</button>
