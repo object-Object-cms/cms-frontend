@@ -83,59 +83,61 @@
     {#if error}
         <p class="text-red-600 text-center">{error}</p>
     {/if}
-    <div
-        class="container mx-auto border sm:mt-1 divide-y border-gray-200 divide-gray-200"
-    >
-        <div class="flex p-2 items-center">
-            <div class="w-2/12 sm:w-1/12">id</div>
-            <div class="w-7/12 sm:w-6/12">username</div>
-            <div class="w-3/12 sm:w-2/12 text-right sm:text-left">
-                access level
+    <div class="sm:pt-1">
+        <div
+            class="container mx-auto border divide-y border-gray-200 divide-gray-200"
+        >
+            <div class="flex p-2 items-center">
+                <div class="w-2/12 sm:w-1/12">id</div>
+                <div class="w-7/12 sm:w-6/12">username</div>
+                <div class="w-3/12 sm:w-2/12 text-right sm:text-left">
+                    access level
+                </div>
             </div>
-        </div>
-        {#each users as user (user.id)}
-            <UserEdit
-                {user}
-                disabled={updating}
-                bind:editing={user.editing}
-                bind:updating={user.updating}
-                on:clearError={() => (error = "")}
-                on:enterEdit={() => storeEditingUser(user)}
-                on:leaveEdit={() => (editingUser = undefined)}
-                on:updateBegin={handleUpdateBegin}
-                on:updateSuccess={handleUpdateSuccess}
-                on:updateError={handleUpdateError}
-            />
-        {/each}
-        <div class="flex flex-wrap items-center p-2">
-            <div class="w-2/12 sm:w-1/12" />
-            <div class="w-7/12 pr-2 sm:w-6/12">
-                <input
-                    class="w-full rounded border-2 border-gray-400 p-1 outline-none focus:border-blue-600"
+            {#each users as user (user.id)}
+                <UserEdit
+                    {user}
                     disabled={updating}
-                    bind:value={addUsername}
+                    bind:editing={user.editing}
+                    bind:updating={user.updating}
+                    on:clearError={() => (error = "")}
+                    on:enterEdit={() => storeEditingUser(user)}
+                    on:leaveEdit={() => (editingUser = undefined)}
+                    on:updateBegin={handleUpdateBegin}
+                    on:updateSuccess={handleUpdateSuccess}
+                    on:updateError={handleUpdateError}
                 />
-            </div>
-            <div class="w-3/12 sm:w-2/12">
-                <input
-                    class="w-full rounded border-2 border-gray-400 p-1 outline-none focus:border-blue-600"
-                    type="number"
-                    min="0"
-                    max="100"
-                    disabled={updating}
-                    bind:value={addAccessLevel}
-                />
-            </div>
-            <div
-                class="mt-1 flex flex-grow justify-end space-x-2 sm:mt-0"
-                class:pointer-events-none={updating}
-                class:opacity-50={updating}
-            >
-                {#if creating}
-                    <LoadIndicator />
-                {:else}
-                    <Icon tooltip="Add user" on:click={addUser}>add</Icon>
-                {/if}
+            {/each}
+            <div class="flex flex-wrap items-center p-2">
+                <div class="w-2/12 sm:w-1/12" />
+                <div class="w-7/12 pr-2 sm:w-6/12">
+                    <input
+                        class="w-full rounded border-2 border-gray-400 p-1 outline-none focus:border-blue-600"
+                        disabled={updating}
+                        bind:value={addUsername}
+                    />
+                </div>
+                <div class="w-3/12 sm:w-2/12">
+                    <input
+                        class="w-full rounded border-2 border-gray-400 p-1 outline-none focus:border-blue-600"
+                        type="number"
+                        min="0"
+                        max="100"
+                        disabled={updating}
+                        bind:value={addAccessLevel}
+                    />
+                </div>
+                <div
+                    class="mt-1 flex flex-grow justify-end space-x-2 sm:mt-0"
+                    class:pointer-events-none={updating}
+                    class:opacity-50={updating}
+                >
+                    {#if creating}
+                        <LoadIndicator />
+                    {:else}
+                        <Icon tooltip="Add user" on:click={addUser}>add</Icon>
+                    {/if}
+                </div>
             </div>
         </div>
     </div>
