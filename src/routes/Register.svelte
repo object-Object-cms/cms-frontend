@@ -34,7 +34,10 @@
 </script>
 
 <div class="mx-auto max-w-xl p-4">
-    <form class="space-y-4 p-4 shadow-md" on:submit={handleRegistration}>
+    <form
+        class="themed-shadow space-y-4 p-4 shadow-md"
+        on:submit={handleRegistration}
+    >
         <div class="flex items-end space-x-2">
             <span
                 class="material-icons-outlined md-36 themed-dim-text select-none"
