@@ -5,7 +5,7 @@
     export let copyrightText: string;
 </script>
 
-<div class="themed-font themed-text divide-y">
+<div class="themed-text divide-y">
     <div class="flex flex-wrap justify-center gap-2 opacity-50">
         {#each links as linkObj}
             {#if linkObj.url.startsWith("/")}

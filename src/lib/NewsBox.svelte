@@ -8,7 +8,7 @@
 </script>
 
 <div
-    class="themed-font themed-text flex h-full flex-col overflow-hidden rounded border border-gray-600"
+    class="themed-text flex h-full flex-col overflow-hidden rounded border border-gray-600"
 >
     <div class="bg-gray-400 bg-opacity-50 p-2">News</div>
     <div class="flex flex-grow flex-col items-start p-2">
