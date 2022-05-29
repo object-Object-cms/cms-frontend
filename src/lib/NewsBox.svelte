@@ -13,7 +13,7 @@
     <div class="themed-box-secondary p-2">News</div>
     <div class="themed-box-primary flex flex-grow flex-col items-start p-2">
         <p class="text-2xl">{title}</p>
-        <p>{description}</p>
+        <p class="mb-1">{description}</p>
         {#if linkUrl.startsWith("/")}
             <a
                 class="button button-themed-primary mt-auto"
