@@ -118,14 +118,26 @@
                     />
                 </div>
                 <div class="w-3/12 sm:w-2/12">
-                    <input
-                        class="w-full rounded border-2 themed-box-border themed-box-primary p-1 outline-none focus:themed-accent-primary-border"
-                        type="number"
-                        min="0"
-                        max="100"
-                        disabled={updating}
-                        bind:value={addAccessLevel}
-                    />
+                    {#if addAccessLevel === 0 || addAccessLevel === 50 || addAccessLevel === 100}
+                        <select
+                            class="w-full p-1 themed-box-primary"
+                            bind:value={addAccessLevel}
+                        >
+                            <option value={0}>User (0)</option>
+                            <option value={50}>Mod (50)</option>
+                            <option value={100}>Admin (100)</option>
+                            <option value={1}>Custom</option>
+                        </select>
+                    {:else}
+                        <input
+                            class="w-full rounded border-2 themed-box-border themed-box-primary p-1 outline-none focus:themed-accent-primary-border"
+                            type="number"
+                            min="0"
+                            max="100"
+                            disabled={updating}
+                            bind:value={addAccessLevel}
+                        />
+                    {/if}
                 </div>
                 <div
                     class="mt-1 flex flex-grow justify-end space-x-2 sm:mt-0"

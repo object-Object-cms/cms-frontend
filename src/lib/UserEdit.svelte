@@ -94,20 +94,32 @@
     {#if editing}
         <div class="w-7/12 pr-2 sm:w-6/12">
             <input
-                class="w-full rounded border-2 border-gray-400 p-1 outline-none focus:border-blue-600"
+                class="themed-box-border themed-box-primary focus:themed-accent-primary-border w-full rounded border-2 p-1 outline-none"
                 disabled={updating}
                 bind:value={editUsername}
             />
         </div>
         <div class="w-3/12 sm:w-2/12">
-            <input
-                class="w-full rounded border-2 border-gray-400 p-1 outline-none focus:border-blue-600"
-                type="number"
-                min="0"
-                max="100"
-                disabled={updating}
-                bind:value={editAccessLevel}
-            />
+            {#if editAccessLevel === 0 || editAccessLevel === 50 || editAccessLevel === 100}
+                <select
+                    class="themed-box-primary w-full p-1"
+                    bind:value={editAccessLevel}
+                >
+                    <option value={0}>User (0)</option>
+                    <option value={50}>Mod (50)</option>
+                    <option value={100}>Admin (100)</option>
+                    <option value={1}>Custom</option>
+                </select>
+            {:else}
+                <input
+                    class="w-full rounded border-2 themed-box-border themed-box-primary p-1 outline-none focus:themed-accent-primary-border"
+                    type="number"
+                    min="0"
+                    max="100"
+                    disabled={updating}
+                    bind:value={editAccessLevel}
+                />
+            {/if}
         </div>
     {:else}
         <div class="w-7/12 sm:w-6/12 overflow-hidden text-ellipsis">
@@ -125,7 +137,7 @@
         {#if updating}
             <LoadIndicator />
         {:else if editing}
-            <span class:text-green-600={editPassword}>
+            <span class:themed-accent-secondary-text={editPassword}>
                 <Icon
                     tooltip={editPassword
                         ? "Remove changed password"
