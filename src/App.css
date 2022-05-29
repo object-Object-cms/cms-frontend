@@ -55,6 +55,28 @@
         @apply hover:bg-blue-500;
     }
 
+    .button-themed-primary {
+        background-color: var(--theme-button-color-primary);
+        color: var(--theme-button-text-primary);
+        @apply border-none;
+    }
+
+    .button-themed-primary:hover {
+        background-color: var(--theme-button-hover-primary);
+    }
+
+    .button-themed-primary-outline {
+        border-color: var(--theme-button-color-primary);
+        color: var(--theme-button-color-primary);
+        @apply border;
+        @apply border-solid;
+    }
+
+    .button-themed-primary-outline:hover {
+        background-color: var(--theme-button-color-primary);
+        color: var(--theme-button-text-primary);
+    }
+
     .icon {
         @apply h-8;
         @apply w-8;
@@ -69,26 +91,24 @@
 
     .markdown {
         @apply p-2;
-        font-family: var(--theme-font-family);
-        color: var(--theme-text-color);
     }
 
     .markdown h1 {
+        border-color: var(--theme-divisor-color);
         @apply text-4xl;
         @apply font-semibold;
         @apply my-4;
         @apply pb-1;
         @apply border-b;
-        @apply border-gray-300;
     }
 
     .markdown h2 {
+        border-color: var(--theme-divisor-color);
         @apply text-3xl;
         @apply font-semibold;
         @apply my-4;
         @apply pb-1;
         @apply border-b;
-        @apply border-gray-300;
     }
 
     .markdown a {
@@ -109,15 +129,17 @@
     }
 
     .markdown :not(pre) > code {
-        @apply bg-gray-200;
+        background-color: var(--theme-box-background-color-primary);
+        color: var(--theme-box-text-color-primary);
         @apply px-1;
         @apply py-px;
         @apply rounded;
     }
 
     .markdown pre > code {
+        background-color: var(--theme-box-background-color-primary);
+        color: var(--theme-box-text-color-primary);
         @apply block;
-        @apply bg-gray-200;
         @apply p-2;
         @apply rounded;
     }
@@ -178,7 +200,29 @@
         color: var(--theme-link-color);
     }
 
+    .themed-dim-text {
+        color: var(--theme-dim-text-color);
+    }
+
+    .themed-divide > :not([hidden]) ~ :not([hidden]) {
+        border-color: var(--theme-divisor-color);
+    }
+
     .themed-font {
         font-family: var(--theme-font-family);
+    }
+
+    .themed-box-primary {
+        background-color: var(--theme-box-background-color-primary);
+        color: var(--theme-box-text-color-primary);
+    }
+
+    .themed-box-secondary {
+        background-color: var(--theme-box-background-color-secondary);
+        color: var(--theme-box-text-color-secondary);
+    }
+
+    .themed-border-box {
+        border-color: var(--theme-box-border-color);
     }
 }

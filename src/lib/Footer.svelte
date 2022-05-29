@@ -5,8 +5,8 @@
     export let copyrightText: string;
 </script>
 
-<div class="themed-text divide-y">
-    <div class="flex flex-wrap justify-center gap-2 opacity-50">
+<div class="themed-divide divide-y">
+    <div class="themed-dim-text flex flex-wrap justify-center gap-2">
         {#each links as linkObj}
             {#if linkObj.url.startsWith("/")}
                 <a class="hover:underline" href={linkObj.url} use:link
@@ -17,5 +17,5 @@
             {/if}
         {/each}
     </div>
-    <p class="text-center">{copyrightText}</p>
+    <p class="themed-text text-center">{copyrightText}</p>
 </div>

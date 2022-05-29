@@ -99,7 +99,7 @@
 </script>
 
 <div
-    class="themed-background themed-font flex"
+    class="themed-background themed-text themed-font flex"
     style="min-height: calc( 100vh - 4rem );"
     on:click={() => (selected = undefined)}
 >
