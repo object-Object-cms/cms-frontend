@@ -26,6 +26,7 @@
     import EditMenubar from "./routes/EditMenubar.svelte";
     import ManageUsers from "./routes/ManageUsers.svelte";
     import ManageGallery from "./routes/ManageGallery.svelte";
+    import EditGlobalTheme from "./routes/EditGlobalTheme.svelte";
     import NotFound from "./routes/NotFound.svelte";
 
     import "./App.css";
@@ -139,6 +140,7 @@
                 "/editMenubar": EditMenubar,
                 "/manageUsers": ManageUsers,
                 "/manageGallery": ManageGallery,
+                "/editGlobalTheme": EditGlobalTheme,
                 "*": NotFound
             }}
             on:routeLoading={routeLoading}

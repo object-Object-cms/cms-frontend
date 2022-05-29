@@ -140,6 +140,12 @@
             >
                 Edit menubar
             </IconButton>
+            <IconButton
+                icon="brightness_4"
+                on:click={() => push("/editGlobalTheme")}
+            >
+                Edit global theme
+            </IconButton>
             <IconButton icon="person" on:click={() => push("/manageUsers")}>
                 Manage users
             </IconButton>
