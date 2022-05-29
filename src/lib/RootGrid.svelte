@@ -146,7 +146,7 @@
 
 {#if editingMode}
     <div
-        class="fixed left-0 top-16 bottom-16 w-32 text-white transition-transform duration-300"
+        class="fixed left-0 top-16 bottom-16 w-32 font-sans text-white transition-transform duration-300"
         class:-translate-x-full={!leftSidebarExpanded}
     >
         <div
@@ -190,7 +190,7 @@
         </div>
     </div>
     <div
-        class="fixed right-0 top-16 bottom-16 w-72 text-white transition-transform duration-300"
+        class="fixed right-0 top-16 bottom-16 w-72 font-sans text-white transition-transform duration-300"
         class:translate-x-full={!rightSidebarExpanded}
     >
         <div
