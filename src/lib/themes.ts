@@ -62,6 +62,28 @@ export const themes: Themes = {
             fontFamily: "sans-serif"
         }
     },
+    dark: {
+        name: "Dark mode",
+        preview: {
+            icon: "dark_mode"
+        },
+        variables: {
+            backgroundColor: "#111827",
+            textColor: "#ffffff",
+            linkColor: "#60a5fa",
+            dimTextColor: "#9ca3af",
+            divisorColor: "#4b5563",
+            boxBackgroundColorPrimary: "#1f2937",
+            boxTextColorPrimary: "#ffffff",
+            boxBackgroundColorSecondary: "#374151",
+            boxTextColorSecondary: "#ffffff",
+            boxBorderColor: "#4b5563",
+            buttonColorPrimary: "#2563eb",
+            buttonHoverPrimary: "#3b82f6",
+            buttonTextPrimary: "#ffffff",
+            fontFamily: "sans-serif"
+        }
+    },
     hotTomato: {
         name: "Hot tomato",
         preview: {
