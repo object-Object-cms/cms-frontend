@@ -8,6 +8,14 @@ export interface ThemeVariables {
     backgroundColor: string;
     textColor: string;
     linkColor: string;
+    dimTextColor: string;
+    boxBackgroundColorPrimary: string;
+    boxTextColorPrimary: string;
+    boxBackgroundColorSecondary: string;
+    boxTextColorSecondary: string;
+    boxBorderColor: string;
+    buttonColorPrimary: string;
+    buttonTextPrimary: string;
     fontFamily: string;
 }
 
@@ -39,6 +47,14 @@ export const themes: Themes = {
             backgroundColor: "#ffffff",
             textColor: "#000000",
             linkColor: "#2563eb",
+            dimTextColor: "#4b5563",
+            boxBackgroundColorPrimary: "#f3f4f6",
+            boxTextColorPrimary: "#000000",
+            boxBackgroundColorSecondary: "#d1d5db",
+            boxTextColorSecondary: "#000000",
+            boxBorderColor: "#9ca3af",
+            buttonColorPrimary: "#2563eb",
+            buttonTextPrimary: "#ffffff",
             fontFamily: "sans-serif"
         }
     },
@@ -51,6 +67,14 @@ export const themes: Themes = {
             backgroundColor: "#ffff00",
             textColor: "#ff0000",
             linkColor: "#ff9900",
+            dimTextColor: "#4b5563",
+            boxBackgroundColorPrimary: "#f3f4f6",
+            boxTextColorPrimary: "#000000",
+            boxBackgroundColorSecondary: "#d1d5db",
+            boxTextColorSecondary: "#000000",
+            boxBorderColor: "#9ca3af",
+            buttonColorPrimary: "#2563eb",
+            buttonTextPrimary: "#ffffff",
             fontFamily: "cursive"
         }
     }

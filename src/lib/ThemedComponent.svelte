@@ -5,15 +5,31 @@
 
     function genStyle(vars: Partial<ThemeVariables>) {
         let style = "";
-        if (vars.backgroundColor) {
-            style += `--theme-background-color:${vars.backgroundColor};`;
+
+        function appendStyle(value: any, name: string) {
+            if (value) {
+                style += `--theme-${name}:${value};`;
+            }
         }
-        if (vars.textColor) {
-            style += `--theme-text-color:${vars.textColor};`;
-        }
-        if (vars.linkColor) {
-            style += `--theme-link-color:${vars.linkColor};`;
-        }
+
+        appendStyle(vars.backgroundColor, "background-color");
+        appendStyle(vars.textColor, "text-color");
+        appendStyle(vars.linkColor, "link-color");
+        appendStyle(vars.dimTextColor, "dim-text-color");
+        appendStyle(
+            vars.boxBackgroundColorPrimary,
+            "box-background-color-primary"
+        );
+        appendStyle(vars.boxTextColorPrimary, "box-text-color-primary");
+        appendStyle(
+            vars.boxBackgroundColorSecondary,
+            "box-background-color-secondary"
+        );
+        appendStyle(vars.boxTextColorSecondary, "box-text-color-secondary");
+        appendStyle(vars.boxBorderColor, "box-border-color");
+        appendStyle(vars.buttonColorPrimary, "button-color-primary");
+        appendStyle(vars.buttonTextPrimary, "button-text-primary");
+
         if (vars.fontFamily) {
             switch (vars.fontFamily) {
                 case "sans-serif":

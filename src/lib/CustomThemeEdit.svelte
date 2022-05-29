@@ -1,68 +1,32 @@
 <script lang="ts">
     import type { ThemeVariables } from "./themes";
+    import MaterialColorIconInput from "./MaterialColorIconInput.svelte";
+    import MaterialInputHeader from "./MaterialInputHeader.svelte";
 
     export let themeVariables: Partial<ThemeVariables>;
 </script>
 
-<div class="flex items-end space-x-2">
-    <span class="material-icons-outlined md-36 select-none text-gray-600">
-        wallpaper
-    </span>
-    <div class="group flex flex-grow flex-col">
-        <span class="text-xs text-gray-600 group-focus-within:text-blue-600">
-            Background color
-        </span>
-        <div class="flex">
-            <input
-                class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
-                type="text"
-                required
-                bind:value={themeVariables.backgroundColor}
-            />
-            <input type="color" bind:value={themeVariables.backgroundColor} />
-        </div>
-    </div>
-</div>
-
-<div class="flex items-end space-x-2">
-    <span class="material-icons-outlined md-36 select-none text-gray-600">
-        border_color
-    </span>
-    <div class="group flex flex-grow flex-col">
-        <span class="text-xs text-gray-600 group-focus-within:text-blue-600">
-            Text color
-        </span>
-        <div class="flex">
-            <input
-                class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
-                type="text"
-                required
-                bind:value={themeVariables.textColor}
-            />
-            <input type="color" bind:value={themeVariables.textColor} />
-        </div>
-    </div>
-</div>
-
-<div class="flex items-end space-x-2">
-    <span class="material-icons-outlined md-36 select-none text-gray-600">
-        link
-    </span>
-    <div class="group flex flex-grow flex-col">
-        <span class="text-xs text-gray-600 group-focus-within:text-blue-600">
-            Link color
-        </span>
-        <div class="flex">
-            <input
-                class="w-full border-b-2 border-gray-400 p-1 outline-none focus:border-blue-600"
-                type="text"
-                required
-                bind:value={themeVariables.linkColor}
-            />
-            <input type="color" bind:value={themeVariables.linkColor} />
-        </div>
-    </div>
-</div>
+<MaterialInputHeader>Main</MaterialInputHeader>
+<MaterialColorIconInput
+    icon="wallpaper"
+    label="Background color"
+    bind:value={themeVariables.backgroundColor}
+/>
+<MaterialColorIconInput
+    icon="format_color_text"
+    label="Text color"
+    bind:value={themeVariables.textColor}
+/>
+<MaterialColorIconInput
+    icon="link"
+    label="Link color"
+    bind:value={themeVariables.linkColor}
+/>
+<MaterialColorIconInput
+    icon="format_color_text"
+    label="Dim text color"
+    bind:value={themeVariables.dimTextColor}
+/>
 
 <div class="flex items-end space-x-2">
     <span class="material-icons-outlined md-36 select-none text-gray-600">
@@ -81,3 +45,42 @@
         </select>
     </div>
 </div>
+
+<MaterialInputHeader>Boxes</MaterialInputHeader>
+<MaterialColorIconInput
+    icon="wallpaper"
+    label="Primary box background color"
+    bind:value={themeVariables.boxBackgroundColorPrimary}
+/>
+<MaterialColorIconInput
+    icon="format_color_text"
+    label="Primary box text color"
+    bind:value={themeVariables.boxTextColorPrimary}
+/>
+<MaterialColorIconInput
+    icon="wallpaper"
+    label="Secondary box background color"
+    bind:value={themeVariables.boxBackgroundColorSecondary}
+/>
+<MaterialColorIconInput
+    icon="format_color_text"
+    label="Secondary box text color"
+    bind:value={themeVariables.boxTextColorSecondary}
+/>
+<MaterialColorIconInput
+    icon="border_color"
+    label="Box border color"
+    bind:value={themeVariables.boxBorderColor}
+/>
+
+<MaterialInputHeader>Buttons</MaterialInputHeader>
+<MaterialColorIconInput
+    icon="format_color_fill"
+    label="Primary button color"
+    bind:value={themeVariables.buttonColorPrimary}
+/>
+<MaterialColorIconInput
+    icon="format_color_text"
+    label="Primary button text color"
+    bind:value={themeVariables.buttonTextPrimary}
+/>
