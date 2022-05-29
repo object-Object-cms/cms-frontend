@@ -80,8 +80,8 @@ export const themes: Themes = {
             boxBackgroundColorSecondary: "#374151",
             boxTextColorSecondary: "#ffffff",
             boxBorderColor: "#4b5563",
-            buttonColorPrimary: "#2563eb",
-            buttonHoverPrimary: "#3b82f6",
+            buttonColorPrimary: "#3b82f6",
+            buttonHoverPrimary: "#60a5fa",
             buttonTextPrimary: "#ffffff",
             fontFamily: "sans-serif"
         }
