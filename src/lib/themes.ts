@@ -27,11 +27,13 @@ export interface Theme {
     variables: ThemeVariables;
 }
 
+export interface ThemeDescriptor {
+    name: string;
+    variables?: Partial<ThemeVariables>;
+}
+
 export interface ThemeComponent {
-    theme: {
-        name: string;
-        variables?: Partial<ThemeVariables>;
-    };
+    theme: ThemeDescriptor;
     component: ComponentDescriptor;
 }
 

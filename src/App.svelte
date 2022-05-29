@@ -6,11 +6,12 @@
     import LoadIndicator from "./lib/LoadIndicator.svelte";
     import Menubar, { Link } from "./lib/Menubar.svelte";
     import ModalContainer from "./lib/modals/ModalContainer.svelte";
+    import ThemedComponent from "./lib/ThemedComponent.svelte";
     import { refreshAccountInfo, currentAccount } from "./AccountManager";
     import { getCorePage } from "./Server";
+    import { ThemeDescriptor, themes } from "./lib/themes";
 
     import Home from "./routes/Home.svelte";
-
     import Article from "./routes/Article.svelte";
     import ArticleList from "./routes/ArticleList.svelte";
     import Gallery from "./routes/Gallery.svelte";
@@ -30,6 +31,7 @@
 
     let menubarLinks: Link[] = [];
     let startupFinished = false;
+    let globalTheme: ThemeDescriptor = { name: "standard" };
 
     function refreshMenubarLinks() {
         return getCorePage("MENUBAR")
@@ -41,9 +43,22 @@
             });
     }
 
+    function refreshGlobalTheme() {
+        return getCorePage("GLOBAL_THEME")
+            .then((theme) => {
+                // it just so happens that ComponentDescriptor has a name property
+                // so no need for casts
+                globalTheme = theme;
+            })
+            .catch((reason) => {
+                console.error("Failed to refresh global theme:", reason);
+            });
+    }
+
     function routeLoading() {
         if (startupFinished) {
             refreshMenubarLinks();
+            refreshGlobalTheme();
             if ($currentAccount !== null) {
                 refreshAccountInfo();
             }
@@ -56,7 +71,11 @@
     }
 
     async function runStartupTasks() {
-        await Promise.all([refreshMenubarLinks(), refreshAccountInfo()]);
+        await Promise.all([
+            refreshMenubarLinks(),
+            refreshGlobalTheme(),
+            refreshAccountInfo()
+        ]);
         startupFinished = true;
     }
 
@@ -73,37 +92,43 @@
     </div>
 {/await}
 
-<Menubar links={menubarLinks} />
+<ThemedComponent
+    themeVariables={globalTheme.name === "custom"
+        ? globalTheme.variables
+        : themes[globalTheme.name].variables}
+>
+    <Menubar links={menubarLinks} />
 
-<main>
-    <Router
-        routes={{
-            "/": Home,
-            "/article/:id": Article,
-            "/article": ArticleList,
-            "/gallery": Gallery,
-            "/comments": Comments,
-            "/login": Login,
-            "/register": Register,
-            "/profile": wrap({
-                component: Profile,
-                conditions: [
-                    () => {
-                        return $currentAccount !== null;
-                    }
-                ]
-            }),
-            "/newArticle": NewArticle,
-            "/editArticle/:id": EditArticle,
-            "/editCore/:name": EditCorePage,
-            "/editMenubar": EditMenubar,
-            "/manageUsers": ManageUsers,
-            "/manageGallery": ManageGallery,
-            "*": NotFound
-        }}
-        on:routeLoading={routeLoading}
-        on:conditionsFailed={conditionsFailed}
-    />
-</main>
+    <main>
+        <Router
+            routes={{
+                "/": Home,
+                "/article/:id": Article,
+                "/article": ArticleList,
+                "/gallery": Gallery,
+                "/comments": Comments,
+                "/login": Login,
+                "/register": Register,
+                "/profile": wrap({
+                    component: Profile,
+                    conditions: [
+                        () => {
+                            return $currentAccount !== null;
+                        }
+                    ]
+                }),
+                "/newArticle": NewArticle,
+                "/editArticle/:id": EditArticle,
+                "/editCore/:name": EditCorePage,
+                "/editMenubar": EditMenubar,
+                "/manageUsers": ManageUsers,
+                "/manageGallery": ManageGallery,
+                "*": NotFound
+            }}
+            on:routeLoading={routeLoading}
+            on:conditionsFailed={conditionsFailed}
+        />
+    </main>
 
-<ModalContainer />
+    <ModalContainer />
+</ThemedComponent>
