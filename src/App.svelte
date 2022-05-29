@@ -77,6 +77,7 @@
             }
         }
         dispatchEvent(new Event("hideMenubarAcceptors"));
+        dispatchEvent(new Event("requestModalClose"));
     }
 
     function conditionsFailed() {
