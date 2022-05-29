@@ -27,6 +27,11 @@
     label="Dim text color"
     bind:value={themeVariables.dimTextColor}
 />
+<MaterialColorIconInput
+    icon="grid_3x3"
+    label="Divisor color"
+    bind:value={themeVariables.divisorColor}
+/>
 
 <div class="flex items-end space-x-2">
     <span class="material-icons-outlined md-36 select-none text-gray-600">
