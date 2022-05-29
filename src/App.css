@@ -77,6 +77,28 @@
         color: var(--theme-button-text-primary);
     }
 
+    .button-themed-secondary {
+        background-color: var(--theme-button-color-secondary);
+        color: var(--theme-button-text-secondary);
+        @apply border-none;
+    }
+
+    .button-themed-secondary:hover {
+        background-color: var(--theme-button-hover-secondary);
+    }
+
+    .button-themed-secondary-outline {
+        border-color: var(--theme-button-color-secondary);
+        color: var(--theme-button-color-secondary);
+        @apply border;
+        @apply border-solid;
+    }
+
+    .button-themed-secondary-outline:hover {
+        background-color: var(--theme-button-color-secondary);
+        color: var(--theme-button-text-secondary);
+    }
+
     .icon {
         @apply h-8;
         @apply w-8;

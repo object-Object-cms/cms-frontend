@@ -31,6 +31,9 @@
         appendStyle(vars.buttonColorPrimary, "button-color-primary");
         appendStyle(vars.buttonHoverPrimary, "button-hover-primary");
         appendStyle(vars.buttonTextPrimary, "button-text-primary");
+        appendStyle(vars.buttonColorSecondary, "button-color-secondary");
+        appendStyle(vars.buttonHoverSecondary, "button-hover-secondary");
+        appendStyle(vars.buttonTextSecondary, "button-text-secondary");
 
         if (vars.fontFamily) {
             switch (vars.fontFamily) {

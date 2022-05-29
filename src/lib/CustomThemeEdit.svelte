@@ -94,3 +94,18 @@
     label="Primary button text color"
     bind:value={themeVariables.buttonTextPrimary}
 />
+<MaterialColorIconInput
+    icon="format_color_fill"
+    label="Secondary button color"
+    bind:value={themeVariables.buttonColorSecondary}
+/>
+<MaterialColorIconInput
+    icon="ads_click"
+    label="Secondary button hover color"
+    bind:value={themeVariables.buttonHoverSecondary}
+/>
+<MaterialColorIconInput
+    icon="format_color_text"
+    label="Secondary button text color"
+    bind:value={themeVariables.buttonTextSecondary}
+/>

@@ -18,6 +18,9 @@ export interface ThemeVariables {
     buttonColorPrimary: string;
     buttonHoverPrimary: string;
     buttonTextPrimary: string;
+    buttonColorSecondary: string;
+    buttonHoverSecondary: string;
+    buttonTextSecondary: string;
     fontFamily: string;
 }
 
@@ -61,6 +64,9 @@ export const themes: Themes = {
             buttonColorPrimary: "#2563eb",
             buttonHoverPrimary: "#3b82f6",
             buttonTextPrimary: "#ffffff",
+            buttonColorSecondary: "#16a34a",
+            buttonHoverSecondary: "#22c55e",
+            buttonTextSecondary: "#ffffff",
             fontFamily: "sans-serif"
         }
     },
@@ -83,6 +89,9 @@ export const themes: Themes = {
             buttonColorPrimary: "#3b82f6",
             buttonHoverPrimary: "#60a5fa",
             buttonTextPrimary: "#ffffff",
+            buttonColorSecondary: "#22c55e",
+            buttonHoverSecondary: "#4ade80",
+            buttonTextSecondary: "#ffffff",
             fontFamily: "sans-serif"
         }
     },
@@ -105,6 +114,9 @@ export const themes: Themes = {
             buttonColorPrimary: "#ea580c",
             buttonHoverPrimary: "#f97316",
             buttonTextPrimary: "#ffffff",
+            buttonColorSecondary: "#e11d48",
+            buttonHoverSecondary: "#f43f5e",
+            buttonTextSecondary: "#ffffff",
             fontFamily: "cursive"
         }
     }
