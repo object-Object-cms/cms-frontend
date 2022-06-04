@@ -106,7 +106,7 @@
             <div class="flex flex-col-reverse gap-2">
                 {#each comments as comment}
                     <div
-                        class="flex items-start themed-box-primary p-2 rounded"
+                        class="flex items-start themed-box-secondary p-2 rounded"
                     >
                         <div class="flex-grow">
                             <p
