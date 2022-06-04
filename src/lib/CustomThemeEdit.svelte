@@ -57,6 +57,7 @@
             <option value="monospace">Monospace</option>
             <option value="cursive">Cursive</option>
             <option value="fantasy">Fantasy</option>
+            <option value="blank">Blank</option>
         </select>
     </div>
 </div>

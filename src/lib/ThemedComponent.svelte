@@ -49,6 +49,9 @@
                 case "monospace":
                     style += `--theme-font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;`;
                     break;
+                case "blank":
+                    style += "--theme-font-family:blank;";
+                    break;
                 default:
                     style += `--theme-font-family:${vars.fontFamily};`;
             }

@@ -1,6 +1,12 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
 
+@font-face {
+    font-family: blank;
+    src: url("/fonts/AdobeBlank.ttf.woff") format("woff"),
+        url("/fonts/AdobeBlank.ttf") format("truetype");
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
