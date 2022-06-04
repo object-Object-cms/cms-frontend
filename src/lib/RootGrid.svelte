@@ -1,3 +1,16 @@
+<script lang="ts" context="module">
+    export type InGridComponent = {
+        id: string;
+        layout: {
+            x: number;
+            y: number;
+            w: number;
+            h: number;
+        };
+        component: ComponentDescriptor;
+    };
+</script>
+
 <script lang="ts">
     import DynamicComponent, {
         ComponentDescriptor
@@ -12,25 +25,27 @@
     import ComplexValueEdit from "./ComplexValueEdit.svelte";
     import Icon from "./Icon.svelte";
     import ComponentButton from "./ComponentButton.svelte";
-
-    type InGridComponent = {
-        id: string;
-        layout: {
-            x: number;
-            y: number;
-            w: number;
-            h: number;
-        };
-        component: ComponentDescriptor;
-    };
+    import { reflowContent } from "./reflow";
 
     export let subComponents: InGridComponent[] = [];
     export let editingMode = false;
     let selected: number | undefined;
 
-    const COLS = 6;
-    const cols = [[1100, COLS]];
-    let mappedComponents = subComponents.map((n) => {
+    let COLS = editingMode
+        ? 6
+        : window.innerWidth < 320
+        ? 1
+        : window.innerWidth < 640
+        ? 2
+        : window.innerWidth < 768
+        ? 3
+        : window.innerWidth < 1024
+        ? 4
+        : 6;
+    let cols = [[1100, COLS]];
+    let mappedComponents = (
+        COLS === 6 ? subComponents : reflowContent(subComponents, 6, COLS)
+    ).map((n) => {
         return {
             id: n.id,
             [COLS]: gridHelp.item({
@@ -40,6 +55,39 @@
             component: n.component
         };
     });
+
+    function windowResized() {
+        if (!editingMode) {
+            const newCOLS =
+                window.innerWidth < 320
+                    ? 1
+                    : window.innerWidth < 640
+                    ? 2
+                    : window.innerWidth < 768
+                    ? 3
+                    : window.innerWidth < 1024
+                    ? 4
+                    : 6;
+            if (newCOLS !== COLS) {
+                COLS = newCOLS;
+                cols = [[1100, COLS]];
+                mappedComponents = (
+                    COLS === 6
+                        ? subComponents
+                        : reflowContent(subComponents, 6, COLS)
+                ).map((n) => {
+                    return {
+                        id: n.id,
+                        [COLS]: gridHelp.item({
+                            ...n.layout,
+                            fixed: !editingMode
+                        }),
+                        component: n.component
+                    };
+                });
+            }
+        }
+    }
 
     let leftSidebarExpanded = true;
     let rightSidebarExpanded = true;
@@ -97,6 +145,8 @@
         return a as [string, NonstandardValue];
     }
 </script>
+
+<svelte:window on:resize={windowResized} />
 
 <div
     class="themed-background themed-text themed-font flex"
