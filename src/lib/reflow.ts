@@ -14,6 +14,7 @@ function reflowRow(
 ) {
     const unitSize = targetColumns / rowWidth;
     let currentWidth = 0;
+    let maxHeight = 0;
     for (const component of row) {
         const newWidth = component.layout.w * unitSize;
         let newHeight = component.layout.h;
@@ -28,7 +29,9 @@ function reflowRow(
         component.layout.h = newHeight;
         component.layout.w = Math.floor(newWidth);
         currentWidth += Math.ceil(newWidth);
+        maxHeight = Math.max(maxHeight, newHeight);
     }
+    return maxHeight;
 }
 
 export function reflowContent(
@@ -55,7 +58,6 @@ export function reflowContent(
 
         const row = [];
         let currentRowWidth = 0;
-        let maxHeight = 0;
 
         const newWidth = Math.min(component.layout.w, targetColumns);
         let newHeight = component.layout.h;
@@ -78,7 +80,6 @@ export function reflowContent(
             }
         });
         currentRowWidth += newWidth;
-        maxHeight = newHeight;
 
         // append more components to this row if
         // - they wont overflow
@@ -100,15 +101,13 @@ export function reflowContent(
                 }
             });
             currentRowWidth += nextComponent.layout.w;
-            maxHeight = Math.max(maxHeight, nextComponent.layout.h);
             i++;
         }
 
-        reflowRow(row, currentRowWidth, targetColumns);
+        y += reflowRow(row, currentRowWidth, targetColumns);
 
         console.log("created row:", row);
         reflowedContent.push(...row);
-        y += maxHeight;
     }
 
     return reflowedContent;
