@@ -39,7 +39,7 @@
         ? 2
         : window.innerWidth < 768
         ? 3
-        : window.innerWidth < 1024
+        : window.innerWidth < 960
         ? 4
         : 6;
     let cols = [[1100, COLS]];
@@ -65,7 +65,7 @@
                     ? 2
                     : window.innerWidth < 768
                     ? 3
-                    : window.innerWidth < 1024
+                    : window.innerWidth < 960
                     ? 4
                     : 6;
             if (newCOLS !== COLS) {
