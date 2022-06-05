@@ -16,7 +16,16 @@ function reflowRow(
     let currentWidth = 0;
     for (const component of row) {
         const newWidth = component.layout.w * unitSize;
+        let newHeight = component.layout.h;
+        if (component.layout.reflowHint === "keep_aspect") {
+            const widthRatio = newWidth / component.layout.w;
+            newHeight = Math.ceil(component.layout.h * widthRatio);
+        } else if (component.layout.reflowHint === "keep_area") {
+            const area = component.layout.h * component.layout.w;
+            newHeight = area / newWidth;
+        }
         component.layout.x = currentWidth;
+        component.layout.h = newHeight;
         component.layout.w = Math.floor(newWidth);
         currentWidth += Math.ceil(newWidth);
     }
@@ -49,6 +58,14 @@ export function reflowContent(
         let maxHeight = 0;
 
         const newWidth = Math.min(component.layout.w, targetColumns);
+        let newHeight = component.layout.h;
+        if (component.layout.reflowHint === "keep_aspect") {
+            const widthRatio = newWidth / component.layout.w;
+            newHeight = Math.ceil(component.layout.h * widthRatio);
+        } else if (component.layout.reflowHint === "keep_area") {
+            const area = component.layout.h * component.layout.w;
+            newHeight = area / newWidth;
+        }
         row.push({
             id: component.id,
             component: component.component,
@@ -56,11 +73,12 @@ export function reflowContent(
                 x: currentRowWidth,
                 y,
                 w: newWidth,
-                h: component.layout.h
+                h: newHeight,
+                reflowHint: component.layout.reflowHint
             }
         });
         currentRowWidth += newWidth;
-        maxHeight = component.layout.h;
+        maxHeight = newHeight;
 
         // append more components to this row if
         // - they wont overflow
