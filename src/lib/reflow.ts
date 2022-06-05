@@ -60,7 +60,7 @@ export function reflowContent(
             }
         });
         currentRowWidth += newWidth;
-        maxHeight = Math.max(maxHeight, component.layout.h);
+        maxHeight = component.layout.h;
 
         // append more components to this row if
         // - they wont overflow
