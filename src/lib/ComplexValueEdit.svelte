@@ -4,6 +4,7 @@
     import SimpleValueEdit from "./SimpleValueEdit.svelte";
     import ListElementEditHeaderButton from "./ListElementEditHeaderButton.svelte";
     import ImageValueEdit from "./ImageValueEdit.svelte";
+    import ReflowHintValueEdit from "./ReflowHintValueEdit.svelte";
 
     export let value: any;
     export let proto: ComplexValue;
@@ -85,6 +86,11 @@
             {:else if typee instanceof NonstandardValue}
                 {#if typee._type === "image"}
                     <ImageValueEdit
+                        name={typee.overrideName || name}
+                        bind:value={value[name]}
+                    />
+                {:else if typee._type === "reflowhint"}
+                    <ReflowHintValueEdit
                         name={typee.overrideName || name}
                         bind:value={value[name]}
                     />

@@ -6,6 +6,7 @@
             y: number;
             w: number;
             h: number;
+            reflowHint: string;
         };
         component: ComponentDescriptor;
     };
@@ -105,7 +106,8 @@
             x: 0,
             y: 0,
             w: 1,
-            h: 1
+            h: 1,
+            reflowHint: "keep_height"
         };
 
         const item = {
@@ -133,7 +135,8 @@
                     x: c[COLS].x,
                     y: c[COLS].y,
                     w: c[COLS].w,
-                    h: c[COLS].h
+                    h: c[COLS].h,
+                    reflowHint: c[COLS].reflowHint
                 },
                 component: c.component
             };
@@ -318,7 +321,13 @@
                                 x: 0,
                                 y: 0,
                                 w: 0,
-                                h: 0
+                                h: 0,
+                                reflowHint: new NonstandardValue(
+                                    "reflowhint",
+                                    "keep_height",
+                                    "Reflow hint",
+                                    true
+                                )
                             }}
                         />
                     </details>

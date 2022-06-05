@@ -25,7 +25,7 @@ export type ComplexValue = {
         | NonstandardValue;
 };
 
-export type NonstandardType = "image" | "textblock";
+export type NonstandardType = "image" | "textblock" | "reflowhint";
 export class NonstandardValue {
     constructor(
         public _type: NonstandardType,
