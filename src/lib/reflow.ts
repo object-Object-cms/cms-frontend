@@ -23,7 +23,7 @@ function reflowRow(
             newHeight = Math.ceil(component.layout.h * widthRatio);
         } else if (component.layout.reflowHint === "keep_area") {
             const area = component.layout.h * component.layout.w;
-            newHeight = area / newWidth;
+            newHeight = Math.ceil(area / newWidth);
         }
         component.layout.x = currentWidth;
         component.layout.h = newHeight;
